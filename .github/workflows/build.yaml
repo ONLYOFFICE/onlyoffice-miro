@@ -1,0 +1,101 @@
+name: Build miro
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Specify tag (ex. 1.0.0 or 1.0.0-rc2)'
+        type: string
+        required: true
+      frontend:
+        description: 'Build frontend?' 
+        default: true
+        type: boolean
+      backend:
+        description: 'Build backend?'
+        default: true
+        type: boolean
+      miro-onlyoffice-backend:
+        description: 'Specify backend address'
+        type: string
+        required: true
+      miro-installation-url:
+        description: 'Specify installation url'
+        type: string
+        required: true
+      demo-expiration-days:
+        description: 'Specify demo expiration'
+        type: string
+        required: true
+      repo:
+        description: Choose repo
+        default: test
+        type: choice
+        options:
+        - test
+        - prod
+
+env:
+  VITE_MIRO_ONLYOFFICE_BACKEND: ${{ github.event.inputs.miro-onlyoffice-backend }}
+  VITE_MIRO_INSTALLATION_URL:  ${{ github.event.inputs.miro-installation-url }}
+  VITE_ASC_DEMO_EXPIRATION_DAYS: ${{ github.event.inputs.demo-expiration-days }}
+  TAG: ${{ github.event.inputs.tag }}
+  REGISTRY: ${{ (inputs.repo == 'test') && secrets.DOCKER_TEST_REGISTRY || 'docker.io/onlyoffice' }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    
+    - name: Login to Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ (inputs.repo == 'test') && secrets.DOCKER_TEST_REGISTRY || 'docker.io' }}
+        username: ${{ (inputs.repo == 'test') && secrets.DOCKER_TEST_USERNAME || secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ (inputs.repo == 'test') && secrets.DOCKER_TEST_ACCESS_TOKEN || secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+    - name: Build front
+      if: github.event.inputs.frontend == 'true'
+      run: |
+         cd ./frontend
+         docker build --no-cache -t ${REGISTRY}/miro-frontend:${TAG} . || echo "FRONT_FAILED=true" >> $GITHUB_ENV
+         docker push ${REGISTRY}/miro-frontend:${TAG} || echo "FRONT_PUSH_FAILED=true" >> $GITHUB_ENV
+
+    - name: Build backend
+      if: github.event.inputs.backend == 'true'
+      run: |
+         cd ./backend/deployments
+         docker build --no-cache -t ${REGISTRY}/miro-backend:${TAG} . || echo "BACKEND_FAILED=true" >> $GITHUB_ENV
+         docker push ${REGISTRY}/miro-backend:${TAG} || echo "BACKEND_PUSH_FAILED=true" >> $GITHUB_ENV
+
+    - name: Final Check for Failures
+      if: always()
+      run: |
+         FAILED_COMPONENTS=""
+       
+         if [ "$FRONT_FAILED" == "true" ]; then
+           FAILED_COMPONENTS="${FAILED_COMPONENTS}\n - Frontend build failed"
+         fi
+       
+         if [ "$FRONT_PUSH_FAILED" == "true" ]; then
+           FAILED_COMPONENTS="${FAILED_COMPONENTS}\n - Frontend push failed"
+         fi
+         
+         if [ "$BACKEND_FAILED" == "true" ]; then
+           FAILED_COMPONENTS="${FAILED_COMPONENTS}\n - Backend build failed"
+         fi
+
+         if [ "$BACKEND_PUSH_FAILED" == "true" ]; then
+           FAILED_COMPONENTS="${FAILED_COMPONENTS}\n - Backend push failed"
+         fi
+
+         if [ ! -z "$FAILED_COMPONENTS" ]; then
+           echo -e "❌ Build failed for the following components: $FAILED_COMPONENTS"
+           exit 1
+         else
+           echo "✅ All components built and pushed successfully."
+         fi
