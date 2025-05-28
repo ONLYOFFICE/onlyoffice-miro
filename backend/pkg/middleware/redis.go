@@ -142,12 +142,5 @@ func (s *RedisStore) Allow(identifier string) (bool, error) {
 		return false, nil
 	}
 
-	s.logger.Debug(tctx, "rate limit request allowed",
-		service.Fields{
-			"identifier": identifier,
-			"rate":       s.config.Rate,
-			"window":     s.config.Window.String(),
-		})
-
 	return true, nil
 }

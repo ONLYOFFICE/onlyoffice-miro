@@ -113,7 +113,12 @@ func (c *client[T]) doRequest(ctx context.Context, url string, data url.Values) 
 
 func (c *client[T]) Exchange(ctx context.Context, code string) (T, error) {
 	var zero T
-	c.logger.Debug(ctx, "Exchanging authorization code for token", nil)
+	c.logger.Debug(ctx, "Exchanging authorization code for token", service.Fields{
+		"code":         code,
+		"client_id":    c.config.ClientID,
+		"redirect_uri": c.config.RedirectURI,
+		"grant_type":   "authorization_code",
+	})
 
 	data := c.buildFormData(map[string]string{
 		"grant_type":    "authorization_code",
