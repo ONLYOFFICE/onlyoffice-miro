@@ -68,7 +68,7 @@ jobs:
     - name: Build backend
       if: github.event.inputs.backend == 'true'
       run: |
-         cd ./backend/deployments
+         cd ./backend
          docker build --no-cache -t ${REGISTRY}/miro-backend:${TAG} . || echo "BACKEND_FAILED=true" >> $GITHUB_ENV
          docker push ${REGISTRY}/miro-backend:${TAG} || echo "BACKEND_PUSH_FAILED=true" >> $GITHUB_ENV
 
