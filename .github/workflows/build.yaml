@@ -15,15 +15,15 @@ on:
         description: 'Build backend?'
         default: true
         type: boolean
-      miro-onlyoffice-backend:
+      miro_onlyoffice_backend:
         description: 'Specify backend address'
         type: string
         required: true
-      miro-installation-url:
+      miro_installation_url:
         description: 'Specify installation url'
         type: string
         required: true
-      demo-expiration-days:
+      demo_expiration_days:
         description: 'Specify demo expiration'
         type: string
         required: true
@@ -36,9 +36,6 @@ on:
         - prod
 
 env:
-  VITE_MIRO_ONLYOFFICE_BACKEND: ${{ github.event.inputs.miro-onlyoffice-backend }}
-  VITE_MIRO_INSTALLATION_URL:  ${{ github.event.inputs.miro-installation-url }}
-  VITE_ASC_DEMO_EXPIRATION_DAYS: ${{ github.event.inputs.demo-expiration-days }}
   TAG: ${{ github.event.inputs.tag }}
   REGISTRY: ${{ (inputs.repo == 'test') && secrets.DOCKER_TEST_REGISTRY || 'docker.io/onlyoffice' }}
 
@@ -53,6 +50,20 @@ jobs:
       with:
         submodules: 'recursive'
     
+    - name: Hide sensetive values
+      run: |
+         MIRO_ONLYOFFICE_BACKEND="$(jq -r '.inputs.miro_onlyoffice_backend' $GITHUB_EVENT_PATH)"
+         MIRO_INSTALLATION_URL="$(jq -r '.inputs.miro_installation_url' $GITHUB_EVENT_PATH)"
+         DEMO_EXPIRATION_DAYS="$(jq -r '.inputs.demo_expiration_days' $GITHUB_EVENT_PATH)"
+
+         echo ::add-mask::${MIRO_ONLYOFFICE_BACKEND}
+         echo ::add-mask::${MIRO_INSTALLATION_URL}
+         echo ::add-mask::${DEMO_EXPIRATION_DAYS}
+
+         echo "VITE_MIRO_ONLYOFFICE_BACKEND=${MIRO_ONLYOFFICE_BACKEND}" >> "$GITHUB_ENV"
+         echo "VITE_MIRO_INSTALLATION_URL=${MIRO_INSTALLATION_URL}" >> "$GITHUB_ENV"
+         echo "VITE_ASC_DEMO_EXPIRATION_DAYS=${DEMO_EXPIRATION_DAYS}" >> "$GITHUB_ENV"
+
     - name: Login to Container Registry
       uses: docker/login-action@v3
       with:
