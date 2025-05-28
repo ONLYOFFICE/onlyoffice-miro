@@ -1,5 +1,8 @@
 name: Build miro
 
+run-name: >-
+   Build ONYLOFFICE-Miro VER: [${{ inputs.tag }}]
+
 on:
   workflow_dispatch:
     inputs:
