@@ -14,7 +14,7 @@ COPY tsconfig.json ./
 COPY vite.config.mts ./
 COPY index.html ./
 COPY application.html ./
-COPY .eslintrc.js ./
+COPY .eslintrc.cjs ./
 
 RUN npm install
 COPY src ./src
