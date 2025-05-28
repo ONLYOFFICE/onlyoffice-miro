@@ -78,7 +78,10 @@ jobs:
       if: github.event.inputs.frontend == 'true'
       run: |
          cd ./frontend
-         docker build --no-cache -t ${REGISTRY}/miro-frontend:${TAG} . || echo "FRONT_FAILED=true" >> $GITHUB_ENV
+         docker build --no-cache --build-arg VITE_MIRO_ONLYOFFICE_BACKEND=${VITE_MIRO_ONLYOFFICE_BACKEND} \
+                                 --build-arg VITE_MIRO_INSTALLATION_URL=${VITE_MIRO_INSTALLATION_URL} \
+                                 --build-arg VITE_ASC_DEMO_EXPIRATION_DAYS=${VITE_ASC_DEMO_EXPIRATION_DAYS} \
+                                 -t ${REGISTRY}/miro-frontend:${TAG} . || echo "FRONT_FAILED=true" >> $GITHUB_ENV
          docker push ${REGISTRY}/miro-frontend:${TAG} || echo "FRONT_PUSH_FAILED=true" >> $GITHUB_ENV
 
     - name: Build backend
