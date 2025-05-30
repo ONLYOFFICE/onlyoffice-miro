@@ -27,11 +27,12 @@ import (
 )
 
 type OAuthConfig struct {
-	ClientID     string        `yaml:"client_id" env:"OAUTH_CLIENT_ID" validate:"required"`
-	ClientSecret string        `yaml:"client_secret" env:"OAUTH_CLIENT_SECRET" validate:"required"`
-	RedirectURI  string        `yaml:"redirect_uri" env:"OAUTH_REDIRECT_URI" validate:"required,http_address"`
-	TokenURI     string        `yaml:"token_uri" env:"OAUTH_TOKEN_URI" validate:"required,http_address"`
-	Timeout      time.Duration `yaml:"timeout" env:"OAUTH_TIMEOUT" validate:"required"`
+	ClientID         string        `yaml:"client_id" env:"OAUTH_CLIENT_ID" validate:"required"`
+	ClientSecret     string        `yaml:"client_secret" env:"OAUTH_CLIENT_SECRET" validate:"required"`
+	EncryptionSecret string        `yaml:"encryption_secret" env:"OAUTH_ENCRYPTION_SECRET" validate:"required"`
+	RedirectURI      string        `yaml:"redirect_uri" env:"OAUTH_REDIRECT_URI" validate:"required,http_address"`
+	TokenURI         string        `yaml:"token_uri" env:"OAUTH_TOKEN_URI" validate:"required,http_address"`
+	Timeout          time.Duration `yaml:"timeout" env:"OAUTH_TIMEOUT" validate:"required"`
 }
 
 func DefaultOAuthConfig() *OAuthConfig {
@@ -48,6 +49,10 @@ func (c *OAuthConfig) loadEnv() error {
 
 	if clientSecret := os.Getenv("OAUTH_CLIENT_SECRET"); clientSecret != "" {
 		c.ClientSecret = clientSecret
+	}
+
+	if encryptionSecret := os.Getenv("OAUTH_ENCRYPTION_SECRET"); encryptionSecret != "" {
+		c.EncryptionSecret = encryptionSecret
 	}
 
 	if redirectURI := os.Getenv("OAUTH_REDIRECT_URI"); redirectURI != "" {
@@ -93,6 +98,8 @@ func (c *OAuthConfig) Validate() error {
 					return fmt.Errorf("client_id is required")
 				case "ClientSecret":
 					return fmt.Errorf("client_secret is required")
+				case "EncryptionSecret":
+					return fmt.Errorf("encryption_secret is required")
 				case "RedirectURI":
 					if e.Tag() == "http_address" {
 						return fmt.Errorf("redirect_uri must be an HTTP/HTTPS URL without trailing slash")

@@ -20,6 +20,7 @@ miro:
 oauth:
   client_id: <client_id>
   client_secret: <client_secret>
+  encryption_secret: <encryption_secret>
   redirect_uri: <redirect_uri>
   token_uri: https://api.miro.com/v1/oauth/token
   timeout: 4s

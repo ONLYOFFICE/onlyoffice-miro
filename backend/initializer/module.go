@@ -172,7 +172,7 @@ func NewServices(
 	logger service.Logger,
 ) (*Services, error) {
 	mapper := NewAuthenticationMapper()
-	cipher := crypto.NewAESCipher([]byte(config.OAuth.ClientSecret))
+	cipher := crypto.NewAESCipher([]byte(config.OAuth.EncryptionSecret))
 	jwt := crypto.NewJwtService()
 
 	renderer, err := controller.NewTemplateRenderer(logger)
