@@ -44,6 +44,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
     const [addressError, setAddressError] = useState('');
     const [secretError, setSecretError] = useState('');
     const [headerError, setHeaderError] = useState('');
+    const [submitting, setSubmitting] = useState(false);
     const { t } = useTranslation();
     const navigate = useNavigate();
     const {
@@ -107,6 +108,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
     const hasValidationErrors = !!(addressErr || headerErr || secretErr);
     const saveDisabled =
       loading ||
+      submitting ||
       (!hasInputs && !demo) ||
       (!hasInputs && demo && !!demoStarted && !isDemoExpired) ||
       hasValidationErrors;
@@ -150,24 +152,24 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-
-      if (validateForm()) {
-        try {
-          await saveSettings();
-          await emitRefreshDocuments();
-          await refreshAuthorization();
-          navigate('/');
-        } catch (err: unknown) {
-          if (
-            err &&
-            typeof err === 'object' &&
-            'message' in err
-          ) {
-            miro.board.notifications.showError(
-              t((err as { message: string }).message)
-            );
+      setSubmitting(true);
+      try {
+        if (validateForm()) {
+          try {
+            await saveSettings();
+            await emitRefreshDocuments();
+            await refreshAuthorization();
+            navigate('/');
+          } catch (err: unknown) {
+            if (err && typeof err === 'object' && 'message' in err) {
+              miro.board.notifications.showError(
+                t((err as { message: string }).message)
+              );
+            }
           }
         }
+      } finally {
+        setSubmitting(false);
       }
     };
 
@@ -189,7 +191,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                 type="text"
                 value={address}
                 error={addressError}
-                disabled={loading}
+                disabled={loading || submitting}
                 onChange={(e) => {
                   const { value } = e.target;
                   setAddress(value);
@@ -213,7 +215,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                 type="password"
                 value={secret}
                 error={secretError}
-                disabled={loading}
+                disabled={loading || submitting}
                 onChange={(e) => {
                   const { value } = e.target;
                   setSecret(value);
@@ -230,7 +232,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                 type="text"
                 value={header}
                 error={headerError}
-                disabled={loading}
+                disabled={loading || submitting}
                 onChange={(e) => {
                   const { value } = e.target;
                   setHeader(value);
@@ -251,7 +253,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                     type="checkbox"
                     className="form__checkbox"
                     checked={demo}
-                    disabled={loading || !!demoStarted}
+                    disabled={loading || submitting || !!demoStarted}
                     onChange={() => {
                       setDemo(!demo);
                     }}
