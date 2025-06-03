@@ -19,12 +19,17 @@
 export const validateAddress = (value: string): boolean => {
   if (!value) return false;
 
+  let address = value;
+  if (!/^https?:\/\//i.test(address)) {
+    address = 'https://' + address;
+  }
+
   try {
-    const url = new URL(value);
+    const url = new URL(address);
     if (url.protocol !== 'http:' && url.protocol !== 'https:') {
       return false;
     }
-    if (value.endsWith('/')) {
+    if (address.endsWith('/')) {
       return false;
     }
   } catch (e) {
