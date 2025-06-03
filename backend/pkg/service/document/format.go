@@ -186,7 +186,7 @@ type FormatManager interface {
 }
 
 func (m MapFormatManager) GetFileExt(filename string) string {
-	return strings.ReplaceAll(filepath.Ext(filename), ".", "")
+	return strings.ReplaceAll(strings.ToLower(filepath.Ext(filename)), ".", "")
 }
 
 func (m MapFormatManager) EscapeFileName(filename string) string {
@@ -196,7 +196,7 @@ func (m MapFormatManager) EscapeFileName(filename string) string {
 }
 
 func (m MapFormatManager) GetFormatByName(name string) (Format, bool) {
-	format, exists := m.formats[name]
+	format, exists := m.formats[strings.ToLower(name)]
 	return format, exists
 }
 
