@@ -16,11 +16,10 @@
  *
  */
 
-
 export const normalizeAddress = (value: string): string => {
   if (!value) return value;
   if (!/^https?:\/\//i.test(value)) {
-    return 'https://' + value;
+    return `https://${value}`;
   }
   return value;
 };
@@ -30,7 +29,7 @@ export const validateAddress = (value: string): boolean => {
 
   let address = value;
   if (!/^https?:\/\//i.test(address)) {
-    address = 'https://' + address;
+    address = `https://${address}`;
   }
 
   try {

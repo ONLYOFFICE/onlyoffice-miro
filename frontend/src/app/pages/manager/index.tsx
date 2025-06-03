@@ -39,7 +39,8 @@ import '@app/pages/manager/index.css';
 
 const ManagerPage = () => {
   const { t } = useTranslation();
-  const { admin, retriesExhausted, reloadAuthorization } = useApplicationStore();
+  const { admin, retriesExhausted, reloadAuthorization } =
+    useApplicationStore();
   const {
     searchQuery,
     filteredDocuments,
@@ -55,8 +56,7 @@ const ManagerPage = () => {
   if (serverConfigError && admin) return <SettingsPage forceDisableBack />;
 
   const handleReload = async () => {
-    if (retriesExhausted)
-      await reloadAuthorization();
+    if (retriesExhausted) await reloadAuthorization();
     await refreshDocuments();
   };
 
@@ -99,13 +99,17 @@ const ManagerPage = () => {
     return <FilesList />;
   };
 
-  const showSettings = !isInitialLoading && !serverConfigError && !authError && !retriesExhausted;
+  const showSettings =
+    !isInitialLoading && !serverConfigError && !authError && !retriesExhausted;
 
   return (
     <Layout
       title={serverConfigError ? '' : t('pages.manager.title')}
       subtitle={
-        !authError && !serverConfigError && !retriesExhausted && documents.length > 0
+        !authError &&
+        !serverConfigError &&
+        !retriesExhausted &&
+        documents.length > 0
           ? t('pages.manager.subtitle')
           : ''
       }
@@ -116,9 +120,10 @@ const ManagerPage = () => {
     >
       <div className="manager-container">
         <div className="manager-container_shifted">
-          {!authError && !serverConfigError && !retriesExhausted && documents.length > 0 && (
-            <Searchbar />
-          )}
+          {!authError &&
+            !serverConfigError &&
+            !retriesExhausted &&
+            documents.length > 0 && <Searchbar />}
         </div>
         <div className="manager-container__main">
           <div className="manager-container_shifted manager-container__main__files">

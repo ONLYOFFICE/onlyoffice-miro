@@ -22,48 +22,47 @@ import {
 } from '@features/settings/lib/types';
 
 export const saveSettings = async (settings: SettingsRequest) => {
-  try {
-    const { board: miroBoard } = window.miro;
-    const boardPromise = miroBoard.getInfo();
-    const tokenPromise = miroBoard.getIdToken();
+  const { board: miroBoard } = window.miro;
+  const boardPromise = miroBoard.getInfo();
+  const tokenPromise = miroBoard.getIdToken();
 
-    const [board, token] = await Promise.all([boardPromise, tokenPromise]);
-    const path = `api/settings`;
-    const response = await fetch(
-      `${import.meta.env.VITE_MIRO_ONLYOFFICE_BACKEND}/${path}`,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          board_id: board.id,
-          ...settings,
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-          'x-miro-signature': token,
-        },
-      }
-    );
-
-    if (response.ok) {
-      return true;
+  const [board, token] = await Promise.all([boardPromise, tokenPromise]);
+  const path = `api/settings`;
+  const response = await fetch(
+    `${import.meta.env.VITE_MIRO_ONLYOFFICE_BACKEND}/${path}`,
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        board_id: board.id,
+        ...settings,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'x-miro-signature': token,
+      },
     }
+  );
 
-    if (response.status === 500 || response.status === 400 || response.status === 403) {
-      let err;
-      try {
-        err = await response.json();
-      } catch {
-        err = null;
-      }
-
-      if (err && err.error) 
-        throw { status: 500, error: err.error };
-    }
-
-    throw { status: 503, error: 'features.settings.form.errors.service_unavailable' };
-  } catch (err) {
-    throw err;
+  if (response.ok) {
+    return true;
   }
+
+  if (
+    response.status === 500 ||
+    response.status === 400 ||
+    response.status === 403
+  ) {
+    let err;
+    try {
+      err = await response.json();
+    } catch {
+      err = null;
+    }
+
+    if (err && err.error) throw new Error(err.error);
+  }
+
+  throw new Error('features.settings.form.errors.service_unavailable');
 };
 
 export const fetchSettings: () => Promise<SettingsResponse> = async () => {
@@ -135,7 +134,7 @@ export const fetchSettings: () => Promise<SettingsResponse> = async () => {
       return await retryWithBackoff(retryCount + 1);
     } catch (error) {
       if (retryCount >= maxRetries)
-        throw error;
+        throw error instanceof Error ? error : new Error(String(error));
       return retryWithBackoff(retryCount + 1);
     }
   };

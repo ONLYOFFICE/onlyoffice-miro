@@ -20,7 +20,11 @@ import React, { forwardRef, FormEvent, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { validateAddress, validateShortText, normalizeAddress } from '@utils/validator';
+import {
+  validateAddress,
+  validateShortText,
+  normalizeAddress,
+} from '@utils/validator';
 
 import Button from '@components/Button';
 import FormInput from '@components/Input';
@@ -153,9 +157,17 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
           await emitRefreshDocuments();
           await refreshAuthorization();
           navigate('/');
-        } catch (err: any) {
-          if (err && err.status && err.error)
-            miro.board.notifications.showError(t(err.error));
+        } catch (err: unknown) {
+          if (
+            err &&
+            typeof err === 'object' &&
+            'status' in err &&
+            'error' in err
+          ) {
+            miro.board.notifications.showError(
+              t((err as { error: string }).error)
+            );
+          }
         }
       }
     };
@@ -255,7 +267,12 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                     t('features.settings.form.demo.available_until', {
                       date: new Date(
                         new Date(demoStarted).getTime() +
-                        (parseInt(import.meta.env.VITE_ASC_DEMO_EXPIRATION_DAYS || '30', 10) * 86400000)
+                          parseInt(
+                            import.meta.env.VITE_ASC_DEMO_EXPIRATION_DAYS ||
+                              '30',
+                            10
+                          ) *
+                            86400000
                       )
                         .toLocaleDateString('en-GB')
                         .replace(/\//g, '.'),

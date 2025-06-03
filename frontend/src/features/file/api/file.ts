@@ -29,8 +29,7 @@ export const openEditor = async (doc: Document, displayError?: string) => {
   if (applicationStore.shouldRefreshCookie()) {
     await applicationStore.authorize();
     if (useApplicationStore.getState().shouldRefreshCookie()) {
-      if (displayError) 
-        await miroBoard.notifications.showError(displayError);
+      if (displayError) await miroBoard.notifications.showError(displayError);
       return;
     }
   }

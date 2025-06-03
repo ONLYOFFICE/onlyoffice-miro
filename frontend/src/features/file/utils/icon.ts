@@ -17,13 +17,13 @@
  */
 
 const getIcon = (title?: string) => {
-  title = title?.toLowerCase();
-  if (!title) return '/other.svg';
+  const normalizedTitle = title?.toLowerCase();
+  if (!normalizedTitle) return '/other.svg';
 
-  if (title.endsWith('.docx')) return '/word.svg';
-  if (title.endsWith('.xlsx')) return '/cell.svg';
-  if (title.endsWith('.pptx')) return '/slide.svg';
-  if (title.endsWith('.pdf')) return '/pdf.svg';
+  if (normalizedTitle.endsWith('.docx')) return '/word.svg';
+  if (normalizedTitle.endsWith('.xlsx')) return '/cell.svg';
+  if (normalizedTitle.endsWith('.pptx')) return '/slide.svg';
+  if (normalizedTitle.endsWith('.pdf')) return '/pdf.svg';
 
   return '/other.svg';
 };

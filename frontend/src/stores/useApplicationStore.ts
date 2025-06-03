@@ -44,7 +44,12 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
   cookieExpiresAt: null,
 
   reloadAuthorization: async () => {
-    set({ loading: true, authorized: false, admin: false, retriesExhausted: false });
+    set({
+      loading: true,
+      authorized: false,
+      admin: false,
+      retriesExhausted: false,
+    });
     try {
       const settingsStore = useSettingsStore.getState();
       await settingsStore.initializeSettings();
