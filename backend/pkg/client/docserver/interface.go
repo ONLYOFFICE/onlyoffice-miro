@@ -21,4 +21,5 @@ import "context"
 
 type Client interface {
 	GetServerVersion(ctx context.Context, base string, opts ...Option) (*ServerVersionResponse, error)
+	ConvertFile(ctx context.Context, base, token string, opts ...Option) (*FileConversionResponse, error)
 }

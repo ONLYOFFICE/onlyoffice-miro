@@ -21,3 +21,7 @@ type GetServerVersionRequest struct {
 	C     string `json:"c"`
 	Token string `json:"token,omitempty"`
 }
+
+type ConvertFileRequest struct {
+	Token string `json:"token,omitempty"`
+}

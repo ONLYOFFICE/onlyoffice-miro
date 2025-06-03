@@ -53,7 +53,7 @@ func NewClient(logger service.Logger) Client {
 	}
 }
 
-func (c *client) createRequest(ctx context.Context, method, baseURL string, body any, options *ClientOptions) (*http.Request, error) {
+func (c *client) createRequest(ctx context.Context, method, baseURL, path string, body any, options *ClientOptions) (*http.Request, error) {
 	c.logger.Debug(ctx, "Creating DocServer request", service.Fields{
 		"method":  method,
 		"baseURL": baseURL,
@@ -73,7 +73,7 @@ func (c *client) createRequest(ctx context.Context, method, baseURL string, body
 		return nil, ErrTokenRequired
 	}
 
-	url := common.Concat(address, "/command", "?shardKey=", common.GenerateRandomString(8))
+	url := common.Concat(address, path, "?shardKey=", common.GenerateRandomString(8))
 
 	var reader io.Reader
 	if body != nil {
@@ -161,7 +161,7 @@ func (c *client) GetServerVersion(ctx context.Context, base string, opts ...Opti
 
 	body := GetServerVersionRequest{C: "version", Token: options.Token}
 
-	req, err := c.createRequest(ctx, http.MethodPost, base, body, options)
+	req, err := c.createRequest(ctx, http.MethodPost, base, "/command", body, options)
 	if err != nil {
 		c.logger.Error(ctx, "Failed to create request for GetServerVersion", service.Fields{
 			"baseURL": base,
@@ -183,5 +183,49 @@ func (c *client) GetServerVersion(ctx context.Context, base string, opts ...Opti
 		"baseURL": base,
 		"version": response.Version,
 	})
+	return &response, nil
+}
+
+func (c *client) ConvertFile(ctx context.Context, base, token string, opts ...Option) (*FileConversionResponse, error) {
+	c.logger.Info(ctx, "Getting DocServer convert URL", service.Fields{
+		"baseURL": base,
+	})
+
+	options := DefaultClientOptions()
+	ApplyOptions(options, opts...)
+
+	body := ConvertFileRequest{Token: token}
+
+	req, err := c.createRequest(ctx, http.MethodPost, base, "/converter", body, options)
+	if err != nil {
+		c.logger.Error(ctx, "Failed to create request for ConvertFile", service.Fields{
+			"baseURL": base,
+			"error":   err.Error(),
+		})
+		return nil, err
+	}
+
+	var response FileConversionResponse
+	if err := c.sendRequest(req, &response); err != nil {
+		c.logger.Error(ctx, "Failed to convert file", service.Fields{
+			"baseURL": base,
+			"error":   err.Error(),
+		})
+		return nil, err
+	}
+
+	c.logger.Info(ctx, "File converted successfully", service.Fields{
+		"baseURL": base,
+		"url":     response.FileURL,
+	})
+
+	if response.Error != 0 {
+		c.logger.Error(ctx, "Failed to convert file. Received non-zero error code", service.Fields{
+			"baseURL": base,
+			"error":   response.Error,
+		})
+		return nil, fmt.Errorf("failed to convert file: %d", response.Error)
+	}
+
 	return &response, nil
 }

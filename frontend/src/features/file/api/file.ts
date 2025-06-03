@@ -95,7 +95,7 @@ export const navigateDocument = async (id: string): Promise<void> => {
 
 export const convertDocument = async (
   id: string
-): Promise<{ url: string; token: string }> => {
+): Promise<{ url: string; percent: number }> => {
   const { board: miroBoard } = window.miro;
   const boardPromise = miroBoard.getInfo();
   const tokenPromise = miroBoard.getIdToken();

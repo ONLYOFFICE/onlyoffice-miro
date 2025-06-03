@@ -21,3 +21,9 @@ type ServerVersionResponse struct {
 	Error   int    `json:"error"`
 	Version string `json:"version"`
 }
+
+type FileConversionResponse struct {
+	Error   int    `json:"error"`
+	FileURL string `json:"fileUrl"`
+	Percent int    `json:"percent"`
+}

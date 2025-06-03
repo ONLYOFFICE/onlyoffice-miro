@@ -28,6 +28,7 @@ import (
 	"github.com/ONLYOFFICE/onlyoffice-miro/backend/config"
 	"github.com/ONLYOFFICE/onlyoffice-miro/backend/internal/pkg/crypto"
 	"github.com/ONLYOFFICE/onlyoffice-miro/backend/internal/pkg/service"
+	"github.com/ONLYOFFICE/onlyoffice-miro/backend/pkg/client/docserver"
 	"github.com/ONLYOFFICE/onlyoffice-miro/backend/pkg/client/miro"
 	"github.com/ONLYOFFICE/onlyoffice-miro/backend/pkg/common"
 	"github.com/ONLYOFFICE/onlyoffice-miro/backend/pkg/controller/base"
@@ -40,11 +41,13 @@ import (
 
 type fileConversionController struct {
 	base.BaseController
+	DocserverClient docserver.Client
 }
 
 func NewFileConversionController(
 	config *config.Config,
 	miroClient miro.Client,
+	docserverClient docserver.Client,
 	jwtService crypto.Signer,
 	builderService document.BuilderService,
 	oauthService oauthService.OAuthService[miro.AuthenticationResponse],
@@ -63,6 +66,7 @@ func NewFileConversionController(
 			translationService,
 			logger,
 		),
+		DocserverClient: docserverClient,
 	}
 
 	return common.NewHandler(map[common.HTTPMethod]echo.HandlerFunc{
@@ -119,7 +123,7 @@ func (c *fileConversionController) handleGet(ctx echo.Context) error {
 
 			fileExt := path.Ext(file.Data.Title)
 			convReq := convertClaims{
-				Async:      false,
+				Async:      true,
 				FileType:   string(common.ToDocumentType(fileExt)),
 				Key:        fmt.Sprintf("%x", md5.Sum([]byte(file.Data.DocumentURL))),
 				OutputType: "pdf",
@@ -136,9 +140,21 @@ func (c *fileConversionController) handleGet(ctx echo.Context) error {
 				return c.BaseController.HandleError(ctx, err, http.StatusBadRequest, "failed to create token")
 			}
 
+			response, err := c.DocserverClient.ConvertFile(
+				tctx,
+				address,
+				jwtToken,
+				docserver.WithHeader(settings.Header),
+				docserver.WithToken(settings.Secret),
+			)
+
+			if err != nil {
+				return c.BaseController.HandleError(ctx, err, http.StatusBadRequest, "failed to convert file")
+			}
+
 			return ctx.JSON(200, convertResponse{
-				URL:   address,
-				Token: jwtToken,
+				URL:     response.FileURL,
+				Percent: response.Percent,
 			})
 		}
 

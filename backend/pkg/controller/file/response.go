@@ -20,8 +20,8 @@ package file
 import "github.com/ONLYOFFICE/onlyoffice-miro/backend/internal/core/component"
 
 type convertResponse struct {
-	URL   string `json:"url"`
-	Token string `json:"token"`
+	URL     string `json:"url"`
+	Percent int    `json:"percent"`
 }
 
 type boardAuthenticationResponse struct {

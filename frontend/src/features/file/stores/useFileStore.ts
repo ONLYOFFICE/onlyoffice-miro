@@ -20,8 +20,6 @@ import { create } from 'zustand';
 
 import { Document } from '@features/file/lib/types';
 
-import randomUtils from '@utils/random';
-
 import {
   convertDocument,
   deleteDocument,
@@ -195,19 +193,18 @@ export const useFilesStore = create<FilesState>((set, get) => ({
   downloadPdf: async (document: Document) => {
     try {
       set({ converting: true });
-      const response = await convertDocument(document.id);
-      const { url, token } = response;
-      const cresponse = await fetch(
-        `${url}/converter?shardKey=${randomUtils.generateRandomString(8)}`,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            token,
-          }),
-        }
-      );
-      const { fileUrl } = await cresponse.json();
-      window.open(fileUrl, '_blank');
+      let percent = 0;
+      let url = '';
+      
+      while (percent < 100) {
+        const response = await convertDocument(document.id);
+        percent = response.percent;
+        url = response.url;
+        if (percent < 100)
+          await new Promise(resolve => setTimeout(resolve, 125));
+      }
+      
+      window.open(url, '_blank');
       set({ activeDropdown: null, converting: false });
     } catch (error) {
       set({ converting: false });

@@ -287,6 +287,7 @@ func NewControllers(
 	fileConversion := file.NewFileConversionController(
 		config,
 		clients.MiroClient,
+		clients.DocServer,
 		services.JwtService,
 		services.Builder,
 		services.AuthService,
