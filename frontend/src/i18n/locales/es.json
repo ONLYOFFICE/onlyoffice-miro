@@ -29,7 +29,10 @@
       "item": {
         "navigate": "Navigate to ES",
         "download": "Download as PDF ES",
-        "delete": "Delete ES"
+        "delete": "Delete ES",
+        "errors": {
+          "failed_to_open": "Could not open the document. Please try again later, our service is unavailable. ES"
+        }
       },
       "list": {
         "notifications": {

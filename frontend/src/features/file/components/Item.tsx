@@ -69,10 +69,16 @@ export const FileItem = forwardRef<HTMLDivElement, FileItemProps>(
       <div
         ref={ref}
         className="file-container"
-        onClick={() => openEditor(fileDocument)}
+        onClick={() => openEditor(
+          fileDocument,
+          t('features.file.item.errors.failed_to_open'),
+        )}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
-            openEditor(fileDocument);
+            openEditor(
+              fileDocument,
+              t('features.file.item.errors.failed_to_open'),
+            );
           }
         }}
         role="button"

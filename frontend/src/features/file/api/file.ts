@@ -20,7 +20,7 @@ import { Document, Pageable } from '@features/file/lib/types';
 
 import useApplicationStore from '@stores/useApplicationStore';
 
-export const openEditor = async (doc: Document) => {
+export const openEditor = async (doc: Document, displayError?: string) => {
   const { board: miroBoard } = window.miro;
   const applicationStore = useApplicationStore.getState();
   const userPromise = miroBoard.getUserInfo();
@@ -28,7 +28,11 @@ export const openEditor = async (doc: Document) => {
   const [user, board] = await Promise.all([userPromise, boardPromise]);
   if (applicationStore.shouldRefreshCookie()) {
     await applicationStore.authorize();
-    if (useApplicationStore.getState().shouldRefreshCookie()) return;
+    if (useApplicationStore.getState().shouldRefreshCookie()) {
+      if (displayError) 
+        await miroBoard.notifications.showError(displayError);
+      return;
+    }
   }
 
   const path = `api/editor?uid=${user.id}&fid=${doc.id}&bid=${board.id}&lang=${board.locale}`;
