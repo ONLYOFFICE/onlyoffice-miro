@@ -20,7 +20,7 @@ import React, { forwardRef, FormEvent, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import { validateAddress, validateShortText } from '@utils/validator';
+import { validateAddress, validateShortText, normalizeAddress } from '@utils/validator';
 
 import Button from '@components/Button';
 import FormInput from '@components/Input';
@@ -178,6 +178,13 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                   const { value } = e.target;
                   setAddress(value);
                   setAddressError(validateAddressField(value));
+                }}
+                onBlur={(e) => {
+                  const normalized = normalizeAddress(e.target.value);
+                  if (normalized !== e.target.value) {
+                    setAddress(normalized);
+                    setAddressError(validateAddressField(normalized));
+                  }
                 }}
                 required={fieldsRequired}
                 autoComplete="off"

@@ -16,20 +16,24 @@
  *
  */
 
+
+export const normalizeAddress = (value: string): string => {
+  if (!value) return value;
+  if (!/^https?:\/\//i.test(value)) {
+    return 'https://' + value;
+  }
+  return value;
+};
+
 export const validateAddress = (value: string): boolean => {
   if (!value) return false;
 
-  let address = value;
-  if (!/^https?:\/\//i.test(address)) {
-    address = 'https://' + address;
-  }
-
   try {
-    const url = new URL(address);
+    const url = new URL(value);
     if (url.protocol !== 'http:' && url.protocol !== 'https:') {
       return false;
     }
-    if (address.endsWith('/')) {
+    if (value.endsWith('/')) {
       return false;
     }
   } catch (e) {
