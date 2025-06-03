@@ -39,7 +39,7 @@ import '@app/pages/manager/index.css';
 
 const ManagerPage = () => {
   const { t } = useTranslation();
-  const { admin } = useApplicationStore();
+  const { admin, retriesExhausted, reloadAuthorization } = useApplicationStore();
   const {
     searchQuery,
     filteredDocuments,
@@ -55,11 +55,21 @@ const ManagerPage = () => {
   if (serverConfigError && admin) return <SettingsPage forceDisableBack />;
 
   const handleReload = async () => {
+    if (retriesExhausted)
+      await reloadAuthorization();
     await refreshDocuments();
   };
 
   const renderContent = () => {
     if (authError) return <Installation />;
+
+    if (retriesExhausted)
+      return (
+        <Empty
+          title={t('pages.manager.empty.max_retries_title')}
+          subtitle={t('pages.manager.empty.max_retries_subtitle')}
+        />
+      );
 
     if (serverConfigError && !admin) return <NotConfigured />;
 
@@ -89,22 +99,24 @@ const ManagerPage = () => {
     return <FilesList />;
   };
 
+  const showSettings = !isInitialLoading && !serverConfigError && !authError && !retriesExhausted;
+
   return (
     <Layout
       title={serverConfigError ? '' : t('pages.manager.title')}
       subtitle={
-        !authError && !serverConfigError && documents.length > 0
+        !authError && !serverConfigError && !retriesExhausted && documents.length > 0
           ? t('pages.manager.subtitle')
           : ''
       }
       footerText={t('pages.manager.footer')}
       reload
-      settings={!serverConfigError}
+      settings={showSettings}
       onReload={handleReload}
     >
       <div className="manager-container">
         <div className="manager-container_shifted">
-          {!authError && !serverConfigError && documents.length > 0 && (
+          {!authError && !serverConfigError && !retriesExhausted && documents.length > 0 && (
             <Searchbar />
           )}
         </div>
@@ -114,7 +126,7 @@ const ManagerPage = () => {
           </div>
         </div>
         <div className="manager-container_shifted manager-container__button-container">
-          {!authError && !serverConfigError && (
+          {!authError && !serverConfigError && !retriesExhausted && (
             <Link
               to="/create"
               state={{ isBack: false }}

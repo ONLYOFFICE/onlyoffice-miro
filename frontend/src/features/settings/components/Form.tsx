@@ -154,9 +154,8 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
           await refreshAuthorization();
           navigate('/');
         } catch (err: any) {
-          if (err && err.status === 500 && err.error) {
+          if (err && err.status && err.error)
             miro.board.notifications.showError(t(err.error));
-          }
         }
       }
     };

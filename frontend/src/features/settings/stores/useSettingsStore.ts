@@ -81,11 +81,11 @@ const useSettingsStore = create<SettingsState>((set, get) => ({
         error instanceof Error &&
         (error.message === 'access denied' ||
           error.message === 'not authorized');
-      if (isAccessDenied) throw error;
+      if (!isAccessDenied) throw error;
 
       set({
         loading: false,
-        error: isAccessDenied ? 'access denied' : null,
+        error: 'access denied',
       });
     } finally {
       const { demoStarted, persistedCredentials } = get();

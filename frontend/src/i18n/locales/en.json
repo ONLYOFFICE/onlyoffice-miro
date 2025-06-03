@@ -10,7 +10,9 @@
         "title": "No docs here yet",
         "subtitle": "Press create new document button",
         "search_title": "No documents found",
-        "search_subtitle": "Please try a different search query"
+        "search_subtitle": "Please try a different search query",
+        "max_retries_title": "Failed to access the server",
+        "max_retries_subtitle": "Please try again later"
       },
       "title": "File manager",
       "subtitle": "Choose or create a document to edit it in Miro",
@@ -83,7 +85,8 @@
           "document_server_version_retrieval_error": "Failed to validate document server version",
           "document_server_unsupported_version": "Unsupported document server version",
           "settings_initialization_error": "Failed to build new settings",
-          "settings_persistence_error": "Failed to persist settings"
+          "settings_persistence_error": "Failed to persist settings",
+          "service_unavailable": "Service unavailable"
         },
         "address": "Document Server Address",
         "secret": "JWT Secret",

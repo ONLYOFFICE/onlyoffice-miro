@@ -33,6 +33,7 @@ const CreationPage: React.FC = () => {
       subtitle={t('pages.creation.subtitle')}
       footerText={t('pages.creation.footer')}
       backTo="/"
+      settings={false}
     >
       <Creator />
     </Layout>

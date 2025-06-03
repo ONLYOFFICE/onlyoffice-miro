@@ -26,6 +26,7 @@ interface ApplicationState {
   authorized: boolean;
   admin: boolean;
   hasCookie: boolean;
+  retriesExhausted: boolean;
   cookieExpiresAt: number | null;
 
   reloadAuthorization: () => Promise<void>;
@@ -39,10 +40,11 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
   authorized: false,
   admin: false,
   hasCookie: false,
+  retriesExhausted: false,
   cookieExpiresAt: null,
 
   reloadAuthorization: async () => {
-    set({ loading: true, authorized: false, admin: false });
+    set({ loading: true, authorized: false, admin: false, retriesExhausted: false });
     try {
       const settingsStore = useSettingsStore.getState();
       await settingsStore.initializeSettings();
@@ -55,10 +57,12 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
       const unauthorized =
         err instanceof Error && err.message === 'not authorized';
       const forbidden = err instanceof Error && err.message === 'access denied';
+      const retries = err instanceof Error && err.message === 'max retries';
       set({
         loading: false,
         authorized: !unauthorized,
         admin: !unauthorized && !forbidden,
+        retriesExhausted: retries,
       });
     } finally {
       const settingsStore = useSettingsStore.getState();
@@ -81,6 +85,7 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
 
   refreshAuthorization: async () => {
     try {
+      set({ retriesExhausted: false });
       const settingsStore = useSettingsStore.getState();
       await settingsStore.initializeSettings();
       set({
@@ -91,13 +96,18 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
       const unauthorized =
         err instanceof Error && err.message === 'not authorized';
       const forbidden = err instanceof Error && err.message === 'access denied';
-      set({ authorized: !unauthorized, admin: !unauthorized && !forbidden });
+      const retries = err instanceof Error && err.message === 'max retries';
+      set({
+        authorized: !unauthorized,
+        admin: !unauthorized && !forbidden,
+        retriesExhausted: retries,
+      });
     }
   },
 
   authorize: async () => {
     try {
-      set({ hasCookie: false });
+      set({ hasCookie: false, retriesExhausted: false });
       const { expiresAt } = await fetchAuthorization();
       set({
         hasCookie: true,
@@ -107,10 +117,12 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
       const unauthorized =
         err instanceof Error && err.message === 'not authorized';
       const forbidden = err instanceof Error && err.message === 'access denied';
+      const retries = err instanceof Error && err.message === 'max retries';
       set({
         hasCookie: false,
         authorized: !unauthorized,
         admin: !unauthorized && !forbidden,
+        retriesExhausted: retries,
         cookieExpiresAt: null,
       });
     }

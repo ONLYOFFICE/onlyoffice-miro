@@ -159,7 +159,7 @@ func (c *settingsController) handlePost(ctx echo.Context) error {
 	user, err := c.oauthService.Find(tctx, token.Team, token.User)
 	if err != nil {
 		c.logger.Error(ctx.Request().Context(), "Failed to fetch user authentication", service.Fields{"error": err, "user_id": token.User, "team_id": token.Team})
-		return ctx.JSON(http.StatusUnauthorized, common.ErrorResponse{Error: err.Error()})
+		return ctx.JSON(http.StatusInternalServerError, common.ErrorResponse{Error: err.Error()})
 	}
 
 	member, err := c.miroClient.GetBoardMember(tctx, miro.GetBoardMemberRequest{

@@ -48,7 +48,7 @@ export const saveSettings = async (settings: SettingsRequest) => {
       return true;
     }
 
-    if (response.status === 500) {
+    if (response.status === 500 || response.status === 400 || response.status === 403) {
       let err;
       try {
         err = await response.json();
@@ -60,7 +60,7 @@ export const saveSettings = async (settings: SettingsRequest) => {
         throw { status: 500, error: err.error };
     }
 
-    return false;
+    throw { status: 503, error: 'features.settings.form.errors.service_unavailable' };
   } catch (err) {
     throw err;
   }
@@ -107,7 +107,7 @@ export const fetchSettings: () => Promise<SettingsResponse> = async () => {
     retryCount = 0
   ): Promise<SettingsResponse> => {
     try {
-      if (retryCount >= maxRetries) throw new Error('Maximum retries reached');
+      if (retryCount >= maxRetries) throw new Error('max retries');
 
       const backoffTime = 2 ** retryCount * 250;
       await new Promise((resolve) => {
@@ -135,7 +135,7 @@ export const fetchSettings: () => Promise<SettingsResponse> = async () => {
       return await retryWithBackoff(retryCount + 1);
     } catch (error) {
       if (retryCount >= maxRetries)
-        throw new Error('failed to fetch settings after multiple retries');
+        throw error;
       return retryWithBackoff(retryCount + 1);
     }
   };
