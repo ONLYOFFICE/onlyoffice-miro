@@ -253,11 +253,13 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                 <p className="form__checkbox-description">
                   {!demoStarted && t('features.settings.form.demo.description')}
                   {demoStarted &&
-                    t('features.settings.form.demo.started', {
-                      date: new Date(demoStarted)
+                    t('features.settings.form.demo.available_until', {
+                      date: new Date(
+                        new Date(demoStarted).getTime() +
+                        (parseInt(import.meta.env.VITE_ASC_DEMO_EXPIRATION_DAYS || '30', 10) * 86400000)
+                      )
                         .toLocaleDateString('en-GB')
-                        .split('/')
-                        .join('.'),
+                        .replace(/\//g, '.'),
                     })}
                 </p>
               </div>

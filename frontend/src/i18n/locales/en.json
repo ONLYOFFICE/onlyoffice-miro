@@ -91,7 +91,7 @@
         "demo": {
           "title": "Connect to demo ONLYOFFICE Docs server",
           "description": "This is a public test server, please do not use it for private sensitive data. The server will be available during a 30-day period.",
-          "started": "This demo will be available until {{date}}"
+          "available_until": "This demo will be available until {{date}}"
         },
         "save": "Save"
       }
