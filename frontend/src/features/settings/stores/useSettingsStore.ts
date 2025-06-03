@@ -132,6 +132,7 @@ const useSettingsStore = create<SettingsState>((set, get) => ({
         loading: false,
         error: isAccessDenied ? 'access denied' : null,
       });
+      throw error;
     }
   },
 }));

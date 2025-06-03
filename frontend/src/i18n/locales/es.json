@@ -72,7 +72,18 @@
         "errors": {
           "address_required": "Please enter a valid address ES",
           "header_required": "Please enter a valid header ES",
-          "secret_required": "Please enter a valid secret ES"
+          "secret_required": "Please enter a valid secret ES",
+          "invalid_url": "Please enter a valid URL ES",
+          "invalid_protocol": "Please enter a valid protocol ES",
+          "trailing_slash": "Please remove the trailing slash ES",
+          "header_too_long": "Please enter a valid header ES",
+          "secret_too_long": "Please enter a valid secret ES",
+          "retrieval_error": "Failed to retrieve settings ES",
+          "bad_jwt": "Failed to parse or sign JWT ES",
+          "document_server_version_retrieval_error": "Failed to validate document server version ES",
+          "document_server_unsupported_version": "Unsupported document server version ES",
+          "settings_initialization_error": "Failed to build new settings ES",
+          "settings_persistence_error": "Failed to persist settings ES"
         },
         "address": "Document Server Address ES",
         "secret": "JWT Secret ES",

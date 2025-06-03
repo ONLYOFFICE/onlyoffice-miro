@@ -199,7 +199,7 @@ func (s *settingsService) Save(ctx context.Context, teamID, boardID string, opts
 	existingSettings, err := s.storageService.Find(ctx, compositeKey)
 	if err != nil && !errors.Is(err, pg.ErrNoRowsAffected) {
 		s.logEvent(ctx, config.Error, "Failed to retrieve existing settings", teamID, boardID, err)
-		return err
+		return ErrSettingsRetrievalError
 	}
 
 	s.logEvent(ctx, config.Debug, "Validating document server", teamID, boardID, nil)
@@ -212,38 +212,39 @@ func (s *settingsService) Save(ctx context.Context, teamID, boardID string, opts
 
 		if err != nil {
 			s.logEvent(ctx, config.Error, "Failed to create JWT token", teamID, boardID, err)
-			return err
+			return ErrSettingsBadJwtError
 		}
 
 		response, err := s.docServerClient.GetServerVersion(ctx, settings.Address, docserver.WithHeader(settings.Header), docserver.WithToken(token))
 		if err != nil {
 			s.logEvent(ctx, config.Error, "Failed to connect to document server", teamID, boardID, err)
-			return err
+			return ErrDocumentServerVersionRetrievalError
 		}
 
 		if response.Error != 0 {
 			err := fmt.Errorf("received non-zero error code from docserver: %d", response.Error)
 			s.logEvent(ctx, config.Error, "Document server returned error", teamID, boardID, err)
-			return err
+			return ErrDocumentServerVersionRetrievalError
 		}
 
 		if err := validateDocServerVersion(response.Version); err != nil {
 			s.logEvent(ctx, config.Error, "Unsupported document server version", teamID, boardID, err)
-			return err
+			return ErrDocumentServerUnsupportedVersion
 		}
+
 		s.logEvent(ctx, config.Debug, fmt.Sprintf("Valid document server detected, version: %s", response.Version), teamID, boardID, nil)
 	}
 
 	newSettings, err := s.buildNewSettings(teamID, settings, existingSettings)
 	if err != nil {
 		s.logEvent(ctx, config.Error, "Failed to build new settings", teamID, boardID, err)
-		return err
+		return ErrSettingsBuildNewSettingsError
 	}
 
 	s.invalidateCache(ctx, teamID, boardID)
 	if _, err := s.storageService.Insert(ctx, compositeKey, newSettings); err != nil {
 		s.logEvent(ctx, config.Error, "Failed to store settings", teamID, boardID, err)
-		return err
+		return ErrSettingsPersistenceError
 	}
 
 	s.logEvent(ctx, config.Debug, "Settings saved successfully", teamID, boardID, nil)

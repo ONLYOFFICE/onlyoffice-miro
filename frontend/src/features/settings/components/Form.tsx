@@ -148,10 +148,16 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
       e.preventDefault();
 
       if (validateForm()) {
-        await saveSettings();
-        await emitRefreshDocuments();
-        await refreshAuthorization();
-        navigate('/');
+        try {
+          await saveSettings();
+          await emitRefreshDocuments();
+          await refreshAuthorization();
+          navigate('/');
+        } catch (err: any) {
+          if (err && err.status === 500 && err.error) {
+            miro.board.notifications.showError(t(err.error));
+          }
+        }
       }
     };
 

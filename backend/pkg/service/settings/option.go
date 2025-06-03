@@ -31,38 +31,38 @@ type SaveOptions struct {
 
 func (o *SaveOptions) Validate() error {
 	if !o.Demo && o.Address == "" {
-		return ErrAddressRequired
+		return ErrSettingsAddressRequired
 	}
 
 	if !o.Demo && o.Secret == "" {
-		return ErrSecretRequired
+		return ErrSettingsSecretRequired
 	}
 
 	if !o.Demo && o.Header == "" {
-		return ErrHeaderRequired
+		return ErrSettingsHeaderRequired
 	}
 
 	if o.Address != "" {
 		u, err := url.Parse(o.Address)
 		if err != nil {
-			return ErrInvalidURL
+			return ErrSettingsInvalidURL
 		}
 
 		if u.Scheme != "http" && u.Scheme != "https" {
-			return ErrInvalidProtocol
+			return ErrSettingsInvalidProtocol
 		}
 
 		if strings.HasSuffix(o.Address, "/") {
-			return ErrTrailingSlash
+			return ErrSettingsTrailingSlash
 		}
 	}
 
 	if len(o.Header) > 255 {
-		return ErrHeaderTooLong
+		return ErrSettingsHeaderTooLong
 	}
 
 	if len(o.Secret) > 255 {
-		return ErrSecretTooLong
+		return ErrSettingsSecretTooLong
 	}
 
 	return nil

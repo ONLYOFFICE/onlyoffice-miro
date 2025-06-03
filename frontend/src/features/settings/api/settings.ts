@@ -48,9 +48,21 @@ export const saveSettings = async (settings: SettingsRequest) => {
       return true;
     }
 
+    if (response.status === 500) {
+      let err;
+      try {
+        err = await response.json();
+      } catch {
+        err = null;
+      }
+
+      if (err && err.error) 
+        throw { status: 500, error: err.error };
+    }
+
     return false;
-  } catch {
-    return false;
+  } catch (err) {
+    throw err;
   }
 };
 
