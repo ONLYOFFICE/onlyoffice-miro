@@ -161,11 +161,10 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
           if (
             err &&
             typeof err === 'object' &&
-            'status' in err &&
-            'error' in err
+            'message' in err
           ) {
             miro.board.notifications.showError(
-              t((err as { error: string }).error)
+              t((err as { message: string }).message)
             );
           }
         }
