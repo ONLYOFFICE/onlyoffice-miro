@@ -17,6 +17,7 @@
  */
 
 const getIcon = (title?: string) => {
+  title = title?.toLowerCase();
   if (!title) return '/other.svg';
 
   if (title.endsWith('.docx')) return '/word.svg';
