@@ -191,19 +191,22 @@ export const useFilesStore = create<FilesState>((set, get) => ({
     await navigateDocument(document.id);
   },
   downloadPdf: async (document: Document) => {
+    set({ converting: true });
+    let url = '';
     try {
-      set({ converting: true });
-      let percent = 0;
-      let url = '';
-      
-      while (percent < 100) {
+      // eslint-disable-next-line consistent-return
+      const pollConversion = async (): Promise<void> => {
         const response = await convertDocument(document.id);
-        percent = response.percent;
+        if (response.percent < 100) {
+          await new Promise((resolve) => {
+            setTimeout(resolve, 125);
+          });
+          return pollConversion();
+        }
         url = response.url;
-        if (percent < 100)
-          await new Promise(resolve => setTimeout(resolve, 125));
-      }
-      
+      };
+
+      await pollConversion();
       window.open(url, '_blank');
       set({ activeDropdown: null, converting: false });
     } catch (error) {

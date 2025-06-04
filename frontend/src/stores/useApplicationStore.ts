@@ -74,10 +74,8 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
       const settingsStore = useSettingsStore.getState();
       const hasNoSettings = !settingsStore.hasSettings;
       if (hasNoSettings) {
-        if (admin)
-          window.location.hash = '#/settings';
-        else
-          window.location.hash = '#/';
+        if (admin) window.location.hash = '#/settings';
+        else window.location.hash = '#/';
       } else {
         window.location.hash = '#/';
       }
