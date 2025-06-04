@@ -46,11 +46,11 @@ func PrepareRequest(
 	_, auth, err := c.FetchAuthenticationWithSettings(tctx, token.User, token.Team, bid)
 	if err != nil {
 		if errors.Is(err, base.ErrMissingAuthentication) {
-			return nil, c.HandleError(ctx, err, http.StatusUnauthorized, "could not retrieve authentication")
+			return nil, c.HandleWarning(ctx, err, http.StatusUnauthorized, "could not retrieve authentication")
 		}
 
 		if errors.Is(err, base.ErrSettingsNotConfigured) {
-			return nil, c.HandleError(ctx, err, http.StatusConflict, "could not retrieve document editor settigns")
+			return nil, c.HandleWarning(ctx, err, http.StatusConflict, "could not retrieve document editor settigns")
 		}
 
 		return nil, c.HandleError(ctx, err, http.StatusBadRequest, "could not retrieve required data")

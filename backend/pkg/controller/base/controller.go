@@ -158,6 +158,14 @@ func (c *BaseController) HandleError(ctx echo.Context, err error, status int, me
 	return nil
 }
 
+func (c *BaseController) HandleWarning(ctx echo.Context, err error, status int, message string) error {
+	if err != nil {
+		c.Logger.Warn(ctx.Request().Context(), message, service.Fields{"error": err})
+		return c.SendError(ctx, status, message)
+	}
+	return nil
+}
+
 func (c *BaseController) withTimeout(duration time.Duration) (context.Context, context.CancelFunc) {
 	return context.WithTimeout(context.Background(), duration)
 }
