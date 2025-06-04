@@ -115,9 +115,11 @@ func (c *fileConversionController) handleGet(ctx echo.Context) error {
 			}
 
 			address := settings.Address
+			header := settings.Header
 			secret := settings.Secret
 			if settings.Demo.Enabled && settings.Demo.Started.Add(time.Duration(c.BaseController.Config.DemoServer.Days)*24*time.Hour).After(time.Now()) && (address == "" || secret == "") {
 				address = c.BaseController.Config.DemoServer.Address
+				header = c.BaseController.Config.DemoServer.Header
 				secret = c.BaseController.Config.DemoServer.Secret
 			}
 
@@ -144,8 +146,8 @@ func (c *fileConversionController) handleGet(ctx echo.Context) error {
 				tctx,
 				address,
 				jwtToken,
-				docserver.WithHeader(settings.Header),
-				docserver.WithToken(settings.Secret),
+				docserver.WithHeader(header),
+				docserver.WithToken(secret),
 			)
 
 			if err != nil {
