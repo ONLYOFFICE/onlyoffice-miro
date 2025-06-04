@@ -70,11 +70,14 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
         retriesExhausted: retries,
       });
     } finally {
+      const { admin } = get();
       const settingsStore = useSettingsStore.getState();
       const hasNoSettings = !settingsStore.hasSettings;
-
       if (hasNoSettings) {
-        window.location.hash = '#/settings';
+        if (admin)
+          window.location.hash = '#/settings';
+        else
+          window.location.hash = '#/';
       } else {
         window.location.hash = '#/';
       }
