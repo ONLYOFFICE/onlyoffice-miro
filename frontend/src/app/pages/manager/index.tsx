@@ -17,7 +17,7 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import Button from '@components/Button';
@@ -32,8 +32,6 @@ import Searchbar from '@features/file/components/Search';
 
 import useFilesStore from '@features/file/stores/useFileStore';
 import useApplicationStore from '@stores/useApplicationStore';
-
-import SettingsPage from '@app/pages/settings';
 
 import '@app/pages/manager/index.css';
 
@@ -53,7 +51,8 @@ const ManagerPage = () => {
   } = useFilesStore();
   const isInitialLoading = loading && !initialized;
 
-  if (serverConfigError && admin) return <SettingsPage forceDisableBack />;
+  if (!isInitialLoading && serverConfigError && admin)
+    return <Navigate to="/settings" replace state={{ forceDisableBack: true }} />;
 
   const handleReload = async () => {
     if (retriesExhausted) await reloadAuthorization();
@@ -61,7 +60,14 @@ const ManagerPage = () => {
   };
 
   const renderContent = () => {
-    if (authError) return <Installation />;
+    if (loading && documents.length === 0)
+      return (
+        <div className="manager-container__main__loading">
+          <Spinner size="large" />
+        </div>
+      );
+
+    if (!loading && authError) return <Installation />;
 
     if (retriesExhausted)
       return (
@@ -72,13 +78,6 @@ const ManagerPage = () => {
       );
 
     if (serverConfigError && !admin) return <NotConfigured />;
-
-    if (loading && documents.length === 0)
-      return (
-        <div className="manager-container__main__loading">
-          <Spinner size="large" />
-        </div>
-      );
 
     if (documents.length === 0)
       return (

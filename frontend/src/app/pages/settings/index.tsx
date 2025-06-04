@@ -17,6 +17,7 @@
  */
 
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import Layout from '@components/Layout';
@@ -31,12 +32,12 @@ interface SettingsPageProps {
   forceDisableBack?: boolean;
 }
 
-const SettingsPage: React.FC<SettingsPageProps> = ({
-  forceDisableBack = false,
-}) => {
+const SettingsPage: React.FC<SettingsPageProps> = (props) => {
+  const location = useLocation();
   const { t } = useTranslation();
   const { hasSettings } = useSettingsStore();
 
+  const forceDisableBack = location.state?.forceDisableBack ?? props.forceDisableBack ?? false;
   const backTo = !forceDisableBack && hasSettings ? '/' : undefined;
 
   return (
