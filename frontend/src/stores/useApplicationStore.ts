@@ -66,7 +66,7 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
       set({
         loading: false,
         authorized: !unauthorized,
-        admin: !unauthorized && !forbidden,
+        admin: !unauthorized && !forbidden && !retries,
         retriesExhausted: retries,
       });
     } finally {
