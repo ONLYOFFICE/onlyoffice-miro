@@ -86,6 +86,23 @@ func (r *GetBoardMemberRequest) Validate() error {
 	return nil
 }
 
+type GetBoardRequest struct {
+	BoardID string
+	Token   string
+}
+
+func (r *GetBoardRequest) Validate() error {
+	if strings.TrimSpace(r.BoardID) == "" {
+		return fmt.Errorf("boardID is required")
+	}
+
+	if strings.TrimSpace(r.Token) == "" {
+		return fmt.Errorf("token is required")
+	}
+
+	return nil
+}
+
 type GetFileInfoRequest struct {
 	BoardID string `json:"board_id"`
 	ItemID  string `json:"item_id"`
@@ -136,6 +153,18 @@ func (r *GetFilesInfoRequest) Validate() error {
 		return fmt.Errorf("boardID is required")
 	}
 
+	if strings.TrimSpace(r.Token) == "" {
+		return fmt.Errorf("token is required")
+	}
+
+	return nil
+}
+
+type GetUserInfoRequest struct {
+	Token string
+}
+
+func (r *GetUserInfoRequest) Validate() error {
 	if strings.TrimSpace(r.Token) == "" {
 		return fmt.Errorf("token is required")
 	}

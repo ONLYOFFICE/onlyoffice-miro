@@ -57,6 +57,7 @@ type UploadFileError struct{ BaseError }
 type MarshalRequestError struct{ BaseError }
 type ReadResponseError struct{ BaseError }
 
+type GetBoardError struct{ BaseError }
 type GetBoardMemberError struct{ BaseError }
 type ReadFileError struct{ BaseError }
 type CreateFormFileError struct{ BaseError }
@@ -73,6 +74,7 @@ type Errors struct {
 	FailedToGetFileURL     func(err error) error
 	FailedToUploadFile     func(err error) error
 	FailedToMarshalRequest func(err error) error
+	FailedToGetBoard       func(err error) error
 	FailedToGetBoardMember func(err error) error
 	FailedToReadFile       func(err error) error
 	FailedToCreateFormFile func(err error) error
@@ -132,6 +134,12 @@ func NewErrors() *Errors {
 		FailedToMarshalRequest: func(err error) error {
 			return &MarshalRequestError{BaseError{
 				message: common.Concat("Failed to marshal request"),
+				err:     err,
+			}}
+		},
+		FailedToGetBoard: func(err error) error {
+			return &GetBoardError{BaseError{
+				message: common.Concat("Failed to get board"),
 				err:     err,
 			}}
 		},

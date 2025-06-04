@@ -119,6 +119,52 @@ func (c *client) sendRequest(
 	return nil
 }
 
+func (c *client) GetBoard(ctx context.Context, req GetBoardRequest) (*BoardResponse, error) {
+	c.logger.Info(ctx, "Getting board info", service.Fields{
+		"boardId": req.BoardID,
+	})
+
+	if err := req.Validate(); err != nil {
+		c.logger.Error(ctx, fmt.Sprintf("Invalid get board request: %v", err))
+		return nil, err
+	}
+
+	var response BoardResponse
+	url := c.buildURL("boards", req.BoardID)
+	if err := c.sendRequest(ctx, http.MethodGet, url, req.Token, nil, nil, &response); err != nil {
+		return nil, c.errors.FailedToGetBoard(err)
+	}
+
+	c.logger.Debug(ctx, "Successfully retrieved board info", service.Fields{
+		"boardId": req.BoardID,
+	})
+	return &response, nil
+}
+
+func (c *client) GetBoardMember(ctx context.Context, req GetBoardMemberRequest) (*BoardMemberResponse, error) {
+	c.logger.Info(ctx, "Getting board member info", service.Fields{
+		"boardId":  req.BoardID,
+		"memberId": req.MemberID,
+	})
+
+	if err := req.Validate(); err != nil {
+		c.logger.Error(ctx, fmt.Sprintf("Invalid get board member request: %v", err))
+		return nil, err
+	}
+
+	var response BoardMemberResponse
+	url := c.buildURL("boards", req.BoardID, "members", req.MemberID)
+	if err := c.sendRequest(ctx, http.MethodGet, url, req.Token, nil, nil, &response); err != nil {
+		return nil, c.errors.FailedToGetBoardMember(err)
+	}
+
+	c.logger.Debug(ctx, "Successfully retrieved board member info", service.Fields{
+		"boardId":  req.BoardID,
+		"memberId": req.MemberID,
+	})
+	return &response, nil
+}
+
 func (c *client) GetFileInfo(ctx context.Context, req GetFileInfoRequest) (*FileInfoResponse, error) {
 	c.logger.Info(ctx, "Getting file info", service.Fields{
 		"boardId": req.BoardID,
@@ -196,68 +242,22 @@ func (c *client) GetFilePublicURL(ctx context.Context, req GetFilePublicURLReque
 	return &response, nil
 }
 
-func (c *client) GetBoardMember(ctx context.Context, req GetBoardMemberRequest) (*BoardMemberResponse, error) {
-	c.logger.Info(ctx, "Getting board member info", service.Fields{
-		"boardId":  req.BoardID,
-		"memberId": req.MemberID,
+func (c *client) GetUserInfo(ctx context.Context, req GetUserInfoRequest) (*UserInfoResponse, error) {
+	c.logger.Info(ctx, "Getting user info", service.Fields{
+		"token": req.Token,
 	})
 
 	if err := req.Validate(); err != nil {
-		c.logger.Error(ctx, fmt.Sprintf("Invalid get board member request: %v", err))
+		c.logger.Error(ctx, "Invalid get user info request", service.Fields{"error": err.Error()})
 		return nil, err
 	}
 
-	var response BoardMemberResponse
-	url := c.buildURL("boards", req.BoardID, "members", req.MemberID)
+	var response UserInfoResponse
+	url := "https://api.miro.com/v1/oauth-token"
 	if err := c.sendRequest(ctx, http.MethodGet, url, req.Token, nil, nil, &response); err != nil {
-		return nil, c.errors.FailedToGetBoardMember(err)
-	}
-
-	c.logger.Debug(ctx, "Successfully retrieved board member info", service.Fields{
-		"boardId":  req.BoardID,
-		"memberId": req.MemberID,
-	})
-	return &response, nil
-}
-
-func (c *client) UploadFile(ctx context.Context, req UploadFileRequest) (*FileLocationResponse, error) {
-	c.logger.Info(ctx, "Uploading file", service.Fields{
-		"boardId": req.BoardID,
-		"itemId":  req.ItemID,
-	})
-
-	if err := req.Validate(); err != nil {
-		c.logger.Error(ctx, fmt.Sprintf("Invalid upload file request: %v", err))
 		return nil, err
 	}
 
-	body := FileUploadRequest{
-		Data: FileUploadRequestData{
-			URL: req.FileURL,
-		},
-	}
-
-	payload, err := json.Marshal(body)
-	if err != nil {
-		c.logger.Error(ctx, fmt.Sprintf("Failed to marshal upload request: %v", err))
-		return nil, c.errors.FailedToMarshalRequest(err)
-	}
-
-	url := c.buildURL("boards", req.BoardID, "documents", req.ItemID)
-	headers := map[string]string{
-		"Accept":       "application/json",
-		"Content-Type": "application/json",
-	}
-
-	var response FileLocationResponse
-	if err := c.sendRequest(ctx, http.MethodPatch, url, req.Token, bytes.NewBuffer(payload), headers, &response); err != nil {
-		return nil, c.errors.FailedToUploadFile(err)
-	}
-
-	c.logger.Debug(ctx, "Successfully uploaded file", service.Fields{
-		"boardId": req.BoardID,
-		"itemId":  req.ItemID,
-	})
 	return &response, nil
 }
 
@@ -365,6 +365,47 @@ func (c *client) CreateFile(ctx context.Context, req CreateFileRequest) (*FileCr
 		"boardId":  req.BoardID,
 		"itemId":   response.ID,
 		"fileName": fmt.Sprintf("%s.%s", req.Name, req.Type),
+	})
+	return &response, nil
+}
+
+func (c *client) UploadFile(ctx context.Context, req UploadFileRequest) (*FileLocationResponse, error) {
+	c.logger.Info(ctx, "Uploading file", service.Fields{
+		"boardId": req.BoardID,
+		"itemId":  req.ItemID,
+	})
+
+	if err := req.Validate(); err != nil {
+		c.logger.Error(ctx, fmt.Sprintf("Invalid upload file request: %v", err))
+		return nil, err
+	}
+
+	body := FileUploadRequest{
+		Data: FileUploadRequestData{
+			URL: req.FileURL,
+		},
+	}
+
+	payload, err := json.Marshal(body)
+	if err != nil {
+		c.logger.Error(ctx, fmt.Sprintf("Failed to marshal upload request: %v", err))
+		return nil, c.errors.FailedToMarshalRequest(err)
+	}
+
+	url := c.buildURL("boards", req.BoardID, "documents", req.ItemID)
+	headers := map[string]string{
+		"Accept":       "application/json",
+		"Content-Type": "application/json",
+	}
+
+	var response FileLocationResponse
+	if err := c.sendRequest(ctx, http.MethodPatch, url, req.Token, bytes.NewBuffer(payload), headers, &response); err != nil {
+		return nil, c.errors.FailedToUploadFile(err)
+	}
+
+	c.logger.Debug(ctx, "Successfully uploaded file", service.Fields{
+		"boardId": req.BoardID,
+		"itemId":  req.ItemID,
 	})
 	return &response, nil
 }

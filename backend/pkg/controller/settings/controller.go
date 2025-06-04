@@ -127,8 +127,8 @@ func (c *settingsController) handleGet(ctx echo.Context) error {
 	})
 
 	if err != nil {
-		c.logger.Error(ctx.Request().Context(), "Failed to get board member", service.Fields{"error": err, "board_id": bid, "user_id": token.User})
-		return ctx.JSON(http.StatusInternalServerError, common.ErrorResponse{Error: err.Error()})
+		c.logger.Warn(ctx.Request().Context(), "Failed to get board member", service.Fields{"error": err, "board_id": bid, "user_id": token.User})
+		return ctx.JSON(http.StatusForbidden, common.ErrorResponse{Error: "Only board members can access this endpoint"})
 	}
 
 	if strings.ToLower(member.Role) != "owner" {

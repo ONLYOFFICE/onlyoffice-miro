@@ -51,6 +51,10 @@ func (b *BoardMemberResponse) Language() string {
 	return b.Lang
 }
 
+type BoardResponse struct {
+	ID string `json:"id"`
+}
+
 type FileCreatedResponse struct {
 	ID         string `json:"id"`
 	CreatedAt  string `json:"createdAt"`
@@ -85,4 +89,11 @@ type FilesInfoResponse struct {
 
 type GenericFileResponse struct {
 	ID string `json:"id"`
+}
+
+type UserInfoResponse struct {
+	User struct {
+		ID   string `json:"id"`
+		Name string `json:"name"`
+	} `json:"user"`
 }

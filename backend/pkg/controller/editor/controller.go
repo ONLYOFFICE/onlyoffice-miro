@@ -98,21 +98,37 @@ func (c *editorController) extractAndValidateParams(ctx echo.Context) (editorReq
 	return editorRequestParams{token.User, token.Team, bid, fid, lang}, nil
 }
 
-func (c *editorController) fetchMiroData(ctx context.Context, params editorRequestParams, accessToken string) (*miro.BoardMemberResponse, *miro.FileInfoResponse, error) {
+func (c *editorController) fetchMiroData(
+	ctx context.Context,
+	params editorRequestParams,
+	accessToken string,
+) (*miro.UserInfoResponse, *miro.BoardResponse, *miro.FileInfoResponse, error) {
 	g, _ := errgroup.WithContext(ctx)
-	var userInfo *miro.BoardMemberResponse
+	var userInfo *miro.UserInfoResponse
+	var boardInfo *miro.BoardResponse
 	var fileInfo *miro.FileInfoResponse
 
 	g.Go(func() error {
 		var err error
-		userInfo, err = c.BaseController.MiroClient.GetBoardMember(ctx, miro.GetBoardMemberRequest{
-			BoardID:  params.bid,
-			MemberID: params.uid,
-			Token:    accessToken,
+		userInfo, err = c.BaseController.MiroClient.GetUserInfo(ctx, miro.GetUserInfoRequest{
+			Token: accessToken,
 		})
 
 		if err != nil {
 			return fmt.Errorf("failed to fetch user info: %w", err)
+		}
+		return nil
+	})
+
+	g.Go(func() error {
+		var err error
+		boardInfo, err = c.BaseController.MiroClient.GetBoard(ctx, miro.GetBoardRequest{
+			BoardID: params.bid,
+			Token:   accessToken,
+		})
+
+		if err != nil {
+			return fmt.Errorf("failed to fetch board info: %w", err)
 		}
 		return nil
 	})
@@ -132,7 +148,7 @@ func (c *editorController) fetchMiroData(ctx context.Context, params editorReque
 	})
 
 	if err := g.Wait(); err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 
 	publicFile, err := c.BaseController.MiroClient.GetFilePublicURL(ctx, miro.GetFilePublicURLRequest{
@@ -141,11 +157,11 @@ func (c *editorController) fetchMiroData(ctx context.Context, params editorReque
 	})
 
 	if err != nil {
-		return nil, nil, fmt.Errorf("failed to get public URL: %w", err)
+		return nil, nil, nil, fmt.Errorf("failed to get public URL: %w", err)
 	}
 
 	fileInfo.Data.DocumentURL = publicFile.URL
-	return userInfo, fileInfo, nil
+	return userInfo, boardInfo, fileInfo, nil
 }
 
 func (c *editorController) resolveServerSettings(settings *component.Settings) (address, secret string, err error) {
@@ -219,14 +235,18 @@ func (c *editorController) handleGet(ctx echo.Context) error {
 			return err
 		}
 
-		user, file, err := c.fetchMiroData(tctx, params, auth.AccessToken)
+		uinfo, board, file, err := c.fetchMiroData(tctx, params, auth.AccessToken)
 		if err := handleRequestError(err, c.BaseController.TranslationService.Translate(tctx, params.lang, "editor.errors.fetch_miro_data")); err != nil {
 			return err
 		}
 
-		user.Lang = params.lang
 		callbackURL := buildCallbackURL(c.BaseController.Config.Server.CallbackURL, params.fid, params.uid, params.tid, params.bid)
-		config, err := c.buildEditorConfig(tctx, callbackURL, params.bid, user, file, secret)
+		config, err := c.buildEditorConfig(tctx, callbackURL, board.ID, &miro.BoardMemberResponse{
+			MemberID:   uinfo.User.ID,
+			MemberName: uinfo.User.Name,
+			Role:       "member",
+			Lang:       params.lang,
+		}, file, secret)
 		if err := handleRequestError(err, c.BaseController.TranslationService.Translate(tctx, params.lang, "editor.errors.build_editor_configuration")); err != nil {
 			return err
 		}
