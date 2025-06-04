@@ -32,12 +32,15 @@ interface SettingsPageProps {
   forceDisableBack?: boolean;
 }
 
-const SettingsPage: React.FC<SettingsPageProps> = (props) => {
+const SettingsPage: React.FC<SettingsPageProps> = ({
+  forceDisableBack: propForceDisableBack,
+}) => {
   const location = useLocation();
   const { t } = useTranslation();
   const { hasSettings } = useSettingsStore();
 
-  const forceDisableBack = location.state?.forceDisableBack ?? props.forceDisableBack ?? false;
+  const forceDisableBack =
+    location.state?.forceDisableBack ?? propForceDisableBack ?? false;
   const backTo = !forceDisableBack && hasSettings ? '/' : undefined;
 
   return (

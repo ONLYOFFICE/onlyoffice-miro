@@ -50,7 +50,7 @@ const App = () => {
   const location = useLocation();
   const { i18n } = useTranslation();
   const { refreshDocuments } = useFilesStore();
-  const { loading, authorized, admin, reloadAuthorization } =
+  const { initialized, loading, authorized, admin, reloadAuthorization } =
     useApplicationStore();
 
   const [prevPathname, setPrevPathname] = useState(location.pathname);
@@ -76,7 +76,7 @@ const App = () => {
     setPrevPathname(location.pathname);
   }, [location, location.pathname, prevPathname.length]);
 
-  if (loading)
+  if (!initialized || loading)
     return (
       <CenterLayout style={{ height: '100vh' }}>
         <Spinner size="large" />

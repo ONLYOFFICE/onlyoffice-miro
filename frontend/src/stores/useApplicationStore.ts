@@ -22,6 +22,7 @@ import fetchAuthorization from '@api/authorize';
 import useSettingsStore from '@features/settings/stores/useSettingsStore';
 
 interface ApplicationState {
+  initialized: boolean;
   loading: boolean;
   authorized: boolean;
   admin: boolean;
@@ -36,6 +37,7 @@ interface ApplicationState {
 }
 
 const useApplicationStore = create<ApplicationState>((set, get) => ({
+  initialized: false,
   loading: false,
   authorized: false,
   admin: false,
@@ -79,6 +81,7 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
       } else {
         window.location.hash = '#/';
       }
+      set({ initialized: true });
     }
 
     const settingsStore = useSettingsStore.getState();

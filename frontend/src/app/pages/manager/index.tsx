@@ -52,7 +52,9 @@ const ManagerPage = () => {
   const isInitialLoading = loading && !initialized;
 
   if (!isInitialLoading && serverConfigError && admin)
-    return <Navigate to="/settings" replace state={{ forceDisableBack: true }} />;
+    return (
+      <Navigate to="/settings" replace state={{ forceDisableBack: true }} />
+    );
 
   const handleReload = async () => {
     if (retriesExhausted) await reloadAuthorization();
