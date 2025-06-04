@@ -211,7 +211,7 @@ func (s *oauthService[T]) Find(ctx context.Context, teamID, userID string) (comp
 			"teamID": teamID,
 			"userID": userID,
 		})
-		return component.Authentication{}, err
+		return component.Authentication{}, ErrTokenMissing
 	}
 
 	token, err := s.oauthClient.Refresh(ctx, refreshToken)
@@ -221,7 +221,7 @@ func (s *oauthService[T]) Find(ctx context.Context, teamID, userID string) (comp
 			"teamID": teamID,
 			"userID": userID,
 		})
-		return component.Authentication{}, err
+		return component.Authentication{}, ErrTokenMissing
 	}
 
 	refreshedToken, err := s.oauthConverter.Convert(token)
@@ -231,7 +231,7 @@ func (s *oauthService[T]) Find(ctx context.Context, teamID, userID string) (comp
 			"teamID": teamID,
 			"userID": userID,
 		})
-		return component.Authentication{}, err
+		return component.Authentication{}, ErrTokenMissing
 	}
 
 	updatedAuth, err := s.createEncryptedAuth(refreshedToken)
@@ -241,7 +241,7 @@ func (s *oauthService[T]) Find(ctx context.Context, teamID, userID string) (comp
 			"teamID": teamID,
 			"userID": userID,
 		})
-		return component.Authentication{}, err
+		return component.Authentication{}, ErrTokenMissing
 	}
 
 	if _, err = s.storageService.Update(ctx, key, updatedAuth); err != nil {
@@ -250,7 +250,7 @@ func (s *oauthService[T]) Find(ctx context.Context, teamID, userID string) (comp
 			"teamID": teamID,
 			"userID": userID,
 		})
-		return component.Authentication{}, err
+		return component.Authentication{}, ErrTokenMissing
 	}
 
 	s.logger.Info(ctx, "Successfully refreshed and updated OAuth token", service.Fields{
