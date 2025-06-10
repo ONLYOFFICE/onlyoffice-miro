@@ -251,7 +251,8 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                   <input
                     id="demo-checkbox"
                     type="checkbox"
-                    className="form__checkbox"
+                    className="checkbox form__checkbox"
+                    style={{ margin: '0', marginRight: '8px' }}
                     checked={demo}
                     disabled={loading || submitting || !!demoStarted}
                     onChange={() => {

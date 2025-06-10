@@ -103,18 +103,6 @@
   font-size: 0.875rem;
 }
 
-.form__checkbox {
-  width: 16px;
-  height: 16px;
-
-  margin-right: 8px;
-  accent-color: var(--main-button-color);
-}
-
-.form__checkbox:checked {
-  accent-color: var(--main-button-color);
-}
-
 .form__checkbox-text {
   color: #374151;
 }
