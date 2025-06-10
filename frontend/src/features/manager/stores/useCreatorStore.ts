@@ -41,7 +41,7 @@ interface CreatorState {
 }
 
 const useCreatorStore = create<CreatorState>((set, get) => ({
-  selectedName: '',
+  selectedName: 'New document',
   selectedType: '',
 
   loading: false,
@@ -70,7 +70,7 @@ const useCreatorStore = create<CreatorState>((set, get) => ({
     return createdFile;
   },
   resetSelected: () => {
-    set({ selectedName: '', selectedType: '' });
+    set({ selectedName: 'New document', selectedType: '' });
   },
 }));
 
