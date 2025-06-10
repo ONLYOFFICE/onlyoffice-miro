@@ -27,6 +27,7 @@
   "features": {
     "file": {
       "item": {
+        "edit": "Edit ES",
         "navigate": "Navigate to ES",
         "download": "Download as PDF ES",
         "delete": "Delete ES",

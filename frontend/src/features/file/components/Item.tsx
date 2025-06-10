@@ -155,6 +155,20 @@ export const FileItem = forwardRef<HTMLDivElement, FileItemProps>(
               <button
                 type="button"
                 className="file-container__dropdown-menu__item"
+                onClick={async (e) => {
+                  e.stopPropagation();
+                  await openEditor(
+                    fileDocument,
+                    t('features.file.item.errors.failed_to_open')
+                  );
+                  toggleDropdown(null);
+                }}
+              >
+                {t('features.file.item.edit')}
+              </button>
+              <button
+                type="button"
+                className="file-container__dropdown-menu__item"
                 onClick={(e) => {
                   e.stopPropagation();
                   navigateDocument(fileDocument);
