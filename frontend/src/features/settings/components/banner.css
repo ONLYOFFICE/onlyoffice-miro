@@ -62,7 +62,7 @@
 
     font-family: 'Open Sans';
     font-weight: 600;
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.2;
     letter-spacing: 0%;    
 
@@ -87,7 +87,7 @@
 
     cursor: pointer;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 0.875rem;
     white-space: nowrap;
 
     color: #000;
