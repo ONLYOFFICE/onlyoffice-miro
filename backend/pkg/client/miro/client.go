@@ -20,9 +20,11 @@ package miro
 import (
 	"bytes"
 	"context"
+	"crypto/rand"
 	"encoding/json"
 	"fmt"
 	"io"
+	"math/big"
 	"mime/multipart"
 	"net/http"
 	"net/textproto"
@@ -261,12 +263,16 @@ func (c *client) GetUserInfo(ctx context.Context, req GetUserInfoRequest) (*User
 	return &response, nil
 }
 
-func (c *client) createMultipartForm(data map[string]any, filePath string) (*bytes.Buffer, string, error) {
+func (c *client) createMultipartForm(data map[string]any, filePath string, position map[string]any) (*bytes.Buffer, string, error) {
 	// Context is not available in this method, using background context for logging
 	ctx := context.Background()
 	c.logger.Debug(ctx, "Creating multipart form", service.Fields{
 		"filePath": filePath,
 	})
+
+	if position != nil {
+		data["position"] = position
+	}
 
 	body := &bytes.Buffer{}
 	writer := multipart.NewWriter(body)
@@ -346,7 +352,24 @@ func (c *client) CreateFile(ctx context.Context, req CreateFileRequest) (*FileCr
 		"title": fmt.Sprintf("%s.%s", req.Name, string(req.Type)),
 	}
 
-	body, contentType, err := c.createMultipartForm(data, templatePath)
+	x, _ := rand.Int(rand.Reader, big.NewInt(2500))
+	y, _ := rand.Int(rand.Reader, big.NewInt(2500))
+	xSign, _ := rand.Int(rand.Reader, big.NewInt(2))
+	ySign, _ := rand.Int(rand.Reader, big.NewInt(2))
+
+	if xSign.Int64() == 0 {
+		x = x.Neg(x)
+	}
+
+	if ySign.Int64() == 0 {
+		y = y.Neg(y)
+	}
+
+	body, contentType, err := c.createMultipartForm(data, templatePath, map[string]any{
+		"x": x,
+		"y": y,
+	})
+
 	if err != nil {
 		return nil, err
 	}
