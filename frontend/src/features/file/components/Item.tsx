@@ -34,6 +34,33 @@ interface FileItemProps extends React.HTMLAttributes<HTMLDivElement> {
   document: Document;
 }
 
+const DropdownIcon = () => (
+  <svg
+    width="4"
+    height="19"
+    viewBox="0 0 4 19"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="file-container__dropdown-button__icon"
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M4 16.5C4 15.3954 3.10457 14.5 2 14.5C0.89543 14.5 -1.35705e-07 15.3954 -8.74228e-08 16.5C-3.91405e-08 17.6046 0.89543 18.5 2 18.5C3.10457 18.5 4 17.6046 4 16.5Z"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M4 9.5C4 8.39543 3.10457 7.5 2 7.5C0.89543 7.5 -4.41685e-07 8.39543 -3.93402e-07 9.5C-3.4512e-07 10.6046 0.89543 11.5 2 11.5C3.10457 11.5 4 10.6046 4 9.5Z"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M4 2.5C4 1.39543 3.10457 0.5 2 0.5C0.89543 0.5 -7.47664e-07 1.39543 -6.99382e-07 2.5C-6.511e-07 3.60457 0.89543 4.5 2 4.5C3.10457 4.5 4 3.60457 4 2.5Z"
+    />
+  </svg>
+);
+
 export const FileItem = forwardRef<HTMLDivElement, FileItemProps>(
   ({ document: fileDocument, className, ...props }, ref) => {
     const { t } = useTranslation();
@@ -110,11 +137,7 @@ export const FileItem = forwardRef<HTMLDivElement, FileItemProps>(
               toggleDropdown(isDropdownOpen ? null : fileDocument.id);
             }}
           >
-            <div
-              role="img"
-              className="file-container__dropdown-button__icon"
-              aria-label="Options"
-            />
+            <DropdownIcon />
           </button>
           {isDropdownOpen && (
             <div
