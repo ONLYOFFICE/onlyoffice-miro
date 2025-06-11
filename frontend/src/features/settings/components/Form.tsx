@@ -85,7 +85,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
         setHeaderError('');
         setSecretError('');
       }
-    }, [demo, isDemoExpired]);
+    }, [demo, isDemoExpired, setAddress, setHeader, setSecret]);
 
     const hasInputs =
       address.trim() !== '' || header.trim() !== '' || secret.trim() !== '';
@@ -125,10 +125,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
       (fieldsRequired && (!hasInputs || hasValidationErrors)) ||
       (!fieldsRequired && hasInputs);
 
-    const demoCheckboxDisabled = 
-      loading || 
-      submitting || 
-      isDemoExpired;
+    const demoCheckboxDisabled = loading || submitting || isDemoExpired;
 
     useEffect(() => {
       if (fieldsRequired) {
