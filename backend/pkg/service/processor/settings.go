@@ -27,7 +27,7 @@ import (
 )
 
 const (
-	settingsSelectQuery = `SELECT s.address, s.header, s.secret, 
+	settingsSelectQuery = `SELECT s.address, s.header, s.secret, s.demo_detached,
 	d.enabled, d.started
 	FROM settings s
 	LEFT JOIN demos d ON s.team_id = d.team_id
@@ -37,6 +37,7 @@ const (
 SET address = $3,
     header = $4,
     secret = $5,
+    demo_detached = $6,
     updated_at = CURRENT_TIMESTAMP
 WHERE team_id = $1 AND board_id = $2;`
 
@@ -50,18 +51,21 @@ func settingsScanner(row pgx.Row) (*component.Settings, error) {
 	result := &component.Settings{}
 	var enabled *bool
 	var started *time.Time
+	var demoDetached bool
 
 	if err := row.Scan(
 		&result.Address,
 		&result.Header,
 		&result.Secret,
+		&demoDetached,
 		&enabled,
 		&started,
 	); err != nil {
 		return nil, err
 	}
 
-	if enabled != nil && started != nil {
+	result.DemoDetached = demoDetached
+	if !demoDetached && enabled != nil && started != nil {
 		result.Demo = component.Demo{
 			Enabled: *enabled,
 			Started: started,
@@ -103,17 +107,18 @@ func (s settingsProcessor) BuildInsertQuery(id core.SettingsCompositeKey, settin
 
 		return `
             WITH settings_update AS (
-                INSERT INTO settings (team_id, board_id, address, header, secret)
-                VALUES ($1, $2, $3, $4, $5)
+                INSERT INTO settings (team_id, board_id, address, header, secret, demo_detached)
+                VALUES ($1, $2, $3, $4, $5, $6)
                 ON CONFLICT (team_id, board_id) DO UPDATE
                 SET address = EXCLUDED.address,
                     header = EXCLUDED.header,
                     secret = EXCLUDED.secret,
+                    demo_detached = EXCLUDED.demo_detached,
                     updated_at = CURRENT_TIMESTAMP
                 RETURNING team_id
             )
             INSERT INTO demos (team_id, enabled, started)
-            VALUES ($1, $6, $7)
+            VALUES ($1, $7, $8)
             ON CONFLICT (team_id) DO NOTHING
             RETURNING team_id
         `, []any{
@@ -122,18 +127,20 @@ func (s settingsProcessor) BuildInsertQuery(id core.SettingsCompositeKey, settin
 				settings.Address,
 				settings.Header,
 				settings.Secret,
+				settings.DemoDetached,
 				settings.Demo.Enabled,
 				started,
 			}
 	}
 
 	return `
-        INSERT INTO settings (team_id, board_id, address, header, secret)
-        VALUES ($1, $2, $3, $4, $5)
+        INSERT INTO settings (team_id, board_id, address, header, secret, demo_detached)
+        VALUES ($1, $2, $3, $4, $5, $6)
         ON CONFLICT (team_id, board_id) DO UPDATE
         SET address = EXCLUDED.address,
             header = EXCLUDED.header,
             secret = EXCLUDED.secret,
+            demo_detached = EXCLUDED.demo_detached,
             updated_at = CURRENT_TIMESTAMP
         RETURNING team_id
     `, []any{
@@ -142,6 +149,7 @@ func (s settingsProcessor) BuildInsertQuery(id core.SettingsCompositeKey, settin
 			settings.Address,
 			settings.Header,
 			settings.Secret,
+			settings.DemoDetached,
 		}
 }
 
@@ -152,6 +160,7 @@ func (s settingsProcessor) BuildUpdateQuery(id core.SettingsCompositeKey, settin
 		settings.Address,
 		settings.Header,
 		settings.Secret,
+		settings.DemoDetached,
 	}
 }
 

@@ -106,7 +106,7 @@ const useSettingsStore = create<SettingsState>((set, get) => ({
 
   saveSettings: async () => {
     const { address, header, secret, demo, demoStarted } = get();
-    if (demoStarted && (address === '' || header === '' || secret === ''))
+    if (!demo && (address === '' || header === '' || secret === ''))
       return;
 
     set({ loading: true, error: null });

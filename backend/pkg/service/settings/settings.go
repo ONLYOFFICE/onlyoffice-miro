@@ -256,6 +256,7 @@ func (s *settingsService) buildNewSettings(teamID string, opts *SaveOptions, exi
 
 	if opts.Demo {
 		newSettings.Demo = s.createDemoSettings(teamID, existingSettings.Demo.Started)
+		newSettings.DemoDetached = false
 
 		if opts.Address != "" || opts.Header != "" || opts.Secret != "" {
 			encSecret, err := s.encryptSecret(opts.Secret)
@@ -282,7 +283,13 @@ func (s *settingsService) buildNewSettings(teamID string, opts *SaveOptions, exi
 		Secret:  encSecret,
 	}
 
-	if existingSettings.Demo.Enabled {
+	if opts.Address != "" || opts.Header != "" || opts.Secret != "" {
+		newSettings.DemoDetached = true
+	} else {
+		newSettings.DemoDetached = existingSettings.DemoDetached
+	}
+
+	if !newSettings.DemoDetached && existingSettings.Demo.Enabled {
 		newSettings.Demo = existingSettings.Demo
 	}
 
@@ -320,9 +327,13 @@ func (s *settingsService) getFromCache(ctx context.Context, teamID, boardID stri
 		return component.Settings{}, false, err
 	}
 
-	if settings.Demo.Enabled && (settings.Address == "" || settings.Header == "" || settings.Secret == "") {
+	if !settings.DemoDetached && settings.Demo.Enabled && (settings.Address == "" || settings.Header == "" || settings.Secret == "") {
 		s.logEvent(ctx, config.Debug, "Demo settings retrieved from cache", teamID, boardID, nil)
 		return settings, true, nil
+	}
+
+	if settings.DemoDetached {
+		settings.Demo = component.Demo{}
 	}
 
 	if settings.Secret != "" {
@@ -353,8 +364,12 @@ func (s *settingsService) getFromStorage(ctx context.Context, teamID, boardID st
 	s.logEvent(ctx, config.Debug, "Settings retrieved from storage", teamID, boardID, nil)
 	s.cacheSettings(ctx, teamID, boardID, settings)
 
-	if settings.Demo.Enabled && (settings.Address == "" || settings.Header == "" || settings.Secret == "") {
+	if !settings.DemoDetached && settings.Demo.Enabled && (settings.Address == "" || settings.Header == "" || settings.Secret == "") {
 		return settings, nil
+	}
+
+	if settings.DemoDetached {
+		settings.Demo = component.Demo{}
 	}
 
 	if settings.Secret != "" {

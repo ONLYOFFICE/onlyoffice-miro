@@ -76,9 +76,21 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
         })()
       : false;
 
+    useEffect(() => {
+      if (demo && !isDemoExpired) {
+        setAddress('');
+        setHeader('');
+        setSecret('');
+        setAddressError('');
+        setHeaderError('');
+        setSecretError('');
+      }
+    }, [demo, isDemoExpired]);
+
     const hasInputs =
       address.trim() !== '' || header.trim() !== '' || secret.trim() !== '';
-    const fieldsRequired = !demo || isDemoExpired || hasInputs;
+
+    const fieldsRequired = isDemoExpired || !demo;
 
     const validateAddressField = (value: string): string => {
       if (!fieldsRequired) return '';
@@ -106,12 +118,17 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
     const secretErr = validateSecretField(secret);
 
     const hasValidationErrors = !!(addressErr || headerErr || secretErr);
+
     const saveDisabled =
       loading ||
       submitting ||
-      (!hasInputs && !demo) ||
-      (!hasInputs && demo && !!demoStarted && !isDemoExpired) ||
-      hasValidationErrors;
+      (fieldsRequired && (!hasInputs || hasValidationErrors)) ||
+      (!fieldsRequired && hasInputs);
+
+    const demoCheckboxDisabled = 
+      loading || 
+      submitting || 
+      isDemoExpired;
 
     useEffect(() => {
       if (fieldsRequired) {
@@ -154,7 +171,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
       e.preventDefault();
       setSubmitting(true);
       try {
-        if (validateForm()) {
+        if (!fieldsRequired || validateForm()) {
           try {
             await saveSettings();
             await emitRefreshDocuments();
@@ -191,7 +208,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                 type="text"
                 value={address}
                 error={addressError}
-                disabled={loading || submitting}
+                disabled={loading || submitting || (demo && !isDemoExpired)}
                 onChange={(e) => {
                   const { value } = e.target;
                   setAddress(value);
@@ -215,7 +232,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                 type="password"
                 value={secret}
                 error={secretError}
-                disabled={loading || submitting}
+                disabled={loading || submitting || (demo && !isDemoExpired)}
                 onChange={(e) => {
                   const { value } = e.target;
                   setSecret(value);
@@ -232,7 +249,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                 type="text"
                 value={header}
                 error={headerError}
-                disabled={loading || submitting}
+                disabled={loading || submitting || (demo && !isDemoExpired)}
                 onChange={(e) => {
                   const { value } = e.target;
                   setHeader(value);
@@ -254,9 +271,17 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                     className="checkbox form__checkbox"
                     style={{ margin: '0', marginRight: '8px' }}
                     checked={demo}
-                    disabled={loading || submitting || !!demoStarted}
+                    disabled={demoCheckboxDisabled}
                     onChange={() => {
                       setDemo(!demo);
+                      if (!demo) {
+                        setAddress('');
+                        setHeader('');
+                        setSecret('');
+                        setAddressError('');
+                        setHeaderError('');
+                        setSecretError('');
+                      }
                     }}
                   />
                   <span className="form__checkbox-text">

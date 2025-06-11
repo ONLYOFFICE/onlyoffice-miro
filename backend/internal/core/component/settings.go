@@ -18,8 +18,9 @@
 package component
 
 type Settings struct {
-	Address string `json:"address"`
-	Header  string `json:"header"`
-	Secret  string `json:"secret"`
-	Demo    Demo   `json:"demo,omitempty"`
+	Address      string `json:"address"`
+	Header       string `json:"header"`
+	Secret       string `json:"secret"`
+	Demo         Demo   `json:"demo,omitempty"`
+	DemoDetached bool   `json:"demo_detached"`
 }
