@@ -12,7 +12,8 @@
       "invalid_configuration": "Invalid configuration DE",
       "fetch_miro_data": "Failed to fetch Miro data DE",
       "build_editor_configuration": "Failed to build editor configuration DE",
-      "encode_configuration": "Failed to encode configuration DE"
+      "encode_configuration": "Failed to encode configuration DE",
+      "settings_not_configured": "Settings are not configured or your demo has expired DE"
     }
   }
 }

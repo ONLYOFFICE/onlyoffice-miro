@@ -20,6 +20,7 @@ package editor
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"time"
@@ -212,6 +213,11 @@ func (c *editorController) handleGet(ctx echo.Context) error {
 	return c.BaseController.ExecuteWithTimeout(ctx, 3*time.Second, func(tctx context.Context) error {
 		handleRequestError := func(err error, message string) error {
 			if err != nil {
+				if errors.Is(err, base.ErrSettingsNotConfigured) {
+					return ctx.Render(http.StatusOK, "unauthorized", map[string]string{
+						"authorizationError": c.BaseController.TranslationService.Translate(tctx, "en", "editor.errors.settings_not_configured"),
+					})
+				}
 				return ctx.Render(http.StatusOK, "unauthorized", map[string]string{
 					"authorizationError": message,
 				})
