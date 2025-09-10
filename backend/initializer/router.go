@@ -40,6 +40,9 @@ func (r *Router) SetupRoutes(
 	// Configure global middleware
 	setupGlobalMiddleware(r, logger)
 
+	// Setup custom error handler
+	setupErrorHandler(r, logger)
+
 	// Setup authentication middleware
 	authMiddleware, miroAuthMiddleware, editorMiddleware := setupAuthMiddleware(r, logger)
 
@@ -98,6 +101,33 @@ func setupGlobalMiddleware(r *Router, logger service.Logger) {
 			}
 		},
 	}))
+}
+
+func setupErrorHandler(r *Router, logger service.Logger) {
+	r.Echo.HTTPErrorHandler = func(err error, c echo.Context) {
+		var code int
+
+		if he, ok := err.(*echo.HTTPError); ok {
+			code = he.Code
+		} else {
+			c.Echo().DefaultHTTPErrorHandler(err, c)
+			return
+		}
+
+		if code == http.StatusNotFound {
+			logger.Debug(c.Request().Context(), "404 Not Found - redirecting to miro.com", service.Fields{
+				"path":   c.Request().URL.Path,
+				"method": c.Request().Method,
+			})
+
+			if !c.Response().Committed {
+				_ = c.Redirect(http.StatusFound, "https://miro.com")
+			}
+			return
+		}
+
+		c.Echo().DefaultHTTPErrorHandler(err, c)
+	}
 }
 
 // setupAuthMiddleware creates and configures auth middleware instances
