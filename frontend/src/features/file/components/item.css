@@ -132,14 +132,14 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 }
 
-.file-container:nth-child(-n+3) .file-container__dropdown-menu {
+.file-container:nth-child(-n+5) .file-container__dropdown-menu {
   top: 100%;
   bottom: auto;
   margin-top: 0.25rem;
 }
 
 @media (max-height: 500px) {
-  .file-container:nth-child(-n+5) .file-container__dropdown-menu {
+  .file-container:nth-child(-n+6) .file-container__dropdown-menu {
     top: 100%;
     bottom: auto;
     margin-top: 0.25rem;
