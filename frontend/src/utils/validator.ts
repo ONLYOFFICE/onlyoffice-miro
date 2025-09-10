@@ -24,6 +24,17 @@ export const normalizeAddress = (value: string): string => {
   return value;
 };
 
+export const normalizeAddressForSave = (value: string): string => {
+  if (!value) return value;
+  
+  let address = value;
+  if (!/^https?:\/\//i.test(address)) {
+    address = `https://${address}`;
+  }
+  
+  return address.replace(/\/+$/, '');
+};
+
 export const validateAddress = (value: string): boolean => {
   if (!value) return false;
 
@@ -35,9 +46,6 @@ export const validateAddress = (value: string): boolean => {
   try {
     const url = new URL(address);
     if (url.protocol !== 'http:' && url.protocol !== 'https:') {
-      return false;
-    }
-    if (address.endsWith('/')) {
       return false;
     }
   } catch (e) {

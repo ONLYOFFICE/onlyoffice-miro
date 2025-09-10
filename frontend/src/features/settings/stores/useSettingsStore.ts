@@ -20,6 +20,8 @@ import { create } from 'zustand';
 
 import { fetchSettings, saveSettings } from '@features/settings/api/settings';
 
+import { normalizeAddressForSave } from '@utils/validator';
+
 interface SettingsState {
   address: string;
   header: string;
@@ -110,12 +112,13 @@ const useSettingsStore = create<SettingsState>((set, get) => ({
 
     set({ loading: true, error: null });
     try {
-      await saveSettings({ address, header, secret, demo });
+      const normalizedAddress = normalizeAddressForSave(address);
+      await saveSettings({ address: normalizedAddress, header, secret, demo });
       set({
-        address,
+        address: normalizedAddress,
         header,
         secret,
-        persistedCredentials: address !== '' && header !== '' && secret !== '',
+        persistedCredentials: normalizedAddress !== '' && header !== '' && secret !== '',
         demoStarted:
           (demoStarted === '' || !demoStarted) && demo
             ? new Date().toISOString()
