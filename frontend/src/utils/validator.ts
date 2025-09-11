@@ -26,12 +26,12 @@ export const normalizeAddress = (value: string): string => {
 
 export const normalizeAddressForSave = (value: string): string => {
   if (!value) return value;
-  
+
   let address = value;
   if (!/^https?:\/\//i.test(address)) {
     address = `https://${address}`;
   }
-  
+
   return address.replace(/\/+$/, '');
 };
 

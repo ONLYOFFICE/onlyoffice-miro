@@ -32,7 +32,8 @@
         "download": "Download as PDF",
         "delete": "Delete",
         "errors": {
-          "failed_to_open": "Could not open the document. Please try again later, out service is unavailable."
+          "failed_to_open": "Could not open the document. Please try again later, out service is unavailable.",
+          "delete_locked": "Cannot delete the document because it is locked."
         }
       },
       "list": {

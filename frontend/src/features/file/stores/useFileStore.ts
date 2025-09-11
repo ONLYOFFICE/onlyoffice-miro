@@ -17,6 +17,7 @@
  */
 
 import { create } from 'zustand';
+import i18n from '@i18n/config';
 
 import { Document } from '@features/file/lib/types';
 
@@ -215,10 +216,32 @@ export const useFilesStore = create<FilesState>((set, get) => ({
   },
   deleteDocument: async (document: Document) => {
     const emitterStore = useEmitterStore.getState();
-    await deleteDocument(document.id);
-    await emitterStore.emitDocumentDeleted(document.id);
-    set({ activeDropdown: null });
-    get().updateOnDelete([document.id]);
+    try {
+      await deleteDocument(document.id);
+      await emitterStore.emitDocumentDeleted(document.id);
+      set({ activeDropdown: null });
+      get().updateOnDelete([document.id]);
+    } catch (error) {
+      if (error instanceof Error) {
+        const errorMessage = error.message.toLowerCase();
+        const isLockingError = 
+          errorMessage.includes('another client is locking') ||
+          errorMessage.includes('cannot remove the document') ||
+          errorMessage.includes('locking item');
+          
+        if (isLockingError) {
+          await emitterStore.emitNotification(
+            i18n.t('features.file.item.errors.delete_locked'),
+            'error'
+          );
+        } else {
+          throw error;
+        }
+      } else {
+        throw error;
+      }
+      set({ activeDropdown: null });
+    }
   },
 
   updateOnCreate: (documents: Document[]) => {

@@ -118,7 +118,8 @@ const useSettingsStore = create<SettingsState>((set, get) => ({
         address: normalizedAddress,
         header,
         secret,
-        persistedCredentials: normalizedAddress !== '' && header !== '' && secret !== '',
+        persistedCredentials:
+          normalizedAddress !== '' && header !== '' && secret !== '',
         demoStarted:
           (demoStarted === '' || !demoStarted) && demo
             ? new Date().toISOString()

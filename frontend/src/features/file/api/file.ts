@@ -123,5 +123,7 @@ export const deleteDocument = async (id: string): Promise<void> => {
   const { board: miroBoard } = window.miro;
 
   const target = await miroBoard.getById(id);
-  if (target) await miroBoard.remove(target);
+  if (target) {
+    await miroBoard.remove(target);
+  }
 };
