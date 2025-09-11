@@ -35,12 +35,22 @@ interface SettingsState {
   hasSettings: boolean;
   error: string | null;
 
+  originalAddress: string;
+  originalHeader: string;
+  originalSecret: string;
+  originalDemo: boolean;
+
   setAddress: (value: string) => void;
   setHeader: (value: string) => void;
   setSecret: (value: string) => void;
   setDemo: (value: boolean) => void;
-  saveSettings: () => Promise<void>;
+
+  saveOriginalValues: () => void;
+  revertToOriginalValues: () => void;
+  hasUnsavedChanges: () => boolean;
+
   initializeSettings: () => Promise<void>;
+  saveSettings: () => Promise<void>;
 }
 
 const useSettingsStore = create<SettingsState>((set, get) => ({
@@ -56,15 +66,50 @@ const useSettingsStore = create<SettingsState>((set, get) => ({
   hasSettings: false,
   error: null,
 
+  originalAddress: '',
+  originalHeader: '',
+  originalSecret: '',
+  originalDemo: false,
+
   setAddress: (value) => set({ address: value }),
   setHeader: (value) => set({ header: value }),
   setSecret: (value) => set({ secret: value }),
   setDemo: (value) => set({ demo: value }),
+
+  saveOriginalValues: () => {
+    const { address, header, secret, demo } = get();
+    set({
+      originalAddress: address,
+      originalHeader: header,
+      originalSecret: secret,
+      originalDemo: demo,
+    });
+  },
+  revertToOriginalValues: () => {
+    const { originalAddress, originalHeader, originalSecret, originalDemo } = get();
+    set({
+      address: originalAddress,
+      header: originalHeader,
+      secret: originalSecret,
+      demo: originalDemo,
+    });
+  },
+  hasUnsavedChanges: () => {
+    const { address, header, secret, demo } = get();
+    const { originalAddress, originalHeader, originalSecret, originalDemo } = get();
+    return (
+      address !== originalAddress ||
+      header !== originalHeader ||
+      secret !== originalSecret ||
+      demo !== originalDemo
+    );
+  },
+
   initializeSettings: async () => {
     set({ loading: true, error: null });
     try {
       const settings = await fetchSettings();
-      set({
+      const newState = {
         address: settings.address || '',
         header: settings.header || '',
         secret: settings.secret || '',
@@ -77,7 +122,12 @@ const useSettingsStore = create<SettingsState>((set, get) => ({
         ),
         loading: false,
         error: null,
-      });
+        originalAddress: settings.address || '',
+        originalHeader: settings.header || '',
+        originalSecret: settings.secret || '',
+        originalDemo: settings.demo.enabled,
+      };
+      set(newState);
     } catch (error) {
       const isAccessDenied =
         error instanceof Error &&

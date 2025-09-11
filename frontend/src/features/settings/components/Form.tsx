@@ -16,7 +16,7 @@
  *
  */
 
-import React, { forwardRef, FormEvent, useState, useEffect } from 'react';
+import React, { forwardRef, FormEvent, useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -47,6 +47,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
     const [submitting, setSubmitting] = useState(false);
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const hasSaved = useRef(false);
     const {
       address,
       header,
@@ -59,6 +60,9 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
       setSecret,
       setDemo,
       saveSettings,
+      saveOriginalValues,
+      revertToOriginalValues,
+      hasUnsavedChanges,
     } = useSettingsStore();
     const { refreshAuthorization } = useApplicationStore();
     const { emitRefreshDocuments } = useEmitterStore();
@@ -75,6 +79,18 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
           return currentTime > expiryTime;
         })()
       : false;
+
+    useEffect(() => {
+      saveOriginalValues();
+    }, [saveOriginalValues]);
+
+    useEffect(() => {
+      return () => {
+        if (!hasSaved.current && hasUnsavedChanges()) {
+          revertToOriginalValues();
+        }
+      };
+    }, [hasUnsavedChanges, revertToOriginalValues]);
 
     useEffect(() => {
       if (demo && !isDemoExpired) {
@@ -171,6 +187,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
         if (!fieldsRequired || validateForm()) {
           try {
             await saveSettings();
+            hasSaved.current = true;
             await emitRefreshDocuments();
             await refreshAuthorization();
             navigate('/');
