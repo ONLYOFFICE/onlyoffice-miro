@@ -159,7 +159,7 @@ func (c *client) GetServerVersion(ctx context.Context, base string, opts ...Opti
 	options := DefaultClientOptions()
 	ApplyOptions(options, opts...)
 
-	body := GetServerVersionRequest{C: "version", Token: options.Token}
+	body := GetServerVersionRequest{C: "version"}
 
 	req, err := c.createRequest(ctx, http.MethodPost, base, "/command", body, options)
 	if err != nil {

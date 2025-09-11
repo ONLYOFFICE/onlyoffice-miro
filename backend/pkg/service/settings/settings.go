@@ -205,9 +205,9 @@ func (s *settingsService) Save(ctx context.Context, teamID, boardID string, opts
 	s.logEvent(ctx, config.Debug, "Validating document server", teamID, boardID, nil)
 	if settings.Address != "" && settings.Header != "" && settings.Secret != "" {
 		token, err := s.jwtService.Create(jwt.MapClaims{
-			"c":   "version",
-			"exp": jwt.NewNumericDate(time.Now().Add(time.Minute * 1)),
-			"iat": jwt.NewNumericDate(time.Now()),
+			"payload": map[string]string{
+				"c": "version",
+			},
 		}, []byte(settings.Secret))
 
 		if err != nil {
@@ -215,7 +215,8 @@ func (s *settingsService) Save(ctx context.Context, teamID, boardID string, opts
 			return ErrSettingsBadJwtError
 		}
 
-		response, err := s.docServerClient.GetServerVersion(ctx, settings.Address, docserver.WithHeader(settings.Header), docserver.WithToken(token))
+		response, err := s.docServerClient.GetServerVersion(ctx, settings.Address,
+			docserver.WithHeader(settings.Header), docserver.WithToken(fmt.Sprintf("Bearer %s", token)))
 		if err != nil {
 			s.logEvent(ctx, config.Error, "Failed to connect to document server", teamID, boardID, err)
 			return ErrDocumentServerVersionRetrievalError
