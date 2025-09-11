@@ -128,8 +128,6 @@ export const useFilesStore = create<FilesState>((set, get) => ({
         loading: false,
         cursor: pageable.cursor,
       }));
-
-      if (pageable.cursor) await get().loadMoreDocuments();
     } catch (error) {
       if (error instanceof Error) {
         if (
@@ -161,8 +159,6 @@ export const useFilesStore = create<FilesState>((set, get) => ({
           cursor: pageable.cursor,
           initialized: true,
         });
-
-        if (pageable.cursor) await get().loadMoreDocuments();
       } else {
         set((state) => ({
           documents: [...pageable.data, ...state.documents],
