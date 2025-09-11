@@ -263,9 +263,11 @@ func (c *editorController) handleGet(ctx echo.Context) error {
 		}
 
 		return ctx.Render(http.StatusOK, "editor", map[string]any{
-			"apijs":   address + "/web-apps/apps/api/documents/api.js",
-			"config":  string(configJSON),
-			"favicon": config.DocumentType,
+			"apijs":       address + "/web-apps/apps/api/documents/api.js",
+			"config":      string(configJSON),
+			"favicon":     config.DocumentType,
+			"editorError": c.BaseController.TranslationService.Translate(tctx, params.lang, "editor.errors.failed_to_load"),
+			"closeWindow": c.BaseController.TranslationService.Translate(tctx, params.lang, "editor.close_window"),
 		})
 	})
 }

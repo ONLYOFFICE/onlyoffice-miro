@@ -13,7 +13,9 @@
       "fetch_miro_data": "Failed to fetch Miro data",
       "build_editor_configuration": "Failed to build editor configuration",
       "encode_configuration": "Failed to encode configuration",
-      "settings_not_configured": "Settings are not configured or your demo has expired"
-    }
+      "settings_not_configured": "Settings are not configured or your demo has expired",
+      "failed_to_load": "The document editor failed to initialize. This could be due to a network issue, server problem, or browser compatibility."
+    },
+    "close_window": "Close"
   }
 }
