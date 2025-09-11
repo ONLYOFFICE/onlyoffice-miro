@@ -21,12 +21,15 @@ import {
   SettingsResponse,
 } from '@features/settings/lib/types';
 
+import { sanitizeConfig } from '@utils/sanitizer';
+
 export const saveSettings = async (settings: SettingsRequest) => {
   const { board: miroBoard } = window.miro;
   const boardPromise = miroBoard.getInfo();
   const tokenPromise = miroBoard.getIdToken();
 
   const [board, token] = await Promise.all([boardPromise, tokenPromise]);
+  const sanitizedSettings = sanitizeConfig(settings);
   const path = `api/settings`;
   const response = await fetch(
     `${import.meta.env.VITE_MIRO_ONLYOFFICE_BACKEND}/${path}`,
@@ -34,7 +37,7 @@ export const saveSettings = async (settings: SettingsRequest) => {
       method: 'POST',
       body: JSON.stringify({
         board_id: board.id,
-        ...settings,
+        ...sanitizedSettings,
       }),
       headers: {
         'Content-Type': 'application/json',

@@ -28,6 +28,8 @@ import formatDate from '@features/file/utils/date';
 
 import useFilesStore from '@features/file/stores/useFileStore';
 
+import { sanitizeForDisplay } from '@utils/sanitizer';
+
 import '@features/file/components/item.css';
 
 interface FileItemProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -117,10 +119,10 @@ export const FileItem = forwardRef<HTMLDivElement, FileItemProps>(
         <img
           className="file-container__icon"
           src={getIcon(fileDocument.data?.title)}
-          alt={fileDocument.data?.title}
+          alt={sanitizeForDisplay(fileDocument.data?.title || '')}
         />
         <span className="file-container__title">
-          {fileDocument.data?.title}
+          {sanitizeForDisplay(fileDocument.data?.title || '')}
         </span>
         <span className="file-container__date file-container__text_secondary">
           {formatDate(fileDocument.createdAt)}

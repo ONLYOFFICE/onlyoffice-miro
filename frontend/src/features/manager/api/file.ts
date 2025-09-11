@@ -18,6 +18,8 @@
 
 import { FileCreatedResponse } from '@features/manager/lib/types';
 
+import { sanitizeFilename } from '@utils/sanitizer';
+
 export const createFile = async (
   name: string,
   type: string
@@ -33,6 +35,7 @@ export const createFile = async (
       boardPromise,
       tokenPromise,
     ]);
+    const sanitizedName = sanitizeFilename(name);
     const path = `api/files/create?uid=${user.id}&bid=${board.id}`;
     const response = await fetch(
       `${import.meta.env.VITE_MIRO_ONLYOFFICE_BACKEND}/${path}`,
@@ -40,7 +43,7 @@ export const createFile = async (
         method: 'POST',
         body: JSON.stringify({
           board_id: board.id,
-          file_name: name,
+          file_name: sanitizedName,
           file_type: type,
           file_lang: board.locale,
         }),

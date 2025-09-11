@@ -224,11 +224,11 @@ export const useFilesStore = create<FilesState>((set, get) => ({
     } catch (error) {
       if (error instanceof Error) {
         const errorMessage = error.message.toLowerCase();
-        const isLockingError = 
+        const isLockingError =
           errorMessage.includes('another client is locking') ||
           errorMessage.includes('cannot remove the document') ||
           errorMessage.includes('locking item');
-          
+
         if (isLockingError) {
           await emitterStore.emitNotification(
             i18n.t('features.file.item.errors.delete_locked'),

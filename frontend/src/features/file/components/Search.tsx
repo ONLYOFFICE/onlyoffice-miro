@@ -20,6 +20,8 @@ import React, { forwardRef, useState, useEffect, ChangeEvent } from 'react';
 
 import useFilesStore from '@features/file/stores/useFileStore';
 
+import { sanitizeSearchQuery } from '@utils/sanitizer';
+
 import '@features/file/components/search.css';
 
 interface SearchbarProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -41,7 +43,8 @@ export const Searchbar = forwardRef<HTMLDivElement, SearchbarProps>(
     }, [localQuery, setSearchQuery]);
 
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-      setLocalQuery(e.target.value);
+      const sanitizedValue = sanitizeSearchQuery(e.target.value);
+      setLocalQuery(sanitizedValue);
     };
 
     const handleClearSearch = () => {

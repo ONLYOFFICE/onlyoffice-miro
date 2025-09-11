@@ -30,6 +30,8 @@ import Select, { SelectOption } from '@components/Select';
 import useCreatorStore from '@features/manager/stores/useCreatorStore';
 import useEmitterStore from '@stores/useEmitterStore';
 
+import { sanitizeFilename } from '@utils/sanitizer';
+
 import '@features/manager/components/creator.css';
 
 interface CreatorProps extends React.HTMLAttributes<HTMLDivElement> {}
@@ -110,7 +112,10 @@ export const Creator = forwardRef<HTMLDivElement, CreatorProps>(
                   id="file-name"
                   className="creator-container__input"
                   value={selectedName}
-                  onChange={(e) => setSelectedName(e.target.value)}
+                  onChange={(e) => {
+                    const sanitizedName = sanitizeFilename(e.target.value);
+                    setSelectedName(sanitizedName);
+                  }}
                   disabled={loading}
                   error={nameError}
                 />

@@ -86,7 +86,8 @@ const useSettingsStore = create<SettingsState>((set, get) => ({
     });
   },
   revertToOriginalValues: () => {
-    const { originalAddress, originalHeader, originalSecret, originalDemo } = get();
+    const { originalAddress, originalHeader, originalSecret, originalDemo } =
+      get();
     set({
       address: originalAddress,
       header: originalHeader,
@@ -96,7 +97,8 @@ const useSettingsStore = create<SettingsState>((set, get) => ({
   },
   hasUnsavedChanges: () => {
     const { address, header, secret, demo } = get();
-    const { originalAddress, originalHeader, originalSecret, originalDemo } = get();
+    const { originalAddress, originalHeader, originalSecret, originalDemo } =
+      get();
     return (
       address !== originalAddress ||
       header !== originalHeader ||

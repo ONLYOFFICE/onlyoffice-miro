@@ -16,7 +16,13 @@
  *
  */
 
-import React, { forwardRef, FormEvent, useState, useEffect, useRef } from 'react';
+import React, {
+  forwardRef,
+  FormEvent,
+  useState,
+  useEffect,
+  useRef,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -34,6 +40,8 @@ import { Banner } from '@features/settings/components/Banner';
 import useSettingsStore from '@features/settings/stores/useSettingsStore';
 import useApplicationStore from '@stores/useApplicationStore';
 import useEmitterStore from '@stores/useEmitterStore';
+
+import { sanitizeUrl, sanitizeFormInput } from '@utils/sanitizer';
 
 import '@features/settings/components/form.css';
 
@@ -225,11 +233,13 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                 disabled={loading || submitting || (demo && !isDemoExpired)}
                 onChange={(e) => {
                   const { value } = e.target;
-                  setAddress(value);
-                  setAddressError(validateAddressField(value));
+                  const sanitizedValue = sanitizeUrl(value);
+                  setAddress(sanitizedValue);
+                  setAddressError(validateAddressField(sanitizedValue));
                 }}
                 onBlur={(e) => {
-                  const normalized = normalizeAddress(e.target.value);
+                  const sanitized = sanitizeUrl(e.target.value);
+                  const normalized = normalizeAddress(sanitized);
                   if (normalized !== e.target.value) {
                     setAddress(normalized);
                     setAddressError(validateAddressField(normalized));
@@ -249,8 +259,9 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                 disabled={loading || submitting || (demo && !isDemoExpired)}
                 onChange={(e) => {
                   const { value } = e.target;
-                  setSecret(value);
-                  setSecretError(validateSecretField(value));
+                  const sanitizedValue = sanitizeFormInput(value);
+                  setSecret(sanitizedValue);
+                  setSecretError(validateSecretField(sanitizedValue));
                 }}
                 required={fieldsRequired}
                 autoComplete="off"
@@ -266,8 +277,9 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                 disabled={loading || submitting || (demo && !isDemoExpired)}
                 onChange={(e) => {
                   const { value } = e.target;
-                  setHeader(value);
-                  setHeaderError(validateHeaderField(value));
+                  const sanitizedValue = sanitizeFormInput(value);
+                  setHeader(sanitizedValue);
+                  setHeaderError(validateHeaderField(sanitizedValue));
                 }}
                 required={fieldsRequired}
                 autoComplete="off"
