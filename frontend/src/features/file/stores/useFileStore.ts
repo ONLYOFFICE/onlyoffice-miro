@@ -123,11 +123,17 @@ export const useFilesStore = create<FilesState>((set, get) => ({
         return;
       }
 
-      set((state) => ({
-        documents: [...state.documents, ...pageable.data],
-        loading: false,
-        cursor: pageable.cursor,
-      }));
+      set((state) => {
+        const existing = new Set(state.documents.map((doc) => doc.id));
+        const newDocs = pageable.data.filter((doc) => !existing.has(doc.id));
+        const merged = [...state.documents, ...newDocs];
+        return {
+          documents: merged,
+          loading: false,
+          cursor: pageable.cursor,
+          filteredDocuments: filterDocuments(merged, state.searchQuery),
+        };
+      });
     } catch (error) {
       if (error instanceof Error) {
         if (
@@ -153,18 +159,25 @@ export const useFilesStore = create<FilesState>((set, get) => ({
     try {
       const pageable = await fetchDocuments();
       if (!initialized || !get().cursor) {
-        set({
+        set((state) => ({
           documents: pageable.data,
           loading: false,
           cursor: pageable.cursor,
           initialized: true,
-        });
-      } else {
-        set((state) => ({
-          documents: [...pageable.data, ...state.documents],
-          loading: false,
-          cursor: pageable.cursor || state.cursor,
+          filteredDocuments: filterDocuments(pageable.data, state.searchQuery),
         }));
+      } else {
+        set((state) => {
+          const existing = new Set(state.documents.map((doc) => doc.id));
+          const newDocs = pageable.data.filter((doc) => !existing.has(doc.id));
+          const merged = [...newDocs, ...state.documents];
+          return {
+            documents: merged,
+            loading: false,
+            cursor: pageable.cursor || state.cursor,
+            filteredDocuments: filterDocuments(merged, state.searchQuery),
+          };
+        });
       }
     } catch (error) {
       if (error instanceof Error) {
