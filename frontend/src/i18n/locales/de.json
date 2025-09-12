@@ -1,0 +1,108 @@
+{
+    "pages": {
+      "creation": {
+        "title": "Create new file DE",
+        "subtitle": "Enter file name and choose the format to create a new document DE",
+        "footer": "Developed by ONLYOFFICE DE"
+      },
+      "manager": {
+        "empty": {
+          "title": "No docs here yet DE",
+          "subtitle": "Press create new document button DE",
+          "search_title": "No documents found DE",
+          "search_subtitle": "Please try a different search query DE",
+          "max_retries_title": "Failed to access the server DE",
+          "max_retries_subtitle": "Please try again later DE"
+        },
+        "title": "File manager DE",
+        "subtitle": "Choose or create a document to edit it in Miro DE",
+        "footer": "Developed by ONLYOFFICE DE",
+        "create": "Create new file DE"
+      },
+      "settings": {
+        "title": "Configure ONLYOFFICE app settings DE",
+        "footer": "Developed by ONLYOFFICE DE"
+      }
+    },
+    "features": {
+      "file": {
+        "item": {
+          "edit": "Edit DE",
+          "navigate": "Navigate to DE",
+          "download": "Download as PDF DE",
+          "delete": "Delete DE",
+          "errors": {
+            "failed_to_open": "Could not open the document. Please try again later, our service is unavailable. DE",
+            "delete_locked": "Cannot delete the document because it is locked. DE"
+          }
+        },
+        "list": {
+          "notifications": {
+            "documents_added": "Please refresh ONLYOFFICE to see new documents DE"
+          }
+        }
+      },
+      "manager": {
+        "installation": {
+          "error": "App Installation Required DE",
+          "description": "Please install or reinstall the app to continue DE",
+          "button": "Install DE"
+        },
+        "creation": {
+          "errors": {
+            "name_required": "File name is required DE",
+            "file_creation_failed": "Failed to create file DE"
+          },
+          "file_types": {
+            "docx": "Document DE",
+            "xlsx": "Spreadsheet DE",
+            "pptx": "Presentation DE"
+          },
+          "create": "Create DE",
+          "creating": "Creating... DE",
+          "file_name": "File name DE",
+          "file_type": "File type DE"
+        },
+        "notconfigured": {
+          "title": "Configuration required DE",
+          "message": "Please contact your administrator to configure the document server DE"
+        }
+      },
+      "settings": {
+        "banner": {
+          "title": "ONLYOFFICE Docs Cloud DE",
+          "description": "Easily launch the editors in the cloud without downloading and installation DE",
+          "button": "Get now DE"
+        },
+        "form": {
+          "description": "The app which enables the users to edit office documents from Miro using ONLYOFFICE Document Server DE",
+          "errors": {
+            "address_required": "Please enter a valid address DE",
+            "header_required": "Please enter a valid header DE",
+            "secret_required": "Please enter a valid secret DE",
+            "invalid_url": "Please enter a valid URL DE",
+            "invalid_protocol": "Please enter a valid protocol DE",
+            "trailing_slash": "Please remove the trailing slash DE",
+            "header_too_long": "Please enter a valid header DE",
+            "secret_too_long": "Please enter a valid secret DE",
+            "retrieval_error": "Failed to retrieve settings DE",
+            "bad_jwt": "Failed to parse or sign JWT DE",
+            "document_server_version_retrieval_error": "Failed to validate document server version DE",
+            "document_server_unsupported_version": "Unsupported document server version DE",
+            "settings_initialization_error": "Failed to build new settings DE",
+            "settings_persistence_error": "Failed to persist settings DE",
+            "service_unavailable": "Service unavailable DE"
+          },
+          "address": "Document Server Address DE",
+          "secret": "JWT Secret DE",
+          "header": "JWT Header DE",
+          "demo": {
+            "title": "Connect to demo ONLYOFFICE Docs server DE",
+            "description": "This is a public test server, please do not use it for private sensitive data. The server will be available during a 30-day period. DE",
+            "available_until": "This demo will be available until {{date}} DE"
+          },
+          "save": "Save DE"
+        }
+      }
+    }
+  }

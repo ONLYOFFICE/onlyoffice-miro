@@ -1,0 +1,108 @@
+{
+    "pages": {
+      "creation": {
+        "title": "Create new file PL",
+        "subtitle": "Enter file name and choose the format to create a new document PL",
+        "footer": "Developed by ONLYOFFICE PL"
+      },
+      "manager": {
+        "empty": {
+          "title": "No docs here yet PL",
+          "subtitle": "Press create new document button PL",
+          "search_title": "No documents found PL",
+          "search_subtitle": "Please try a different search query PL",
+          "max_retries_title": "Failed to access the server PL",
+          "max_retries_subtitle": "Please try again later PL"
+        },
+        "title": "File manager PL",
+        "subtitle": "Choose or create a document to edit it in Miro PL",
+        "footer": "Developed by ONLYOFFICE PL",
+        "create": "Create new file PL"
+      },
+      "settings": {
+        "title": "Configure ONLYOFFICE app settings PL",
+        "footer": "Developed by ONLYOFFICE PL"
+      }
+    },
+    "features": {
+      "file": {
+        "item": {
+          "edit": "Edit PL",
+          "navigate": "Navigate to PL",
+          "download": "Download as PDF PL",
+          "delete": "Delete PL",
+          "errors": {
+            "failed_to_open": "Could not open the document. Please try again later, out service is unavailable. PL",
+            "delete_locked": "Cannot delete the document because it is locked. PL"
+          }
+        },
+        "list": {
+          "notifications": {
+            "documents_added": "Please refresh ONLYOFFICE to see new documents. PL"
+          }
+        }
+      },
+      "manager": {
+        "installation": {
+          "error": "App Installation Required PL",
+          "description": "Please install or reinstall the app to continue PL",
+          "button": "Install PL"
+        },
+        "creation": {
+          "errors": {
+            "name_required": "File name is required PL",
+            "file_creation_failed": "Failed to create file PL"
+          },
+          "file_types": {
+            "docx": "Document PL",
+            "xlsx": "Spreadsheet PL",
+            "pptx": "Presentation PL"
+          },
+          "create": "Create PL",
+          "creating": "Creating... PL",
+          "file_name": "File name PL",
+          "file_type": "File type PL"
+        },
+        "notconfigured": {
+          "title": "Configuration required PL",
+          "message": "Please contact your administrator to configure the document server PL"
+        }
+      },
+      "settings": {
+        "banner": {
+          "title": "ONLYOFFICE Docs Cloud PL",
+          "description": "Easily launch the editors in the cloud without downloading and installation PL",
+          "button": "Get now PL"
+        },
+        "form": {
+          "description": "The app which enables the users to edit office documents from Miro using ONLYOFFICE Document Server PL",
+          "errors": {
+            "address_required": "Please enter a valid address PL",
+            "header_required": "Please enter a valid header PL",
+            "secret_required": "Please enter a valid secret PL",
+            "invalid_url": "Please enter a valid URL PL",
+            "invalid_protocol": "Please enter a valid protocol PL",
+            "trailing_slash": "Please remove the trailing slash PL",
+            "header_too_long": "Please enter a valid header PL",
+            "secret_too_long": "Please enter a valid secret PL",
+            "retrieval_error": "Failed to retrieve settings PL",
+            "bad_jwt": "Failed to parse or sign JWT PL",
+            "document_server_version_retrieval_error": "Failed to validate document server version PL",
+            "document_server_unsupported_version": "Unsupported document server version PL",
+            "settings_initialization_error": "Failed to build new settings PL",
+            "settings_persistence_error": "Failed to persist settings PL",
+            "service_unavailable": "Service unavailable PL"
+          },
+          "address": "Document Server Address PL",
+          "secret": "JWT Secret PL",
+          "header": "JWT Header PL",
+          "demo": {
+            "title": "Connect to demo ONLYOFFICE Docs server PL",
+            "description": "This is a public test server, please do not use it for private sensitive data. The server will be available during a 30-day period. PL",
+            "available_until": "This demo will be available until {{date}} PL"
+          },
+          "save": "Save PL"
+        }
+      }
+    }
+  }

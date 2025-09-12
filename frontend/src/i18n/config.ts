@@ -21,6 +21,12 @@ import { initReactI18next } from 'react-i18next';
 
 import enTranslations from './locales/en.json';
 import esTranslations from './locales/es.json';
+import deTranslations from './locales/de.json';
+import frTranslations from './locales/fr.json';
+import jaTranslations from './locales/ja_JP.json';
+import ptBRTranslations from './locales/pt_BR.json';
+import koTranslations from './locales/ko.json';
+import plTranslations from './locales/pl.json';
 
 const resources = {
   en: {
@@ -28,6 +34,24 @@ const resources = {
   },
   es: {
     translation: esTranslations,
+  },
+  de: {
+    translation: deTranslations,
+  },
+  fr: {
+    translation: frTranslations,
+  },
+  'ja_JP': {
+    translation: jaTranslations,
+  },
+  'pt_BR': {
+    translation: ptBRTranslations,
+  },
+  ko: {
+    translation: koTranslations,
+  },
+  pl: {
+    translation: plTranslations,
   },
 };
 

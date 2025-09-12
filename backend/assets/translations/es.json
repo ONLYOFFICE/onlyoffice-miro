@@ -1,0 +1,21 @@
+{
+  "errors": {
+    "authentication": {
+      "missing_authentication": "Authentication is required ES",
+      "invalid_token": "Invalid authentication token ES"
+    }
+  },
+  "editor": {
+    "errors": {
+      "unauthorized": "Unauthorized access ES",
+      "fetch_required_data": "Failed to fetch required data ES",
+      "invalid_configuration": "Invalid configuration ES",
+      "fetch_miro_data": "Failed to fetch Miro data ES",
+      "build_editor_configuration": "Failed to build editor configuration ES",
+      "encode_configuration": "Failed to encode configuration ES",
+      "settings_not_configured": "Settings are not configured or your demo has expired ES",
+      "failed_to_load": "The document editor failed to initialize. This could be due to a network issue, server problem, or browser compatibility. ES"
+    },
+    "close_window": "Close ES"
+  }
+}

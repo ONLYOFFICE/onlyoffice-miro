@@ -1,0 +1,108 @@
+{
+    "pages": {
+      "creation": {
+        "title": "Create new file JP",
+        "subtitle": "Enter file name and choose the format to create a new document JP",
+        "footer": "Developed by ONLYOFFICE JP"
+      },
+      "manager": {
+        "empty": {
+          "title": "No docs here yet JP",
+          "subtitle": "Press create new document button JP",
+          "search_title": "No documents found JP",
+          "search_subtitle": "Please try a different search query JP",
+          "max_retries_title": "Failed to access the server JP",
+          "max_retries_subtitle": "Please try again later JP"
+        },
+        "title": "File manager JP",
+        "subtitle": "Choose or create a document to edit it in Miro JP",
+        "footer": "Developed by ONLYOFFICE JP",
+        "create": "Create new file JP"
+      },
+      "settings": {
+        "title": "Configure ONLYOFFICE app settings JP",
+        "footer": "Developed by ONLYOFFICE JP"
+      }
+    },
+    "features": {
+      "file": {
+        "item": {
+          "edit": "Edit JP",
+          "navigate": "Navigate to JP",
+          "download": "Download as PDF JP",
+          "delete": "Delete JP",
+          "errors": {
+            "failed_to_open": "Could not open the document. Please try again later, our service is unavailable. JP",
+            "delete_locked": "Cannot delete the document because it is locked. JP"
+          }
+        },
+        "list": {
+          "notifications": {
+            "documents_added": "Please refresh ONLYOFFICE to see new documents JP"
+          }
+        }
+      },
+      "manager": {
+        "installation": {
+          "error": "App Installation Required JP",
+          "description": "Please install or reinstall the app to continue JP",
+          "button": "Install JP"
+        },
+        "creation": {
+          "errors": {
+            "name_required": "File name is required JP",
+            "file_creation_failed": "Failed to create file JP"
+          },
+          "file_types": {
+            "docx": "Document JP",
+            "xlsx": "Spreadsheet JP",
+            "pptx": "Presentation JP"
+          },
+          "create": "Create JP",
+          "creating": "Creating... JP",
+          "file_name": "File name JP",
+          "file_type": "File type JP"
+        },
+        "notconfigured": {
+          "title": "Configuration required JP",
+          "message": "Please contact your administrator to configure the document server JP"
+        }
+      },
+      "settings": {
+        "banner": {
+          "title": "ONLYOFFICE Docs Cloud JP",
+          "description": "Easily launch the editors in the cloud without downloading and installation JP",
+          "button": "Get now JP"
+        },
+        "form": {
+          "description": "The app which enables the users to edit office documents from Miro using ONLYOFFICE Document Server JP",
+          "errors": {
+            "address_required": "Please enter a valid address JP",
+            "header_required": "Please enter a valid header JP",
+            "secret_required": "Please enter a valid secret JP",
+            "invalid_url": "Please enter a valid URL JP",
+            "invalid_protocol": "Please enter a valid protocol JP",
+            "trailing_slash": "Please remove the trailing slash JP",
+            "header_too_long": "Please enter a valid header JP",
+            "secret_too_long": "Please enter a valid secret JP",
+            "retrieval_error": "Failed to retrieve settings JP",
+            "bad_jwt": "Failed to parse or sign JWT JP",
+            "document_server_version_retrieval_error": "Failed to validate document server version JP",
+            "document_server_unsupported_version": "Unsupported document server version JP",
+            "settings_initialization_error": "Failed to build new settings JP",
+            "settings_persistence_error": "Failed to persist settings JP",
+            "service_unavailable": "Service unavailable JP"
+          },
+          "address": "Document Server Address JP",
+          "secret": "JWT Secret JP",
+          "header": "JWT Header JP",
+          "demo": {
+            "title": "Connect to demo ONLYOFFICE Docs server JP",
+            "description": "This is a public test server, please do not use it for private sensitive data. The server will be available during a 30-day period. JP",
+            "available_until": "This demo will be available until {{date}} JP"
+          },
+          "save": "Save JP"
+        }
+      }
+    }
+  }
