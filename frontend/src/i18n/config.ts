@@ -41,10 +41,10 @@ const resources = {
   fr: {
     translation: frTranslations,
   },
-  'ja_JP': {
+  ja_JP: {
     translation: jaTranslations,
   },
-  'pt_BR': {
+  pt_BR: {
     translation: ptBRTranslations,
   },
   ko: {
