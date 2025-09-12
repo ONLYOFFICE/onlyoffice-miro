@@ -305,7 +305,12 @@
     <script type="text/javascript" language="javascript">
         var docEditor;
         var appReadyTimeout;
+        var retryTimeout;
         var isAppReady = false;
+        var isErrorPageShown = false;
+        var retryCount = 0;
+        var maxRetries = 3;
+        var retryDelay = 5000;
 
         var innerAlert = function (message) {
             if (console && console.log)
@@ -320,6 +325,8 @@
         };
 
         var showErrorPage = function () {
+            if (isErrorPageShown) return;
+            
             var errorPage = document.getElementById("errorPage");
             var form = document.getElementsByClassName("form")[0];
             
@@ -331,15 +338,77 @@
             
             if (errorPage) {
                 errorPage.classList.add("show");
+                isErrorPageShown = true;
             }
+            
+            if (retryCount < maxRetries) {
+                scheduleRetry();
+            }
+        };
+
+        var hideErrorPage = function () {
+            var errorPage = document.getElementById("errorPage");
+            var form = document.getElementsByClassName("form")[0];
+            
+            if (errorPage) {
+                errorPage.classList.remove("show");
+                isErrorPageShown = false;
+            }
+            
+            if (form) {
+                form.style.display = "block";
+            }
+        };
+
+        var scheduleRetry = function () {
+            if (retryTimeout) {
+                clearTimeout(retryTimeout);
+            }
+            
+            retryTimeout = setTimeout(function() {
+                retryCount++;
+                innerAlert("Retrying connection attempt " + retryCount + " of " + maxRetries);
+                retryConnection();
+            }, retryDelay);
+        };
+
+        var retryConnection = function () {
+            if (retryTimeout) {
+                clearTimeout(retryTimeout);
+            }
+            
+            isAppReady = false;
+            
+            if (docEditor) {
+                try {
+                    docEditor.destroyEditor();
+                } catch (e) {
+                }
+                docEditor = null;
+            }
+            
+            hideErrorPage();
+            var loadingContainer = document.getElementById("loadingContainer");
+            if (loadingContainer) {
+                loadingContainer.classList.remove("hide");
+            }
+            
+            connectEditor();
         };
 
         var onAppReady = function () {
             isAppReady = true;
+            retryCount = 0;
+            
             if (appReadyTimeout) {
                 clearTimeout(appReadyTimeout);
             }
+            if (retryTimeout) {
+                clearTimeout(retryTimeout);
+            }
+            
             hideLoader();
+            hideErrorPage();
             innerAlert("Document editor ready");
         };
 
@@ -388,8 +457,13 @@
 
         var connectEditor = function () {
             try {
+                if (appReadyTimeout) {
+                    clearTimeout(appReadyTimeout);
+                }
+                
                 appReadyTimeout = setTimeout(function() {
                     if (!isAppReady) {
+                        innerAlert("Document editor failed to load within timeout period");
                         showErrorPage();
                     }
                 }, 15000);
@@ -411,12 +485,30 @@
             }
         };
 
+        var cleanup = function () {
+            if (appReadyTimeout) {
+                clearTimeout(appReadyTimeout);
+            }
+            if (retryTimeout) {
+                clearTimeout(retryTimeout);
+            }
+            if (docEditor) {
+                try {
+                    docEditor.destroyEditor();
+                } catch (e) {}
+            }
+        };
+
         if (window.addEventListener) {
             window.addEventListener("load", connectEditor);
             window.addEventListener("resize", fixSize);
+            window.addEventListener("beforeunload", cleanup);
+            window.addEventListener("unload", cleanup);
         } else if (window.attachEvent) {
             window.attachEvent("onload", connectEditor);
             window.attachEvent("onresize", fixSize);
+            window.attachEvent("onbeforeunload", cleanup);
+            window.attachEvent("onunload", cleanup);
         }
     </script>
 </body>
