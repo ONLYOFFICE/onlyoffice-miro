@@ -57,6 +57,68 @@
             padding: 0;
         }
 
+        .loading-container {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #fff;
+        }
+
+        .loading-container.hide {
+            display: none;
+        }
+
+        .spinner {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 48px;
+            height: 48px;
+            margin: 16px;
+        }
+
+        .spinner__circle {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #D8DEE9;
+            border-radius: 100%;
+            animation: spin 800ms infinite linear;
+        }
+
+        .spinner__circle_inner,
+        .spinner__circle_gradient {
+            position: absolute;
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            transform: translate(-50%, -50%);
+        }
+
+        .spinner__circle_inner {
+            top: 50%;
+            left: 50%;
+            background-color: white;
+            border-radius: 100%;
+        }
+
+        .spinner__circle_gradient {
+            top: -45%;
+            left: 11%;
+            background-color: #D8DEE9;
+            background-image: linear-gradient(0deg, #D8DEE9 0%, #5E6A8A 50%);
+            transform: rotate(-45deg);
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         .error-page {
             display: none;
             height: 100vh;
@@ -122,6 +184,14 @@
 </head>
 
 <body>
+    <div id="loadingContainer" class="loading-container">
+        <div class="spinner">
+            <div class="spinner__circle">
+                <div class="spinner__circle_gradient"></div>
+                <div class="spinner__circle_inner"></div>
+            </div>
+        </div>
+    </div>
     <div class="form">
         <div id="iframeEditor">
         </div>
@@ -242,9 +312,18 @@
                 console.log(message);
         };
 
+        var hideLoader = function () {
+            var loadingContainer = document.getElementById("loadingContainer");
+            if (loadingContainer) {
+                loadingContainer.classList.add("hide");
+            }
+        };
+
         var showErrorPage = function () {
             var errorPage = document.getElementById("errorPage");
             var form = document.getElementsByClassName("form")[0];
+            
+            hideLoader();
             
             if (form) {
                 form.style.display = "none";
@@ -260,6 +339,7 @@
             if (appReadyTimeout) {
                 clearTimeout(appReadyTimeout);
             }
+            hideLoader();
             innerAlert("Document editor ready");
         };
 
