@@ -40,6 +40,7 @@ type UserConfigurer interface {
 }
 
 type Permissions struct {
+	Chat                    bool `json:"chat"`
 	Comment                 bool `json:"comment"`
 	Copy                    bool `json:"copy"`
 	DeleteCommentAuthorOnly bool `json:"deleteCommentAuthorOnly"`

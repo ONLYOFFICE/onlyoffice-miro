@@ -87,8 +87,12 @@ func (s *builderService) Build(
 			URL:      configurer.URL(),
 			FileType: ext,
 			Permissions: Permissions{
-				Edit:    format.IsEditable(),
-				Protect: false,
+				Edit:      format.IsEditable(),
+				Protect:   false,
+				Chat:      false,
+				Comment:   false,
+				FillForms: false,
+				Review:    false,
 			},
 		},
 		Editor: Editor{
