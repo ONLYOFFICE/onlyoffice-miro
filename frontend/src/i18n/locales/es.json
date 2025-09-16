@@ -40,6 +40,10 @@
         "notifications": {
           "documents_added": "Por favor, actualice ONLYOFFICE para ver nuevos documentos."
         }
+      },
+      "search": {
+        "placeholder": "Buscar documento",
+        "clear": "Limpiar búsqueda"
       }
     },
     "manager": {

@@ -40,6 +40,10 @@
           "notifications": {
             "documents_added": "新しいドキュメントを表示するにはONLYOFFICEを更新してください。"
           }
+        },
+        "search": {
+          "placeholder": "ドキュメントを検索",
+          "clear": "検索をクリア"
         }
       },
       "manager": {

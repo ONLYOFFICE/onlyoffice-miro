@@ -17,6 +17,7 @@
  */
 
 import React, { forwardRef, useState, useEffect, ChangeEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import useFilesStore from '@features/file/stores/useFileStore';
 
@@ -31,6 +32,7 @@ export const Searchbar = forwardRef<HTMLDivElement, SearchbarProps>(
     const { searchQuery, setSearchQuery, initialized, loading } =
       useFilesStore();
     const [localQuery, setLocalQuery] = useState(searchQuery);
+    const { t } = useTranslation();
 
     const disabled = loading && !initialized;
 
@@ -65,7 +67,7 @@ export const Searchbar = forwardRef<HTMLDivElement, SearchbarProps>(
           <input
             className="searchbar-container__main__input"
             type="text"
-            placeholder="Search document"
+            placeholder={t('features.file.search.placeholder')}
             value={localQuery}
             onChange={handleSearchChange}
             disabled={disabled}
@@ -76,7 +78,7 @@ export const Searchbar = forwardRef<HTMLDivElement, SearchbarProps>(
               className="searchbar-container__main__clear"
               onClick={handleClearSearch}
               disabled={disabled}
-              aria-label="Clear search"
+              aria-label={t('features.file.search.clear')}
             >
               <img src="/cross.svg" alt="Clear search" />
             </button>

@@ -40,6 +40,10 @@
         "notifications": {
           "documents_added": "새 문서를 확인하려면 ONLYOFFICE를 새로 고침하세요."
         }
+      },
+      "search": {
+        "placeholder": "문서 검색",
+        "clear": "검색 지우기"
       }
     },
     "manager": {
