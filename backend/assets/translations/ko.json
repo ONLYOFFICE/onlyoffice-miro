@@ -1,4 +1,4 @@
-﻿{
+{
   "errors": {
     "authentication": {
       "missing_authentication": "인증이 필요합니다",

@@ -1,4 +1,4 @@
-﻿{
+{
   "errors": {
     "authentication": {
       "missing_authentication": "認証が必要です",
