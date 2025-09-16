@@ -131,11 +131,13 @@ export const sanitizeConfig = (config: {
   address?: string;
   secret?: string;
   header?: string;
+  demo?: boolean;
 }) => {
   return {
     address: config.address ? sanitizeUrl(config.address) : '',
     secret: config.secret ? sanitizeFormInput(config.secret) : '',
     header: config.header ? sanitizeFormInput(config.header) : '',
+    demo: config.demo ?? false,
   };
 };
 
