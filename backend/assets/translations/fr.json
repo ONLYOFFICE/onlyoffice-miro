@@ -1,21 +1,21 @@
-{
+﻿{
   "errors": {
     "authentication": {
-      "missing_authentication": "Authentication is required FR",
-      "invalid_token": "Invalid authentication token FR"
+      "missing_authentication": "Authentification requise",
+      "invalid_token": "Jeton d'authentification invalide"
     }
   },
   "editor": {
     "errors": {
-      "unauthorized": "Unauthorized access FR",
-      "fetch_required_data": "Failed to fetch required data FR",
-      "invalid_configuration": "Invalid configuration FR",
-      "fetch_miro_data": "Failed to fetch Miro data FR",
-      "build_editor_configuration": "Failed to build editor configuration FR",
-      "encode_configuration": "Failed to encode configuration FR",
-      "settings_not_configured": "Settings are not configured or your demo has expired FR",
-      "failed_to_load": "The document editor failed to initialize. This could be due to a network issue, server problem, or browser compatibility. FR"
+      "unauthorized": "Accès non autorisé",
+      "fetch_required_data": "Échec du chargement des données requises",
+      "invalid_configuration": "Configuration invalide",
+      "fetch_miro_data": "Échec du chargement des données Miro",
+      "build_editor_configuration": "Échec de la création de la configuration de l'éditeur",
+      "encode_configuration": "Échec de l'encodage de la configuration",
+      "settings_not_configured": "Les paramètres ne sont pas configurés ou votre démo a expiré",
+      "failed_to_load": "L'éditeur de document n'a pas pu s'initialiser. Cela peut être dû à un problème réseau, à un problème serveur ou à un problème de compatibilité du navigateur."
     },
-    "close_window": "Close FR"
+    "close_window": "Fermer"
   }
 }

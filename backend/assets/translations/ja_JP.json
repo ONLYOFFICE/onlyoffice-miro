@@ -1,21 +1,21 @@
-{
+﻿{
   "errors": {
     "authentication": {
-      "missing_authentication": "Authentication is required JP",
-      "invalid_token": "Invalid authentication token JP"
+      "missing_authentication": "認証が必要です",
+      "invalid_token": "認証トークンが無効です"
     }
   },
   "editor": {
     "errors": {
-      "unauthorized": "Unauthorized access JP",
-      "fetch_required_data": "Failed to fetch required data JP",
-      "invalid_configuration": "Invalid configuration JP",
-      "fetch_miro_data": "Failed to fetch Miro data JP",
-      "build_editor_configuration": "Failed to build editor configuration JP",
-      "encode_configuration": "Failed to encode configuration JP",
-      "settings_not_configured": "Settings are not configured or your demo has expired JP",
-      "failed_to_load": "The document editor failed to initialize. This could be due to a network issue, server problem, or browser compatibility. JP"
+      "unauthorized": "アクセス権がありません",
+      "fetch_required_data": "必要なデータの取得に失敗しました",
+      "invalid_configuration": "無効な構成です",
+      "fetch_miro_data": "Miroデータの取得に失敗しました",
+      "build_editor_configuration": "エディター構成の作成に失敗しました",
+      "encode_configuration": "構成のエンコードに失敗しました",
+      "settings_not_configured": "設定が構成されていないか、デモの有効期限が切れています",
+      "failed_to_load": "ドキュメントエディターの初期化に失敗しました。ネットワークの問題、サーバー障害、またはブラウザの互換性が原因の可能性があります。"
     },
-    "close_window": "Close JP"
+    "close_window": "閉じる"
   }
 }
