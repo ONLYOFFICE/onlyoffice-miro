@@ -1,21 +1,21 @@
-{
+﻿{
   "errors": {
     "authentication": {
-      "missing_authentication": "Authentication is required DE",
-      "invalid_token": "Invalid authentication token DE"
+      "missing_authentication": "Authentifizierung erforderlich",
+      "invalid_token": "Ungültiges Authentifizierungstoken"
     }
   },
   "editor": {
     "errors": {
-      "unauthorized": "Unauthorized access DE",
-      "fetch_required_data": "Failed to fetch required data DE",
-      "invalid_configuration": "Invalid configuration DE",
-      "fetch_miro_data": "Failed to fetch Miro data DE",
-      "build_editor_configuration": "Failed to build editor configuration DE",
-      "encode_configuration": "Failed to encode configuration DE",
-      "settings_not_configured": "Settings are not configured or your demo has expired DE",
-      "failed_to_load": "The document editor failed to initialize. This could be due to a network issue, server problem, or browser compatibility."
+      "unauthorized": "Unbefugter Zugriff",
+      "fetch_required_data": "Abrufen der erforderlichen Daten fehlgeschlagen",
+      "invalid_configuration": "Ungültige Konfiguration",
+      "fetch_miro_data": "Miro-Daten konnten nicht abgerufen werden",
+      "build_editor_configuration": "Fehler beim Erstellen der Editorkonfiguration",
+      "encode_configuration": "Konfiguration konnte nicht kodiert werden",
+      "settings_not_configured": "Die Einstellungen sind nicht konfiguriert oder Ihre Demo ist abgelaufen",
+      "failed_to_load": "Der Dokumenteditor konnte nicht initialisiert werden. Dies kann an einem Netzwerkproblem, einem Serverproblem oder der Browserkompatibilität liegen."
     },
-    "close_window": "Close"
+    "close_window": "Schließen"
   }
 }

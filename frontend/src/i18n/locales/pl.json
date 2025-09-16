@@ -1,107 +1,107 @@
-{
+﻿{
     "pages": {
       "creation": {
-        "title": "Create new file PL",
-        "subtitle": "Enter file name and choose the format to create a new document PL",
-        "footer": "Developed by ONLYOFFICE PL"
+        "title": "Utwórz nowy plik",
+        "subtitle": "Wprowadź nazwę pliku i wybierz format, aby utworzyć nowy dokument",
+        "footer": "Opracowane przez ONLYOFFICE"
       },
       "manager": {
         "empty": {
-          "title": "No docs here yet PL",
-          "subtitle": "Press create new document button PL",
-          "search_title": "No documents found PL",
-          "search_subtitle": "Please try a different search query PL",
-          "max_retries_title": "Failed to access the server PL",
-          "max_retries_subtitle": "Please try again later PL"
+          "title": "Nie ma tu jeszcze żadnych dokumentów",
+          "subtitle": "Naciśnij przycisk Utwórz nowy dokument",
+          "search_title": "Nie znaleziono żadnego dokumentu",
+          "search_subtitle": "Spróbuj użyć innego zapytania",
+          "max_retries_title": "Nie udało się uzyskać dostępu do serwera",
+          "max_retries_subtitle": "Spróbuj ponownie później"
         },
-        "title": "File manager PL",
-        "subtitle": "Choose or create a document to edit it in Miro PL",
-        "footer": "Developed by ONLYOFFICE PL",
-        "create": "Create new file PL"
+        "title": "Menedżer plików",
+        "subtitle": "Wybierz lub utwórz dokument do edycji w Miro",
+        "footer": "Opracowane przez ONLYOFFICE",
+        "create": "Utwórz nowy plik"
       },
       "settings": {
-        "title": "Configure ONLYOFFICE app settings PL",
-        "footer": "Developed by ONLYOFFICE PL"
+        "title": "Skonfiguruj ustawienia aplikacji ONLYOFFICE",
+        "footer": "Opracowane przez ONLYOFFICE"
       }
     },
     "features": {
       "file": {
         "item": {
-          "edit": "Edit PL",
-          "navigate": "Navigate to PL",
-          "download": "Download as PDF PL",
-          "delete": "Delete PL",
+          "edit": "Edytuj",
+          "navigate": "Przejdź do",
+          "download": "Pobierz jako PDF",
+          "delete": "Usuń",
           "errors": {
-            "failed_to_open": "Could not open the document. Please try again later, out service is unavailable. PL",
-            "delete_locked": "Cannot delete the document because it is locked. PL"
+            "failed_to_open": "Nie udało się otworzyć dokumentu. Spróbuj ponownie później, nasza usługa jest niedostępna.",
+            "delete_locked": "Nie można usunąć dokumentu, ponieważ jest zablokowany."
           }
         },
         "list": {
           "notifications": {
-            "documents_added": "Please refresh ONLYOFFICE to see new documents. PL"
+            "documents_added": "Odśwież ONLYOFFICE, aby zobaczyć nowe dokumenty."
           }
         }
       },
       "manager": {
         "installation": {
-          "error": "App Installation Required PL",
-          "description": "Please install or reinstall the app to continue PL",
-          "button": "Install PL"
+          "error": "Wymagana instalacja aplikacji",
+          "description": "Zainstaluj lub przeinstaluj aplikację, aby kontynuować",
+          "button": "Zainstaluj"
         },
         "creation": {
           "errors": {
-            "name_required": "File name is required PL",
-            "file_creation_failed": "Failed to create file PL"
+            "name_required": "Nazwa pliku jest wymagana",
+            "file_creation_failed": "Nie udało się utworzyć pliku"
           },
           "file_types": {
-            "docx": "Document PL",
-            "xlsx": "Spreadsheet PL",
-            "pptx": "Presentation PL"
+            "docx": "Dokument",
+            "xlsx": "Arkusz kalkulacyjny",
+            "pptx": "Prezentacja"
           },
-          "create": "Create PL",
-          "creating": "Creating... PL",
-          "file_name": "File name PL",
-          "file_type": "File type PL"
+          "create": "Utwórz",
+          "creating": "Tworzenie...",
+          "file_name": "Nazwa pliku",
+          "file_type": "Typ pliku"
         },
         "notconfigured": {
-          "title": "Configuration required PL",
-          "message": "Please contact your administrator to configure the document server PL"
+          "title": "Wymagana konfiguracja",
+          "message": "Skontaktuj się z administratorem, aby skonfigurować serwer dokumentów"
         }
       },
       "settings": {
         "banner": {
-          "title": "ONLYOFFICE Docs Cloud PL",
-          "description": "Easily launch the editors in the cloud without downloading and installation PL",
-          "button": "Get now PL"
+          "title": "ONLYOFFICE Docs Cloud",
+          "description": "Z łatwością uruchamiaj edytory w chmurze bez konieczności pobierania czy instalacji",
+          "button": "Pobierz teraz"
         },
         "form": {
-          "description": "The app which enables the users to edit office documents from Miro using ONLYOFFICE Document Server PL",
+          "description": "Aplikacja umożliwiająca użytkownikom edycję dokumentów biurowych z Miro za pośrednictwem serwera dokumentów ONLYOFFICE",
           "errors": {
-            "address_required": "Please enter a valid address PL",
-            "header_required": "Please enter a valid header PL",
-            "secret_required": "Please enter a valid secret PL",
-            "invalid_url": "Please enter a valid URL PL",
-            "invalid_protocol": "Please enter a valid protocol PL",
-            "trailing_slash": "Please remove the trailing slash PL",
-            "header_too_long": "Please enter a valid header PL",
-            "secret_too_long": "Please enter a valid secret PL",
-            "retrieval_error": "Failed to retrieve settings PL",
-            "bad_jwt": "Failed to parse or sign JWT PL",
-            "document_server_version_retrieval_error": "Failed to validate document server version PL",
-            "document_server_unsupported_version": "Unsupported document server version PL",
-            "settings_initialization_error": "Failed to build new settings PL",
-            "settings_persistence_error": "Failed to persist settings PL",
-            "service_unavailable": "Service unavailable PL"
+            "address_required": "Wpisz poprawny adres",
+            "header_required": "Wpisz poprawny nagłówek",
+            "secret_required": "Wpisz poprawny sekret",
+            "invalid_url": "Wpisz poprawny URL",
+            "invalid_protocol": "Wpisz poprawny protokół",
+            "trailing_slash": "Usuń ukośnik końcowy",
+            "header_too_long": "Wpisz poprawny nagłówek",
+            "secret_too_long": "Wpisz poprawny sekret",
+            "retrieval_error": "Nie udało się pobrać ustawień",
+            "bad_jwt": "Nie udało się przetworzyć ani podpisać JWT",
+            "document_server_version_retrieval_error": "Nie udało się zweryfikować wersji serwera dokumentów",
+            "document_server_unsupported_version": "Nieobsługiwana wersja serwera dokumentów",
+            "settings_initialization_error": "Nie udało się utworzyć nowych ustawień",
+            "settings_persistence_error": "Nie udało się zachować ustawień",
+            "service_unavailable": "Usługa niedostępna"
           },
-          "address": "Document Server Address PL",
-          "secret": "JWT Secret PL",
-          "header": "JWT Header PL",
+          "address": "Adres serwera dokumentów",
+          "secret": "Sekret JWT",
+          "header": "Nagłówek JWT",
           "demo": {
-            "title": "Connect to demo ONLYOFFICE Docs server PL",
-            "description": "This is a public test server, please do not use it for private sensitive data. The server will be available during a 30-day period. PL",
-            "available_until": "This demo will be available until {{date}} PL"
+            "title": "Połącz się z serwerem demo ONLYOFFICE Docs",
+            "description": "Jest to publiczny serwer testowy, nie udostępniaj na nim prywatnych ani innych poufnych danych. Serwer będzie dostępny przez okres 30 dni.",
+            "available_until": "Wersja demo będzie dostępna do {{date}}"
           },
-          "save": "Save PL"
+          "save": "Zapisz"
         }
       }
     }

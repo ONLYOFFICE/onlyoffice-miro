@@ -1,107 +1,107 @@
-{
+﻿{
     "pages": {
       "creation": {
-        "title": "Create new file DE",
-        "subtitle": "Enter file name and choose the format to create a new document DE",
-        "footer": "Developed by ONLYOFFICE DE"
+        "title": "Neue Datei erstellen",
+        "subtitle": "Geben Sie den Dateinamen ein und wählen Sie das Format, um ein neues Dokument zu erstellen",
+        "footer": "Entwickelt von ONLYOFFICE"
       },
       "manager": {
         "empty": {
-          "title": "No docs here yet DE",
-          "subtitle": "Press create new document button DE",
-          "search_title": "No documents found DE",
-          "search_subtitle": "Please try a different search query DE",
-          "max_retries_title": "Failed to access the server DE",
-          "max_retries_subtitle": "Please try again later DE"
+          "title": "Noch keine Dokumente hier",
+          "subtitle": "Klicken Sie auf die Schaltfläche „Neues Dokument erstellen“",
+          "search_title": "Keine Dokumente gefunden",
+          "search_subtitle": "Bitte versuchen Sie eine andere Suchanfrage",
+          "max_retries_title": "Der Zugriff auf den Server ist fehlgeschlagen",
+          "max_retries_subtitle": "Bitte versuchen Sie es später noch einmal"
         },
-        "title": "File manager DE",
-        "subtitle": "Choose or create a document to edit it in Miro DE",
-        "footer": "Developed by ONLYOFFICE DE",
-        "create": "Create new file DE"
+        "title": "Dateimanager",
+        "subtitle": "Wählen oder erstellen Sie ein Dokument, um es in Miro zu bearbeiten",
+        "footer": "Entwickelt von ONLYOFFICE",
+        "create": "Neue Datei erstellen"
       },
       "settings": {
-        "title": "Configure ONLYOFFICE app settings DE",
-        "footer": "Developed by ONLYOFFICE DE"
+        "title": "Die ONLYOFFICE-App-Einstellungen konfigurieren",
+        "footer": "Entwickelt von ONLYOFFICE"
       }
     },
     "features": {
       "file": {
         "item": {
-          "edit": "Edit DE",
-          "navigate": "Navigate to DE",
-          "download": "Download as PDF DE",
-          "delete": "Delete DE",
+          "edit": "Bearbeiten",
+          "navigate": "Navigieren zu",
+          "download": "Als PDF herunterladen",
+          "delete": "Löschen",
           "errors": {
-            "failed_to_open": "Could not open the document. Please try again later, our service is unavailable. DE",
-            "delete_locked": "Cannot delete the document because it is locked. DE"
+            "failed_to_open": "Das Dokument konnte nicht geöffnet werden. Bitte versuchen Sie es später erneut, unser Dienst ist nicht verfügbar.",
+            "delete_locked": "Das Dokument kann nicht gelöscht werden, da es gesperrt ist."
           }
         },
         "list": {
           "notifications": {
-            "documents_added": "Please refresh ONLYOFFICE to see new documents DE"
+            "documents_added": "Bitte aktualisieren Sie ONLYOFFICE, um neue Dokumente anzuzeigen."
           }
         }
       },
       "manager": {
         "installation": {
-          "error": "App Installation Required DE",
-          "description": "Please install or reinstall the app to continue DE",
-          "button": "Install DE"
+          "error": "App-Installation erforderlich",
+          "description": "Bitte installieren Sie die App oder installieren Sie sie erneut, um fortzufahren",
+          "button": "Installieren"
         },
         "creation": {
           "errors": {
-            "name_required": "File name is required DE",
-            "file_creation_failed": "Failed to create file DE"
+            "name_required": "Dateiname ist erforderlich",
+            "file_creation_failed": "Datei konnte nicht erstellt werden"
           },
           "file_types": {
-            "docx": "Document DE",
-            "xlsx": "Spreadsheet DE",
-            "pptx": "Presentation DE"
+            "docx": "Dokument",
+            "xlsx": "Kalkulationstabelle",
+            "pptx": "Präsentation"
           },
-          "create": "Create DE",
-          "creating": "Creating... DE",
-          "file_name": "File name DE",
-          "file_type": "File type DE"
+          "create": "Erstellen",
+          "creating": "Erstellen...",
+          "file_name": "Dateiname",
+          "file_type": "Dateityp"
         },
         "notconfigured": {
-          "title": "Configuration required DE",
-          "message": "Please contact your administrator to configure the document server DE"
+          "title": "Konfiguration erforderlich",
+          "message": "Bitte wenden Sie sich an Ihren Administrator, um den Dokumentenserver zu konfigurieren"
         }
       },
       "settings": {
         "banner": {
-          "title": "ONLYOFFICE Docs Cloud DE",
-          "description": "Easily launch the editors in the cloud without downloading and installation DE",
-          "button": "Get now DE"
+          "title": "ONLYOFFICE Docs Cloud",
+          "description": "Starten Sie die Editoren einfach in der Cloud, ohne sie herunterzuladen und zu installieren",
+          "button": "Jetzt starten"
         },
         "form": {
-          "description": "The app which enables the users to edit office documents from Miro using ONLYOFFICE Document Server DE",
+          "description": "Die App, mit der Benutzer Office-Dokumente von Miro mit ONLYOFFICE Document Server bearbeiten können",
           "errors": {
-            "address_required": "Please enter a valid address DE",
-            "header_required": "Please enter a valid header DE",
-            "secret_required": "Please enter a valid secret DE",
-            "invalid_url": "Please enter a valid URL DE",
-            "invalid_protocol": "Please enter a valid protocol DE",
-            "trailing_slash": "Please remove the trailing slash DE",
-            "header_too_long": "Please enter a valid header DE",
-            "secret_too_long": "Please enter a valid secret DE",
-            "retrieval_error": "Failed to retrieve settings DE",
-            "bad_jwt": "Failed to parse or sign JWT DE",
-            "document_server_version_retrieval_error": "Failed to validate document server version DE",
-            "document_server_unsupported_version": "Unsupported document server version DE",
-            "settings_initialization_error": "Failed to build new settings DE",
-            "settings_persistence_error": "Failed to persist settings DE",
-            "service_unavailable": "Service unavailable DE"
+            "address_required": "Bitte geben Sie eine gültige Adresse ein",
+            "header_required": "Bitte geben Sie einen gültigen Header ein",
+            "secret_required": "Bitte geben Sie ein gültiges Geheimnis ein",
+            "invalid_url": "Bitte geben Sie eine gültige URL ein",
+            "invalid_protocol": "Bitte geben Sie ein gültiges Protokoll ein",
+            "trailing_slash": "Bitte entfernen Sie den abschließenden Schrägstrich",
+            "header_too_long": "Bitte geben Sie einen gültigen Header ein",
+            "secret_too_long": "Bitte geben Sie ein gültiges Geheimnis ein",
+            "retrieval_error": "Die Einstellungen konnten nicht abgerufen werden",
+            "bad_jwt": "JWT konnte nicht analysiert oder signiert werden",
+            "document_server_version_retrieval_error": "Die Validierung der Dokumentserverversion ist fehlgeschlagen",
+            "document_server_unsupported_version": "Nicht unterstützte Version von Document Server",
+            "settings_initialization_error": "Neue Einstellungen konnten nicht erstellt werden",
+            "settings_persistence_error": "Fehler beim Beibehalten der Einstellungen",
+            "service_unavailable": "Dienst nicht verfügbar"
           },
-          "address": "Document Server Address DE",
-          "secret": "JWT Secret DE",
-          "header": "JWT Header DE",
+          "address": "Adresse von Document Server",
+          "secret": "JWT-Geheimnis",
+          "header": "JWT-Header",
           "demo": {
-            "title": "Connect to demo ONLYOFFICE Docs server DE",
-            "description": "This is a public test server, please do not use it for private sensitive data. The server will be available during a 30-day period. DE",
-            "available_until": "This demo will be available until {{date}} DE"
+            "title": "Sich mit dem Demoserver von ONLYOFFICE Docs verbinden",
+            "description": "Dies ist ein öffentlicher Testserver. Bitte verwenden Sie ihn nicht für private, sensible Daten. Der Server wird 30 Tage lang verfügbar sein.",
+            "available_until": "Diese Demo ist bis {{date}} verfügbar."
           },
-          "save": "Save DE"
+          "save": "Speichern"
         }
       }
     }

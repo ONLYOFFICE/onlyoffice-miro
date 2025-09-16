@@ -1,107 +1,107 @@
-{
+﻿{
     "pages": {
       "creation": {
-        "title": "Create new file FR",
-        "subtitle": "Enter file name and choose the format to create a new document FR",
-        "footer": "Developed by ONLYOFFICE FR"
+        "title": "Créer un nouveau fichier",
+        "subtitle": "Entrez le nom du fichier et choisissez le format pour créer un nouveau document",
+        "footer": "Développé par ONLYOFFICE"
       },
       "manager": {
         "empty": {
-          "title": "No docs here yet FR",
-          "subtitle": "Press create new document button FR",
-          "search_title": "No documents found FR",
-          "search_subtitle": "Please try a different search query FR",
-          "max_retries_title": "Failed to access the server FR",
-          "max_retries_subtitle": "Please try again later FR"
+          "title": "Aucun document pour le moment",
+          "subtitle": "Appuyez sur le bouton Créer un nouveau document",
+          "search_title": "Aucun document trouvé",
+          "search_subtitle": "Veuillez essayer une autre demande de recherche",
+          "max_retries_title": "Échec de l'accès au serveur",
+          "max_retries_subtitle": "Veuillez réessayer plus tard"
         },
-        "title": "File manager FR",
-        "subtitle": "Choose or create a document to edit it in Miro FR",
-        "footer": "Developed by ONLYOFFICE FR",
-        "create": "Create new file FR"
+        "title": "Gestionnaire de fichiers",
+        "subtitle": "Choisissez ou créez un document pour l'éditer dans Miro",
+        "footer": "Développé par ONLYOFFICE",
+        "create": "Créer un nouveau fichier"
       },
       "settings": {
-        "title": "Configure ONLYOFFICE app settings FR",
-        "footer": "Developed by ONLYOFFICE FR"
+        "title": "Configurer les paramètres de l'application ONLYOFFICE",
+        "footer": "Développé par ONLYOFFICE"
       }
     },
     "features": {
       "file": {
         "item": {
-          "edit": "Edit FR",
-          "navigate": "Navigate to FR",
-          "download": "Download as PDF FR",
-          "delete": "Delete FR",
+          "edit": "Modifier",
+          "navigate": "Aller à",
+          "download": "Télécharger en PDF",
+          "delete": "Supprimer",
           "errors": {
-            "failed_to_open": "Could not open the document. Please try again later, our service is unavailable. FR",
-            "delete_locked": "Cannot delete the document because it is locked. FR"
+            "failed_to_open": "Impossible d’ouvrir le document. Veuillez réessayer plus tard, le service est indisponible.",
+            "delete_locked": "Impossible de supprimer le document, car il est verrouillé."
           }
         },
         "list": {
           "notifications": {
-            "documents_added": "Please refresh ONLYOFFICE to see new documents FR"
+            "documents_added": "Veuillez actualiser ONLYOFFICE pour voir les nouveaux documents."
           }
         }
       },
       "manager": {
         "installation": {
-          "error": "App Installation Required FR",
-          "description": "Please install or reinstall the app to continue FR",
-          "button": "Install FR"
+          "error": "Installation de l'application requise",
+          "description": "Veuillez installer ou réinstaller l’application pour continuer",
+          "button": "Installer"
         },
         "creation": {
           "errors": {
-            "name_required": "File name is required FR",
-            "file_creation_failed": "Failed to create file FR"
+            "name_required": "Le nom du fichier est requis",
+            "file_creation_failed": "Échec de la création du fichier"
           },
           "file_types": {
-            "docx": "Document FR",
-            "xlsx": "Spreadsheet FR",
-            "pptx": "Presentation FR"
+            "docx": "Document texte",
+            "xlsx": "Feuille de calcul",
+            "pptx": "Présentation"
           },
-          "create": "Create FR",
-          "creating": "Creating... FR",
-          "file_name": "File name FR",
-          "file_type": "File type FR"
+          "create": "Créer",
+          "creating": "Création...",
+          "file_name": "Nom du fichier",
+          "file_type": "Type de fichier"
         },
         "notconfigured": {
-          "title": "Configuration required FR",
-          "message": "Please contact your administrator to configure the document server FR"
+          "title": "Configuration requise",
+          "message": "Veuillez contacter votre administrateur pour configurer le serveur de documents"
         }
       },
       "settings": {
         "banner": {
-          "title": "ONLYOFFICE Docs Cloud FR",
-          "description": "Easily launch the editors in the cloud without downloading and installation FR",
-          "button": "Get now FR"
+          "title": "ONLYOFFICE Docs Cloud",
+          "description": "Lancez facilement les éditeurs dans le cloud sans téléchargement ni installation",
+          "button": "Obtenir maintenant"
         },
         "form": {
-          "description": "The app which enables the users to edit office documents from Miro using ONLYOFFICE Document Server FR",
+          "description": "L'application qui permet aux utilisateurs de modifier des documents bureautiques depuis Miro à l'aide d’ONLYOFFICE Document Server",
           "errors": {
-            "address_required": "Please enter a valid address FR",
-            "header_required": "Please enter a valid header FR",
-            "secret_required": "Please enter a valid secret FR",
-            "invalid_url": "Please enter a valid URL FR",
-            "invalid_protocol": "Please enter a valid protocol FR",
-            "trailing_slash": "Please remove the trailing slash FR",
-            "header_too_long": "Please enter a valid header FR",
-            "secret_too_long": "Please enter a valid secret FR",
-            "retrieval_error": "Failed to retrieve settings FR",
-            "bad_jwt": "Failed to parse or sign JWT FR",
-            "document_server_version_retrieval_error": "Failed to validate document server version FR",
-            "document_server_unsupported_version": "Unsupported document server version FR",
-            "settings_initialization_error": "Failed to build new settings FR",
-            "settings_persistence_error": "Failed to persist settings FR",
-            "service_unavailable": "Service unavailable FR"
+            "address_required": "Veuillez saisir une adresse valide",
+            "header_required": "Veuillez saisir un en-tête valide",
+            "secret_required": "Veuillez saisir une clé secrète valide",
+            "invalid_url": "Veuillez saisir une URL valide",
+            "invalid_protocol": "Veuillez saisir un protocole valide",
+            "trailing_slash": "Veuillez supprimer la barre oblique finale",
+            "header_too_long": "Veuillez saisir un en-tête valide",
+            "secret_too_long": "Veuillez saisir une clé secrète valide",
+            "retrieval_error": "Échec de la récupération des paramètres",
+            "bad_jwt": "Échec de l’analyse ou de la signature du JWT",
+            "document_server_version_retrieval_error": "Échec de la validation de la version du serveur de documents",
+            "document_server_unsupported_version": "Version du serveur de documents non prise en charge",
+            "settings_initialization_error": "Échec de la création de nouveaux paramètres",
+            "settings_persistence_error": "Échec de la sauvegarde des paramètres",
+            "service_unavailable": "Service indisponible"
           },
-          "address": "Document Server Address FR",
-          "secret": "JWT Secret FR",
-          "header": "JWT Header FR",
+          "address": "Adresse de Document Server",
+          "secret": "Clé secrète JWT",
+          "header": "En-tête JWT",
           "demo": {
-            "title": "Connect to demo ONLYOFFICE Docs server FR",
-            "description": "This is a public test server, please do not use it for private sensitive data. The server will be available during a 30-day period. FR",
-            "available_until": "This demo will be available until {{date}} FR"
+            "title": "Se connecter au serveur de démonstration d’ONLYOFFICE Docs",
+            "description": "Il s'agit d'un serveur de test public. Veuillez ne pas l'utiliser pour des données privées sensibles. Le serveur sera disponible pendant une période de 30 jours.",
+            "available_until": "Cette démo sera disponible jusqu'au {{date}}."
           },
-          "save": "Save FR"
+          "save": "Enregistrer"
         }
       }
     }

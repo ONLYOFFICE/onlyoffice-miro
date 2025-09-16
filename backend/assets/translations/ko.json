@@ -1,21 +1,21 @@
-{
+﻿{
   "errors": {
     "authentication": {
-      "missing_authentication": "Authentication is required KO",
-      "invalid_token": "Invalid authentication token KO"
+      "missing_authentication": "인증이 필요합니다",
+      "invalid_token": "잘못된 인증 토큰입니다"
     }
   },
   "editor": {
     "errors": {
-      "unauthorized": "Unauthorized access KO",
-      "fetch_required_data": "Failed to fetch required data KO",
-      "invalid_configuration": "Invalid configuration KO",
-      "fetch_miro_data": "Failed to fetch Miro data KO",
-      "build_editor_configuration": "Failed to build editor configuration KO",
-      "encode_configuration": "Failed to encode configuration KO",
-      "settings_not_configured": "Settings are not configured or your demo has expired KO",
-      "failed_to_load": "The document editor failed to initialize. This could be due to a network issue, server problem, or browser compatibility. KO"
+      "unauthorized": "승인되지 않은 액세스입니다",
+      "fetch_required_data": "필요한 데이터를 가져오지 못했습니다",
+      "invalid_configuration": "잘못된 구성입니다",
+      "fetch_miro_data": "Miro 데이터를 가져오지 못했습니다",
+      "build_editor_configuration": "편집기 구성을 빌드하지 못했습니다",
+      "encode_configuration": "구성을 인코딩하지 못했습니다",
+      "settings_not_configured": "설정이 구성되지 않았거나 데모 서버가 만료되었습니다",
+      "failed_to_load": "문서 편집기를 초기화하지 못했습니다. 이 문제는 네트워크 문제나 서버 문제 또는 브라우저 호환성 때문에 발생했을 수 있습니다."
     },
-    "close_window": "Close KO"
+    "close_window": "닫기"
   }
 }

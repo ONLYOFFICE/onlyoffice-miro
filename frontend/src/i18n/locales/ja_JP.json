@@ -1,107 +1,107 @@
-{
+﻿{
     "pages": {
       "creation": {
-        "title": "Create new file JP",
-        "subtitle": "Enter file name and choose the format to create a new document JP",
-        "footer": "Developed by ONLYOFFICE JP"
+        "title": "新しいファイルの作成",
+        "subtitle": "ファイル名を入力し、形式を選んで新しいドキュメントを作成してください",
+        "footer": "開発：ONLYOFFICE"
       },
       "manager": {
         "empty": {
-          "title": "No docs here yet JP",
-          "subtitle": "Press create new document button JP",
-          "search_title": "No documents found JP",
-          "search_subtitle": "Please try a different search query JP",
-          "max_retries_title": "Failed to access the server JP",
-          "max_retries_subtitle": "Please try again later JP"
+          "title": "まだドキュメントがありません",
+          "subtitle": "新規ドキュメントの作成ボタンを押してください",
+          "search_title": "ドキュメントが見つかりません",
+          "search_subtitle": "別の検索語句をお試しください",
+          "max_retries_title": "サーバーにアクセスできませんでした",
+          "max_retries_subtitle": "後でもう一度お試しください"
         },
-        "title": "File manager JP",
-        "subtitle": "Choose or create a document to edit it in Miro JP",
-        "footer": "Developed by ONLYOFFICE JP",
-        "create": "Create new file JP"
+        "title": "ファイルマネージャー",
+        "subtitle": "編集するドキュメントを選択するか、新しく作成してください（Miroで編集できます）",
+        "footer": "開発：ONLYOFFICE",
+        "create": "新規ファイルの作成"
       },
       "settings": {
-        "title": "Configure ONLYOFFICE app settings JP",
-        "footer": "Developed by ONLYOFFICE JP"
+        "title": "ONLYOFFICEアプリ設定を変更する",
+        "footer": "開発：ONLYOFFICE"
       }
     },
     "features": {
       "file": {
         "item": {
-          "edit": "Edit JP",
-          "navigate": "Navigate to JP",
-          "download": "Download as PDF JP",
-          "delete": "Delete JP",
+          "edit": "編集",
+          "navigate": "移動",
+          "download": "PDFとしてダウンロード",
+          "delete": "削除",
           "errors": {
-            "failed_to_open": "Could not open the document. Please try again later, our service is unavailable. JP",
-            "delete_locked": "Cannot delete the document because it is locked. JP"
+            "failed_to_open": "ドキュメントを開けませんでした。サービスが利用できないため、後でもう一度お試しください。",
+            "delete_locked": "ロックされているため、このドキュメントは削除できません。"
           }
         },
         "list": {
           "notifications": {
-            "documents_added": "Please refresh ONLYOFFICE to see new documents JP"
+            "documents_added": "新しいドキュメントを表示するにはONLYOFFICEを更新してください。"
           }
         }
       },
       "manager": {
         "installation": {
-          "error": "App Installation Required JP",
-          "description": "Please install or reinstall the app to continue JP",
-          "button": "Install JP"
+          "error": "アプリのインストールが必要です",
+          "description": "続行するにはアプリをインストールまたは再インストールしてください",
+          "button": "インストール"
         },
         "creation": {
           "errors": {
-            "name_required": "File name is required JP",
-            "file_creation_failed": "Failed to create file JP"
+            "name_required": "ファイル名は必須です",
+            "file_creation_failed": "ファイルの作成に失敗しました"
           },
           "file_types": {
-            "docx": "Document JP",
-            "xlsx": "Spreadsheet JP",
-            "pptx": "Presentation JP"
+            "docx": "ドキュメント",
+            "xlsx": "スプレッドシート",
+            "pptx": "プレゼンテーション"
           },
-          "create": "Create JP",
-          "creating": "Creating... JP",
-          "file_name": "File name JP",
-          "file_type": "File type JP"
+          "create": "作成",
+          "creating": "作成中...",
+          "file_name": "ファイル名",
+          "file_type": "ファイルの種類"
         },
         "notconfigured": {
-          "title": "Configuration required JP",
-          "message": "Please contact your administrator to configure the document server JP"
+          "title": "設定が必要です",
+          "message": "管理者に連絡してドキュメントサーバーを設定してください"
         }
       },
       "settings": {
         "banner": {
-          "title": "ONLYOFFICE Docs Cloud JP",
-          "description": "Easily launch the editors in the cloud without downloading and installation JP",
-          "button": "Get now JP"
+          "title": "ONLYOFFICE Docs Cloud",
+          "description": "ダウンロードやインストールなしでクラウド上で簡単にエディターを起動できます",
+          "button": "今すぐ入手"
         },
         "form": {
-          "description": "The app which enables the users to edit office documents from Miro using ONLYOFFICE Document Server JP",
+          "description": "MiroからONLYOFFICE Document Serverを使ってオフィス文書を編集できるアプリです",
           "errors": {
-            "address_required": "Please enter a valid address JP",
-            "header_required": "Please enter a valid header JP",
-            "secret_required": "Please enter a valid secret JP",
-            "invalid_url": "Please enter a valid URL JP",
-            "invalid_protocol": "Please enter a valid protocol JP",
-            "trailing_slash": "Please remove the trailing slash JP",
-            "header_too_long": "Please enter a valid header JP",
-            "secret_too_long": "Please enter a valid secret JP",
-            "retrieval_error": "Failed to retrieve settings JP",
-            "bad_jwt": "Failed to parse or sign JWT JP",
-            "document_server_version_retrieval_error": "Failed to validate document server version JP",
-            "document_server_unsupported_version": "Unsupported document server version JP",
-            "settings_initialization_error": "Failed to build new settings JP",
-            "settings_persistence_error": "Failed to persist settings JP",
-            "service_unavailable": "Service unavailable JP"
+            "address_required": "有効なアドレスを入力してください",
+            "header_required": "有効なヘッダーを入力してください",
+            "secret_required": "有効なシークレットを入力してください",
+            "invalid_url": "有効なURLを入力してください",
+            "invalid_protocol": "有効なプロトコルを入力してください",
+            "trailing_slash": "末尾のスラッシュを削除してください",
+            "header_too_long": "有効なヘッダーを入力してください",
+            "secret_too_long": "有効なシークレットを入力してください",
+            "retrieval_error": "設定の取得に失敗しました",
+            "bad_jwt": "JWTの解析または署名に失敗しました",
+            "document_server_version_retrieval_error": "ドキュメントサーバーのバージョン検証に失敗しました",
+            "document_server_unsupported_version": "サポートされていないドキュメントサーバーバージョンです",
+            "settings_initialization_error": "新しい設定の構築に失敗しました",
+            "settings_persistence_error": "設定の保存に失敗しました",
+            "service_unavailable": "サービスは利用できません"
           },
-          "address": "Document Server Address JP",
-          "secret": "JWT Secret JP",
-          "header": "JWT Header JP",
+          "address": "ドキュメントサーバーアドレス",
+          "secret": "JWTシークレット",
+          "header": "JWTヘッダー",
           "demo": {
-            "title": "Connect to demo ONLYOFFICE Docs server JP",
-            "description": "This is a public test server, please do not use it for private sensitive data. The server will be available during a 30-day period. JP",
-            "available_until": "This demo will be available until {{date}} JP"
+            "title": "デモ用ONLYOFFICE Docs Serverに接続",
+            "description": "これは公開テストサーバーです。機密データには使用しないでください。サーバーは30日間利用可能です。",
+            "available_until": "このデモは{{date}}まで利用可能です"
           },
-          "save": "Save JP"
+          "save": "保存"
         }
       }
     }
