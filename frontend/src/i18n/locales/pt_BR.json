@@ -64,8 +64,8 @@
         },
           "create": "Criar",
           "creating": "Criando...",
-          " file_name ": "Nome do arquivo",
-          " file_type ": "Tipo de arquivo"
+          "file_name": "Nome do arquivo",
+          "file_type": "Tipo de arquivo"
       },
         "notconfigured": {
           "title": "Configuração necessária",
