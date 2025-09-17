@@ -61,7 +61,8 @@ type FileUploadRequest struct {
 }
 
 type FileUploadRequestData struct {
-	URL string `json:"url"`
+	Title string `json:"title"`
+	URL   string `json:"url"`
 }
 
 type GetBoardMemberRequest struct {
@@ -173,10 +174,11 @@ func (r *GetUserInfoRequest) Validate() error {
 }
 
 type UploadFileRequest struct {
-	BoardID string
-	ItemID  string
-	FileURL string
-	Token   string
+	BoardID  string
+	ItemID   string
+	Filename string
+	FileURL  string
+	Token    string
 }
 
 func (r *UploadFileRequest) Validate() error {

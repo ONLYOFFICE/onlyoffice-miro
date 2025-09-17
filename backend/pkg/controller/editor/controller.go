@@ -23,6 +23,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"net/url"
 	"time"
 
 	"github.com/ONLYOFFICE/onlyoffice-miro/backend/config"
@@ -71,8 +72,8 @@ func NewEditorController(
 	})
 }
 
-func buildCallbackURL(base, fid, uid, tid, bid string) string {
-	return fmt.Sprintf("%s?fid=%s&uid=%s&tid=%s&bid=%s", base, fid, uid, tid, bid)
+func buildCallbackURL(base, fid, uid, tid, bid, filename string) string {
+	return fmt.Sprintf("%s?fid=%s&uid=%s&tid=%s&bid=%s&filename=%s", base, fid, uid, tid, bid, url.QueryEscape(filename))
 }
 
 func (c *editorController) extractAndValidateParams(ctx echo.Context) (editorRequestParams, error) {
@@ -246,7 +247,7 @@ func (c *editorController) handleGet(ctx echo.Context) error {
 			return err
 		}
 
-		callbackURL := buildCallbackURL(c.BaseController.Config.Server.CallbackURL, params.fid, params.uid, params.tid, params.bid)
+		callbackURL := buildCallbackURL(c.BaseController.Config.Server.CallbackURL, params.fid, params.uid, params.tid, params.bid, file.Data.Title)
 		config, err := c.buildEditorConfig(tctx, callbackURL, board.ID, &miro.BoardMemberResponse{
 			MemberID:   uinfo.User.ID,
 			MemberName: uinfo.User.Name,

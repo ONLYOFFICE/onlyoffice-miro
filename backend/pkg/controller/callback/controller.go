@@ -22,6 +22,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 	"time"
 
 	"github.com/ONLYOFFICE/onlyoffice-miro/backend/config"
@@ -75,11 +76,19 @@ func (c *callbackController) logErrorAndRespond(ctx echo.Context, statusCode int
 }
 
 func (c *callbackController) extractParams(ctx echo.Context) (callbackQueryParams, error) {
+	filename := ctx.QueryParam("filename")
+	if filename != "" {
+		if decoded, err := url.QueryUnescape(filename); err == nil {
+			filename = decoded
+		}
+	}
+
 	params := callbackQueryParams{
-		UID: ctx.QueryParam("uid"),
-		TID: ctx.QueryParam("tid"),
-		BID: ctx.QueryParam("bid"),
-		FID: ctx.QueryParam("fid"),
+		UID:      ctx.QueryParam("uid"),
+		TID:      ctx.QueryParam("tid"),
+		BID:      ctx.QueryParam("bid"),
+		FID:      ctx.QueryParam("fid"),
+		Filename: filename,
 	}
 
 	if params.UID == "" || params.BID == "" || params.TID == "" || params.FID == "" {
@@ -176,13 +185,15 @@ func (c *callbackController) handlePost(ctx echo.Context) error {
 			"board_id": params.BID,
 			"file_id":  params.FID,
 			"file_url": body.Url,
+			"filename": params.Filename,
 		})
 
 		if _, err := c.miroClient.UploadFile(tctx, miro.UploadFileRequest{
-			BoardID: params.BID,
-			ItemID:  params.FID,
-			FileURL: body.Url,
-			Token:   auth.AccessToken,
+			BoardID:  params.BID,
+			ItemID:   params.FID,
+			Filename: params.Filename,
+			FileURL:  body.Url,
+			Token:    auth.AccessToken,
 		}); err != nil {
 			c.logger.Error(ctx.Request().Context(), "Failed to upload file",
 				service.Fields{
@@ -199,6 +210,7 @@ func (c *callbackController) handlePost(ctx echo.Context) error {
 			service.Fields{
 				"board_id": params.BID,
 				"file_id":  params.FID,
+				"filename": params.Filename,
 			},
 		)
 	} else {

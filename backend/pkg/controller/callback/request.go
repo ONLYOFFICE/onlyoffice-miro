@@ -18,10 +18,11 @@
 package callback
 
 type callbackQueryParams struct {
-	UID string `json:"uid"`
-	TID string `json:"tid"`
-	BID string `json:"bid"`
-	FID string `json:"fid"`
+	UID      string `json:"uid"`
+	TID      string `json:"tid"`
+	BID      string `json:"bid"`
+	FID      string `json:"fid"`
+	Filename string `json:"filename,omitempty"`
 }
 
 type callbackRequest struct {

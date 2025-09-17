@@ -405,7 +405,8 @@ func (c *client) UploadFile(ctx context.Context, req UploadFileRequest) (*FileLo
 
 	body := FileUploadRequest{
 		Data: FileUploadRequestData{
-			URL: req.FileURL,
+			Title: req.Filename,
+			URL:   req.FileURL,
 		},
 	}
 
