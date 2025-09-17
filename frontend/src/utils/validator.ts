@@ -45,7 +45,7 @@ export const validateAddress = (value: string): boolean => {
 
   try {
     const url = new URL(address);
-    if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+    if (url.protocol !== 'https:') {
       return false;
     }
   } catch (e) {
