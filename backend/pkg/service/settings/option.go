@@ -48,7 +48,7 @@ func (o *SaveOptions) Validate() error {
 			return ErrSettingsInvalidURL
 		}
 
-		if u.Scheme != "http" && u.Scheme != "https" {
+		if u.Scheme != "https" {
 			return ErrSettingsInvalidProtocol
 		}
 
