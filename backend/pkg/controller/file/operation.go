@@ -22,6 +22,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/ONLYOFFICE/onlyoffice-miro/backend/pkg/client/miro"
 	"github.com/ONLYOFFICE/onlyoffice-miro/backend/pkg/controller/base"
@@ -91,6 +92,10 @@ func GetFileInfo(
 	})
 
 	if err != nil {
+		if strings.Contains(err.Error(), "status 401") {
+			return nil, c.HandleError(ctx, err, http.StatusUnauthorized, "failed to fetch miro files")
+		}
+
 		return nil, c.HandleError(ctx, err, http.StatusBadRequest, "failed to fetch miro file")
 	}
 
@@ -105,6 +110,7 @@ func GetFilesInfo(
 	cursor string,
 	accessToken string,
 ) (*miro.FilesInfoResponse, error) {
+	// TODO (v1.1): Refactor client to extract codes properly
 	files, err := c.MiroClient.GetFilesInfo(tctx, miro.GetFilesInfoRequest{
 		Cursor:  cursor,
 		BoardID: boardID,
@@ -112,6 +118,10 @@ func GetFilesInfo(
 	})
 
 	if err != nil {
+		if strings.Contains(err.Error(), "status 401") {
+			return nil, c.HandleError(ctx, err, http.StatusUnauthorized, "failed to fetch miro files")
+		}
+
 		return nil, c.HandleError(ctx, err, http.StatusBadRequest, "failed to fetch miro files")
 	}
 
