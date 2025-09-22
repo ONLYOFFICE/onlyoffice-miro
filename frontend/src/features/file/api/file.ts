@@ -34,7 +34,7 @@ export const openEditor = async (doc: Document, displayError?: string) => {
     }
   }
 
-  const path = `api/editor?uid=${user.id}&fid=${doc.id}&bid=${board.id}&lang=${board.locale}`;
+  const path = `editor?uid=${user.id}&fid=${doc.id}&bid=${board.id}&lang=${board.locale}`;
   window.open(
     `${import.meta.env.VITE_MIRO_ONLYOFFICE_BACKEND}/${path}`,
     '_blank'

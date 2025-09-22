@@ -164,7 +164,7 @@ func setupAuthMiddleware(r *Router, logger service.Logger) (
 // setupEditorRoutes configures editor-related routes
 func setupEditorRoutes(r *Router, controllers *Controllers, editorMiddleware *authentication.AuthMiddleware) {
 	handlers := controllers.Editor.Handlers()
-	r.Echo.GET("/api/editor", editorMiddleware.Authenticate(handlers[common.MethodGet]))
+	r.Echo.GET("/editor", editorMiddleware.Authenticate(handlers[common.MethodGet]))
 }
 
 // setupCallbackRoutes configures callback-related routes
