@@ -201,7 +201,7 @@ func setupProtectedRoutes(r *Router, controllers *Controllers, authMiddleware *a
 
 // setupMiroAuthRoutes configures Miro-specific authentication routes
 func setupMiroAuthRoutes(r *Router, miroAuthMiddleware *authentication.AuthMiddleware) {
-	r.Echo.GET("/api/authorize", miroAuthMiddleware.Authenticate(miroAuthMiddleware.GetCookieExpiration))
+	r.Echo.GET("/api/authorize", miroAuthMiddleware.Authenticate(miroAuthMiddleware.GetTokenAuthorization))
 }
 
 // setupFileStoreRoutes configures file store routes to serve embedded assets

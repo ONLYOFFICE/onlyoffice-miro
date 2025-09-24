@@ -18,7 +18,6 @@
 package authentication
 
 import (
-	"context"
 	"net/http"
 	"time"
 
@@ -137,71 +136,7 @@ func (m *AuthMiddleware) CreateAuthToken(uid, tid string, expiresAt int) (string
 	return m.jwtService.Create(claims, []byte(m.config.OAuth.ClientSecret))
 }
 
-func (m *AuthMiddleware) CreateAuthCookie(tokenString string) *http.Cookie {
-	cookie := &http.Cookie{
-		Name:     m.config.Cookie.Name,
-		Value:    tokenString,
-		MaxAge:   m.config.Cookie.MaxAge,
-		Path:     m.config.Cookie.Path,
-		Domain:   m.config.Server.Domain,
-		Secure:   m.config.Cookie.Secure,
-		HttpOnly: m.config.Cookie.HttpOnly,
-		SameSite: m.config.Cookie.GetSameSite(),
-	}
-
-	return cookie
-}
-
-func (m *AuthMiddleware) LogCookieInfo(cookie *http.Cookie, c echo.Context) {
-	if cookie == nil {
-		return
-	}
-
-	ctx := context.Background()
-	if c != nil {
-		ctx = c.Request().Context()
-	}
-
-	fields := service.Fields{
-		"name":     cookie.Name,
-		"domain":   cookie.Domain,
-		"path":     cookie.Path,
-		"secure":   cookie.Secure,
-		"httpOnly": cookie.HttpOnly,
-		"sameSite": m.config.Cookie.SameSite,
-	}
-
-	if c != nil {
-		fields["method"] = c.Request().Method
-		fields["path"] = c.Request().URL.Path
-		fields["host"] = c.Request().Host
-		fields["remote"] = c.Request().RemoteAddr
-	}
-
-	m.logger.Info(ctx, "cookie operation", fields)
-}
-
-func (m *AuthMiddleware) SetAuthCookie(c echo.Context, uid, tid string, expiresAt int) error {
-	tokenString, err := m.CreateAuthToken(uid, tid, expiresAt)
-	if err != nil {
-		return err
-	}
-
-	cookie := m.CreateAuthCookie(tokenString)
-	c.SetCookie(cookie)
-	m.LogCookieInfo(cookie, c)
-
-	return nil
-}
-
-func (m *AuthMiddleware) ClearAuthCookie(c echo.Context) {
-	cookie := m.CreateAuthCookie("")
-	cookie.MaxAge = -1
-	c.SetCookie(cookie)
-	m.LogCookieInfo(cookie, nil)
-}
-
-func (m *AuthMiddleware) GetCookieExpiration(c echo.Context) error {
+func (m *AuthMiddleware) GetTokenAuthorization(c echo.Context) error {
 	tokenString, err := m.extractor(c)
 	lang := c.QueryParam("lang")
 	if lang == "" {
@@ -209,21 +144,28 @@ func (m *AuthMiddleware) GetCookieExpiration(c echo.Context) error {
 	}
 
 	if err != nil {
-		return c.Render(http.StatusOK, "unauthorized", map[string]string{
-			"language":           lang,
-			"authorizationError": m.translator.Translate(c.Request().Context(), lang, "errors.authentication.missing_authentication"),
+		return c.JSON(http.StatusUnauthorized, map[string]string{
+			"error": m.translator.Translate(c.Request().Context(), lang, "errors.authentication.missing_authentication"),
 		})
 	}
 
 	token, err := m.ValidateToken(tokenString)
 	if err != nil {
-		return c.Render(http.StatusOK, "unauthorized", map[string]string{
-			"language":           lang,
-			"authorizationError": m.translator.Translate(c.Request().Context(), lang, "errors.authentication.invalid_token"),
+		return c.JSON(http.StatusUnauthorized, map[string]string{
+			"error": m.translator.Translate(c.Request().Context(), lang, "errors.authentication.invalid_token"),
+		})
+	}
+
+	expiresAt := time.Now().Add(5 * time.Minute).Unix()
+	jwtToken, err := m.CreateAuthToken(token.User, token.Team, int(expiresAt))
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{
+			"error": "Failed to generate authorization token",
 		})
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"expires_at": token.RegisteredClaims.ExpiresAt.Unix(),
+		"token":      jwtToken,
+		"expires_at": expiresAt,
 	})
 }

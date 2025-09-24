@@ -35,7 +35,7 @@ func NewHeaderAuthMiddleware(
 ) *AuthMiddleware {
 	return NewAuthMiddleware(
 		config,
-		HeaderTokenExtractor(headerName),
+		CompositeTokenExtractor(headerName),
 		NoOpRefresher(),
 		jwtService,
 		translator,
@@ -64,12 +64,8 @@ func NewMiroAuthMiddleware(
 			return "", err
 		}
 
-		token, err := middleware.ValidateToken(tokenString)
+		_, err = middleware.ValidateToken(tokenString)
 		if err != nil {
-			return "", err
-		}
-
-		if err := middleware.SetAuthCookie(c, token.User, token.Team, int(token.RegisteredClaims.ExpiresAt.Unix())); err != nil {
 			return "", err
 		}
 
@@ -89,7 +85,7 @@ func NewCookieOAuthMiddleware(
 ) *AuthMiddleware {
 	middleware := NewAuthMiddleware(
 		config,
-		CookieTokenExtractor(config.Cookie.Name),
+		MiroSignatureExtractor(),
 		nil,
 		jwtService,
 		translator,

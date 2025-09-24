@@ -31,7 +31,6 @@ type Config struct {
 	Server     *ServerConfig     `yaml:"server"`
 	Redis      *RedisConfig      `yaml:"redis"`
 	RateLimit  *RateLimitConfig  `yaml:"rate_limit"`
-	Cookie     *CookieConfig     `yaml:"cookie"`
 	CORS       *CORSConfig       `yaml:"cors"`
 	DemoServer *DemoServerConfig `yaml:"demo_server"`
 	Logger     *LoggerConfig     `yaml:"logger"`
@@ -45,7 +44,6 @@ func DefaultConfig() *Config {
 		Server:     DefaultServerConfig(),
 		Redis:      DefaultRedisConfig(),
 		RateLimit:  DefaultRateLimitConfig(),
-		Cookie:     DefaultCookieConfig(),
 		CORS:       DefaultCORSConfig(),
 		DemoServer: DefaultDemoServerConfig(),
 		Logger:     DefaultLoggerConfig(),
@@ -85,10 +83,6 @@ func LoadConfig(path string) (*Config, error) {
 
 	if err := config.RateLimit.loadEnv(); err != nil {
 		return config, fmt.Errorf("failed to load rate limit environment variables: %w", err)
-	}
-
-	if err := config.Cookie.loadEnv(); err != nil {
-		return config, fmt.Errorf("failed to load cookie environment variables: %w", err)
 	}
 
 	if err := config.CORS.loadEnv(); err != nil {

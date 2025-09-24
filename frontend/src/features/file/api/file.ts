@@ -26,15 +26,21 @@ export const openEditor = async (doc: Document, displayError?: string) => {
   const userPromise = miroBoard.getUserInfo();
   const boardPromise = miroBoard.getInfo();
   const [user, board] = await Promise.all([userPromise, boardPromise]);
-  if (applicationStore.shouldRefreshCookie()) {
+  if (applicationStore.shouldRefreshToken()) {
     await applicationStore.authorize();
-    if (useApplicationStore.getState().shouldRefreshCookie()) {
+    if (useApplicationStore.getState().shouldRefreshToken()) {
       if (displayError) await miroBoard.notifications.showError(displayError);
       return;
     }
   }
 
-  const path = `editor?uid=${user.id}&fid=${doc.id}&bid=${board.id}&lang=${board.locale}`;
+  const authToken = applicationStore.getAuthToken();
+  if (!authToken) {
+    if (displayError) await miroBoard.notifications.showError(displayError);
+    return;
+  }
+
+  const path = `editor?uid=${user.id}&fid=${doc.id}&bid=${board.id}&lang=${board.locale}&token=${encodeURIComponent(authToken)}`;
   window.open(
     `${import.meta.env.VITE_MIRO_ONLYOFFICE_BACKEND}/${path}`,
     '_blank'

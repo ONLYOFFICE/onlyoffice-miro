@@ -26,14 +26,16 @@ interface ApplicationState {
   loading: boolean;
   authorized: boolean;
   admin: boolean;
-  hasCookie: boolean;
+  hasToken: boolean;
   retriesExhausted: boolean;
-  cookieExpiresAt: number | null;
+  tokenExpiresAt: number | null;
+  authToken: string | null;
 
   reloadAuthorization: () => Promise<void>;
   refreshAuthorization: () => Promise<void>;
   authorize: () => Promise<void>;
-  shouldRefreshCookie: () => boolean;
+  shouldRefreshToken: () => boolean;
+  getAuthToken: () => string | null;
 }
 
 const useApplicationStore = create<ApplicationState>((set, get) => ({
@@ -41,9 +43,10 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
   loading: false,
   authorized: false,
   admin: false,
-  hasCookie: false,
+  hasToken: false,
   retriesExhausted: false,
-  cookieExpiresAt: null,
+  tokenExpiresAt: null,
+  authToken: null,
 
   reloadAuthorization: async () => {
     set({
@@ -116,11 +119,12 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
 
   authorize: async () => {
     try {
-      set({ hasCookie: false, retriesExhausted: false });
-      const { expiresAt } = await fetchAuthorization();
+      set({ hasToken: false, retriesExhausted: false, authToken: null });
+      const { token, expiresAt } = await fetchAuthorization();
       set({
-        hasCookie: true,
-        cookieExpiresAt: expiresAt,
+        hasToken: true,
+        tokenExpiresAt: expiresAt - 50,
+        authToken: token,
       });
     } catch (err) {
       const unauthorized =
@@ -128,20 +132,26 @@ const useApplicationStore = create<ApplicationState>((set, get) => ({
       const forbidden = err instanceof Error && err.message === 'access denied';
       const retries = err instanceof Error && err.message === 'max retries';
       set({
-        hasCookie: false,
+        hasToken: false,
         authorized: !unauthorized,
         admin: !unauthorized && !forbidden,
         retriesExhausted: retries,
-        cookieExpiresAt: null,
+        tokenExpiresAt: null,
+        authToken: null,
       });
     }
   },
 
-  shouldRefreshCookie: () => {
-    const { hasCookie, cookieExpiresAt } = get();
-    if (!hasCookie) return true;
-    if (cookieExpiresAt === null) return true;
-    return cookieExpiresAt * 1000 - Date.now() <= 30000;
+  shouldRefreshToken: () => {
+    const { hasToken, tokenExpiresAt } = get();
+    if (!hasToken) return true;
+    if (tokenExpiresAt === null) return true;
+    return tokenExpiresAt * 1000 - Date.now() <= 100;
+  },
+
+  getAuthToken: () => {
+    const { authToken } = get();
+    return authToken;
   },
 }));
 

@@ -30,7 +30,6 @@ const fetchAuthorization = async () => {
       `${import.meta.env.VITE_MIRO_ONLYOFFICE_BACKEND}/${path}`,
       {
         method: 'GET',
-        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
           'x-miro-signature': token,
@@ -41,9 +40,11 @@ const fetchAuthorization = async () => {
 
     if (response.ok) {
       const data = await response.json();
-      if (!data.expires_at) throw new Error('failed to authorize the request');
+      if (!data.token || !data.expires_at)
+        throw new Error('failed to authorize the request');
 
       return {
+        token: data.token,
         expiresAt: data.expires_at,
       };
     }
