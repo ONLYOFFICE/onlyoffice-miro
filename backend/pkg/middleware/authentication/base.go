@@ -164,7 +164,7 @@ func (m *AuthMiddleware) GetTokenAuthorization(c echo.Context) error {
 		})
 	}
 
-	return c.JSON(http.StatusOK, map[string]interface{}{
+	return c.JSON(http.StatusOK, map[string]any{
 		"token":      jwtToken,
 		"expires_at": expiresAt,
 	})
