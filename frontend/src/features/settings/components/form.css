@@ -145,3 +145,14 @@
 
   color: #6b7280;
 }
+
+.form__checkbox-container__expired {
+  width: 100%;
+}
+
+.form__checkbox-description__expired {
+  margin-top: 0;
+  margin-left: 0;
+
+  color: #6b7280;
+}

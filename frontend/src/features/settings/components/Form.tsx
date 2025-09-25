@@ -286,6 +286,14 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
               />
             </div>
 
+            {isDemoExpired && (
+              <div className="form__checkbox-container form__checkbox-container__expired">
+                <p className="form__checkbox-description form__checkbox-description__expired">
+                  {t('features.settings.form.demo.expired')}
+                </p>
+              </div>
+            )}
+
             <Banner />
 
             {!isDemoExpired && (
