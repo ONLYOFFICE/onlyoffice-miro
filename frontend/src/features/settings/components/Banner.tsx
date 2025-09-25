@@ -26,7 +26,14 @@ interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Banner = forwardRef<HTMLDivElement, BannerProps>(
-  ({ className, url = 'https://www.onlyoffice.com/docs-registration.aspx?referer=miro', ...props }, ref) => {
+  (
+    {
+      className,
+      url = 'https://www.onlyoffice.com/docs-registration.aspx?referer=miro',
+      ...props
+    },
+    ref
+  ) => {
     const { t } = useTranslation();
 
     const handleButtonClick = () => {

@@ -219,7 +219,7 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                   if (normalized !== e.target.value) {
                     setAddress(normalized);
                   }
-                  
+
                   setAddressError(validateAddressField(normalized));
                 }}
                 required={fieldsRequired}

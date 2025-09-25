@@ -26,7 +26,7 @@ export const openEditor = async (doc: Document, displayError?: string) => {
   const userPromise = miroBoard.getUserInfo();
   const boardPromise = miroBoard.getInfo();
   const [user, board] = await Promise.all([userPromise, boardPromise]);
-  
+
   await applicationStore.authorize();
   if (useApplicationStore.getState().shouldRefreshToken()) {
     if (displayError) await miroBoard.notifications.showError(displayError);

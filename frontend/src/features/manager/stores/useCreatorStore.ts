@@ -54,7 +54,9 @@ const useCreatorStore = create<CreatorState>((set, get) => ({
   setSelectedName: (value) => set({ selectedName: value }),
   setSelectedType: (value) => set({ selectedType: value }),
 
-  createFile: async (navigateTo = true): Promise<FileCreatedResponse | null> => {
+  createFile: async (
+    navigateTo = true
+  ): Promise<FileCreatedResponse | null> => {
     set({ loading: true, error: false });
 
     const { selectedName, selectedType } = get();
@@ -69,8 +71,7 @@ const useCreatorStore = create<CreatorState>((set, get) => ({
 
     set({ loading: false });
 
-    if (navigateTo)
-      await navigateDocument(createdFile.id);
+    if (navigateTo) await navigateDocument(createdFile.id);
 
     return createdFile;
   },
