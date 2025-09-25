@@ -151,29 +151,6 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
 
     const demoCheckboxDisabled = loading || submitting || isDemoExpired;
 
-    useEffect(() => {
-      if (fieldsRequired) {
-        setAddressError(addressErr);
-        setHeaderError(headerErr);
-        setSecretError(secretErr);
-      } else {
-        setAddressError('');
-        setHeaderError('');
-        setSecretError('');
-      }
-    }, [
-      fieldsRequired,
-      demo,
-      isDemoExpired,
-      address,
-      header,
-      secret,
-      saveDisabled,
-      addressErr,
-      headerErr,
-      secretErr,
-    ]);
-
     const validateForm = (): boolean => {
       if (!fieldsRequired) return true;
 
@@ -235,15 +212,15 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                   const { value } = e.target;
                   const sanitizedValue = sanitizeUrl(value);
                   setAddress(sanitizedValue);
-                  setAddressError(validateAddressField(sanitizedValue));
                 }}
                 onBlur={(e) => {
                   const sanitized = sanitizeUrl(e.target.value);
                   const normalized = normalizeAddress(sanitized);
                   if (normalized !== e.target.value) {
                     setAddress(normalized);
-                    setAddressError(validateAddressField(normalized));
                   }
+                  
+                  setAddressError(validateAddressField(normalized));
                 }}
                 required={fieldsRequired}
                 autoComplete="off"
@@ -261,7 +238,9 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                   const { value } = e.target;
                   const sanitizedValue = sanitizeFormInput(value);
                   setSecret(sanitizedValue);
-                  setSecretError(validateSecretField(sanitizedValue));
+                }}
+                onBlur={(e) => {
+                  setSecretError(validateSecretField(e.target.value));
                 }}
                 required={fieldsRequired}
                 autoComplete="off"
@@ -279,7 +258,9 @@ export const Form = forwardRef<HTMLDivElement, FormProps>(
                   const { value } = e.target;
                   const sanitizedValue = sanitizeFormInput(value);
                   setHeader(sanitizedValue);
-                  setHeaderError(validateHeaderField(sanitizedValue));
+                }}
+                onBlur={(e) => {
+                  setHeaderError(validateHeaderField(e.target.value));
                 }}
                 required={fieldsRequired}
                 autoComplete="off"
