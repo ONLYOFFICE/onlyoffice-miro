@@ -492,11 +492,6 @@
             if (retryTimeout) {
                 clearTimeout(retryTimeout);
             }
-            if (docEditor) {
-                try {
-                    docEditor.destroyEditor();
-                } catch (e) {}
-            }
         };
 
         if (window.addEventListener) {
