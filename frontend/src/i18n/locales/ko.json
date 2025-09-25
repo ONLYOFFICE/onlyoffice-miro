@@ -2,20 +2,20 @@
   "pages": {
     "creation": {
       "title": "새 파일 생성",
-      "subtitle": "파일명을 입력하고 생성할 새 문서 형식을 선택하세요",
+      "subtitle": "Enter a file name and select a file type to create a new document",
       "footer": "ONLYOFFICE 개발"
     },
     "manager": {
       "empty": {
-        "title": "아직 문서가 없습니다",
-        "subtitle": "새 문서 생성 버튼을 누르세요",
-        "search_title": "문서를 찾지 못했습니다",
-        "search_subtitle": "다른 검색어를 입력해 보세요",
+        "title": "No files here yet",
+        "subtitle": "Press the button below to get started",
+        "search_title": "No files found",
+        "search_subtitle": "Please try another search query",
         "max_retries_title": "서버에 액세스하지 못했습니다",
         "max_retries_subtitle": "나중에 다시 시도하세요"
       },
       "title": "파일 관리자",
-      "subtitle": "Miro에서 편집할 문서를 선택하거나 생성하세요",
+      "subtitle": "Select or create a document to start editing it in Miro",
       "footer": "ONLYOFFICE 개발",
       "create": "새 파일 생성"
     },
@@ -32,7 +32,7 @@
         "download": "PDF로 다운로드",
         "delete": "삭제",
         "errors": {
-          "failed_to_open": "문서를 열 수 없습니다. 현재 서비스를 사용할 수 없으니 나중에 다시 시도하세요.",
+          "failed_to_open": "Could not open the file. The service is currently unavailable, please try again later.",
           "delete_locked": "문서가 잠금 상태이므로 삭제할 수 없습니다."
         }
       },
@@ -43,7 +43,7 @@
           "modified": "수정됨"
         },
         "notifications": {
-          "documents_added": "새 문서를 확인하려면 ONLYOFFICE를 새로 고침하세요."
+          "documents_added": "Please refresh ONLYOFFICE to view the newly added files."
         }
       },
       "search": {
@@ -84,7 +84,7 @@
         "button": "지금 받기"
       },
       "form": {
-        "description": "ONLYOFFICE Document 서버를 사용하여 Miro에서 오피스 문서를 편집할 수 있는 앱입니다",
+        "description": "This app allows creating and editing office documents from Miro using ONLYOFFICE Docs (Document Server)",
         "errors": {
           "address_required": "유효한 주소를 입력하세요",
           "header_required": "유효한 헤더를 입력하세요",
@@ -108,7 +108,8 @@
         "demo": {
           "title": "ONLYOFFICE Docs 데모 서버에 연결하세요",
           "description": "공개 테스트 서버이므로 민감한 데이터에는 사용하지 마세요. 이 서버는 30일 동안 사용할 수 있습니다.",
-          "available_until": "이 데모 서버는 {{date}}까지 사용할 수 있습니다"
+          "available_until": "You are successfully connected to the demo server. It will be available until {{date}}. To disable it, uncheck the box.",
+          "expired": "The 30-day test period is over. You are no longer able to connect to the demo server."
         },
         "save": "저장"
       }
