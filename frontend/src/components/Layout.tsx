@@ -50,7 +50,7 @@ const Layout: React.FC<LayoutProps> = ({
   onReload,
   onSettings,
   onHelp = () =>
-    window.open('https://github.com/ONLYOFFICE/onlyoffice-miro', '_blank'),
+    window.open('https://www.onlyoffice.com', '_blank'),
   children,
 }) => {
   const { admin } = useApplicationStore();
