@@ -24,6 +24,7 @@ import {
   createFile as createMiroFile,
   fetchSupportedFileTypes,
 } from '@features/manager/api/file';
+import { navigateDocument } from '@features/file/api/file';
 
 interface CreatorState {
   selectedName: string;
@@ -36,7 +37,7 @@ interface CreatorState {
   setSelectedName: (value: string) => void;
   setSelectedType: (value: string) => void;
 
-  createFile: () => Promise<FileCreatedResponse | null>;
+  createFile: (navigateTo?: boolean) => Promise<FileCreatedResponse | null>;
   resetSelected: () => void;
 }
 
@@ -53,7 +54,7 @@ const useCreatorStore = create<CreatorState>((set, get) => ({
   setSelectedName: (value) => set({ selectedName: value }),
   setSelectedType: (value) => set({ selectedType: value }),
 
-  createFile: async (): Promise<FileCreatedResponse | null> => {
+  createFile: async (navigateTo = true): Promise<FileCreatedResponse | null> => {
     set({ loading: true, error: false });
 
     const { selectedName, selectedType } = get();
@@ -67,6 +68,10 @@ const useCreatorStore = create<CreatorState>((set, get) => ({
     }
 
     set({ loading: false });
+
+    if (navigateTo)
+      await navigateDocument(createdFile.id);
+
     return createdFile;
   },
   resetSelected: () => {
