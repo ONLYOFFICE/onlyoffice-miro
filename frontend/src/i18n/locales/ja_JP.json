@@ -37,6 +37,11 @@
           }
         },
         "list": {
+          "header": {
+            "name": "名前",
+            "created": "作成日",
+            "modified": "更新日"
+          },
           "notifications": {
             "documents_added": "新しいドキュメントを表示するにはONLYOFFICEを更新してください。"
           }

@@ -37,6 +37,11 @@
           }
         },
         "list": {
+          "header": {
+            "name": "Nom",
+            "created": "Créé",
+            "modified": "Modifié"
+          },
           "notifications": {
             "documents_added": "Veuillez actualiser ONLYOFFICE pour voir les nouveaux documents."
           }

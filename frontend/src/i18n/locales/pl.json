@@ -37,6 +37,11 @@
           }
         },
         "list": {
+          "header": {
+            "name": "Nazwa",
+            "created": "Utworzono",
+            "modified": "Zmodyfikowano"
+          },
           "notifications": {
             "documents_added": "Odśwież ONLYOFFICE, aby zobaczyć nowe dokumenty."
           }

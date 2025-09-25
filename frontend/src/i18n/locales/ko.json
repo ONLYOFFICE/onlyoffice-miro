@@ -37,6 +37,11 @@
         }
       },
       "list": {
+        "header": {
+          "name": "이름",
+          "created": "생성됨",
+          "modified": "수정됨"
+        },
         "notifications": {
           "documents_added": "새 문서를 확인하려면 ONLYOFFICE를 새로 고침하세요."
         }

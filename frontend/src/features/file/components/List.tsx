@@ -219,7 +219,15 @@ export const FilesList = forwardRef<HTMLDivElement, FilesListProps>(
             <Spinner size="medium" />
           </div>
         )}
-
+        {docs.length > 0 && (
+          <div className="files-list-header">
+            <span className="files-list-header__title" title={t('features.file.list.header.name')}>{t('features.file.list.header.name')}</span>
+            <span className="files-list-header__icon"></span>
+            <span className="files-list-header__date" title={t('features.file.list.header.created')} style={{ marginRight: '0.5rem' }}>{t('features.file.list.header.created')}</span>
+            <span className="files-list-header__date" title={t('features.file.list.header.modified')}>{t('features.file.list.header.modified')}</span>
+            <div className="files-list-header__dropdown-wrapper"></div>
+          </div>
+        )}
         {docs.map((doc) => (
           <FileItem key={doc.id} document={doc} />
         ))}
