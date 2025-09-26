@@ -2,20 +2,20 @@
     "pages": {
       "creation": {
         "title": "新しいファイルの作成",
-        "subtitle": "Enter a file name and select a file type to create a new document",
+        "subtitle": "ファイル名を入力し、ファイルタイプを選択して新しいドキュメントを作成",
         "footer": "開発：ONLYOFFICE"
       },
       "manager": {
         "empty": {
-          "title": "No files here yet",
-          "subtitle": "Press the button below to get started",
-          "search_title": "No files found",
-          "search_subtitle": "Please try another search query",
+          "title": "まだファイルはありません",
+          "subtitle": "下のボタンを押して始める",
+          "search_title": "ファイルが見つかりません",
+          "search_subtitle": "別の検索キーワードをお試しください",
           "max_retries_title": "サーバーにアクセスできませんでした",
           "max_retries_subtitle": "後でもう一度お試しください"
         },
         "title": "ファイルマネージャー",
-        "subtitle": "Select or create a document to start editing it in Miro",
+        "subtitle": "Miroで編集を開始するには、ドキュメントを選択または作成してください",
         "footer": "開発：ONLYOFFICE",
         "create": "新規ファイルの作成"
       },
@@ -32,7 +32,7 @@
           "download": "PDFとしてダウンロード",
           "delete": "削除",
           "errors": {
-            "failed_to_open": "Could not open the file. The service is currently unavailable, please try again later.",
+            "failed_to_open": "ファイルを開けませんでした。サービスは現在利用できません。後ほど再度お試しください。",
             "delete_locked": "ロックされているため、このドキュメントは削除できません。"
           }
         },
@@ -43,7 +43,7 @@
             "modified": "更新日"
           },
           "notifications": {
-            "documents_added": "Please refresh ONLYOFFICE to view the newly added files."
+            "documents_added": "新しく追加されたファイルを表示するには、ONLYOFFICEを更新してください。"
           }
         },
         "search": {
@@ -84,7 +84,7 @@
           "button": "今すぐ入手"
         },
         "form": {
-          "description": "This app allows creating and editing office documents from Miro using ONLYOFFICE Docs (Document Server)",
+          "description": "このアプリでは、ONLYOFFICE Docs（ドキュメントサーバー）を使用して、Miroからオフィスドキュメントを作成・編集できます",
           "errors": {
             "address_required": "有効なアドレスを入力してください",
             "header_required": "有効なヘッダーを入力してください",
@@ -108,8 +108,8 @@
           "demo": {
             "title": "デモ用ONLYOFFICE Docs Serverに接続",
             "description": "これは公開テストサーバーです。機密データには使用しないでください。サーバーは30日間利用可能です。",
-            "available_until": "You are successfully connected to the demo server. It will be available until {{date}}. To disable it, uncheck the box.",
-            "expired": "The 30-day test period is over. You are no longer able to connect to the demo server."
+            "available_until": "デモサーバーへの接続に成功しました。{{date}}まで利用可能です。無効にするには、チェックボックスをオフにしてください。",
+            "expired": "30日間の試用期間が終了しました。デモサーバーに接続できなくなりました。"
           },
           "save": "保存"
         }

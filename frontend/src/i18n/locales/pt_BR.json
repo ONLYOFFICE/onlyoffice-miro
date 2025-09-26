@@ -2,20 +2,20 @@
     "pages": {
       "creation": {
       "title": "Criar novo arquivo",
-      "subtitle": "Enter a file name and select a file type to create a new document",
+      "subtitle": "Digite um nome de arquivo e selecione um tipo de arquivo para criar um novo documento",
       "footer": "Desenvolvido por ONLYOFFICE"
     },
       "manager": {
         "empty": {
-        "title": "No files here yet",
-        "subtitle": "Press the button below to get started",
-        "search_title": "No files found",
-        "search_subtitle": "Please try another search query",
+        "title": "Nenhum arquivo aqui ainda",
+        "subtitle": "Pressione o botão abaixo para começar",
+        "search_title": "Nenhum arquivo encontrado",
+        "search_subtitle": "Tente outra consulta de pesquisa",
         "max_retries_title": "Falha ao acessar o servidor",
         "max_retries_subtitle": "Tente novamente mais tarde"
       },
       "title": "Gerenciador de arquivos",
-      "subtitle": "Select or create a document to start editing it in Miro",
+      "subtitle": "Selecione ou crie um documento para começar a editá-lo no Miro",
       "footer": "Desenvolvido por ONLYOFFICE ",
       "create": "Criar novo arquivo"
     },
@@ -32,7 +32,7 @@
           "download": "Baixar como PDF",
           "delete": "Excluir",
           "errors": {
-            "failed_to_open": "Could not open the file. The service is currently unavailable, please try again later.",
+            "failed_to_open": "Não foi possível abrir o arquivo. O serviço está indisponível no momento, tente novamente mais tarde.",
             "delete_locked": "Não é possível excluir o documento porque ele está bloqueado."
           }
         },
@@ -43,7 +43,7 @@
             "modified": "Modificado"
           },
           "notifications": {
-            "documents_added": "Please refresh ONLYOFFICE to view the newly added files."
+            "documents_added": "Atualize o ONLYOFFICE para visualizar os arquivos adicionados recentemente."
           }
         },
         "search": {
@@ -84,7 +84,7 @@
           "button": "Obter agora"
         },
         "form": {
-          "description": "This app allows creating and editing office documents from Miro using ONLYOFFICE Docs (Document Server)",
+          "description": "Este aplicativo permite criar e editar documentos do Office a partir do Miro usando o ONLYOFFICE Docs (Document Server)",
           "errors": {
           "address_required": "Por favor, insira um endereço válido",
           "header_required": "Por favor, insira um cabeçalho válido",
@@ -108,8 +108,8 @@
           "demo": {
             "title": "Conectar ao servidor de demonstração do ONLYOFFICE Docs",
             "description": "Este é um servidor de teste público. Não o utilize para dados confidenciais. O servidor ficará disponível por um período de 30 dias.",
-            "available_until": "You are successfully connected to the demo server. It will be available until {{date}}. To disable it, uncheck the box.",
-            "expired": "The 30-day test period is over. You are no longer able to connect to the demo server."
+            "available_until": "Você se conectou com sucesso ao servidor de demonstração. Ele estará disponível até {{date}}. Para desativá-lo, desmarque a caixa.",
+            "expired": "O período de teste de 30 dias terminou. Você não pode mais se conectar ao servidor de demonstração."
           },
           "save": "Salvar"
         }
