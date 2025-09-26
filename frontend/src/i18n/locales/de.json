@@ -1,4 +1,4 @@
-﻿{
+{
     "pages": {
       "creation": {
         "title": "Neue Datei erstellen",
@@ -108,7 +108,7 @@
           "demo": {
             "title": "Sich mit dem Demoserver von ONLYOFFICE Docs verbinden",
             "description": "Dies ist ein öffentlicher Testserver. Bitte verwenden Sie ihn nicht für private, sensible Daten. Der Server wird 30 Tage lang verfügbar sein.",
-            "available_until": "Sie sind erfolgreich mit dem Demoserver verbunden. Er ist bis zum {{date}} verfügbar. Um ihn zu deaktivieren, deaktivieren Sie das Kontrollkästchen."",
+            "available_until": "Sie sind erfolgreich mit dem Demoserver verbunden. Er ist bis zum {{date}} verfügbar. Um ihn zu deaktivieren, deaktivieren Sie das Kontrollkästchen.",
             "expired": "Die 30-tägige Testphase ist abgelaufen. Sie können keine Verbindung mehr zum Demoserver herstellen."
           },
           "save": "Speichern"
