@@ -2,20 +2,20 @@
     "pages": {
       "creation": {
         "title": "Créer un nouveau fichier",
-        "subtitle": "Enter a file name and select a file type to create a new document",
+        "subtitle": "Entrez un nom de fichier et sélectionnez un type de fichier pour créer un nouveau document",
         "footer": "Développé par ONLYOFFICE"
       },
       "manager": {
         "empty": {
-          "title": "No files here yet",
-          "subtitle": "Press the button below to get started",
-          "search_title": "No files found",
-          "search_subtitle": "Please try another search query",
+          "title": "Aucun fichier ici pour le moment",
+          "subtitle": "Appuyez sur le bouton ci-dessous pour commencer.",
+          "search_title": "Aucun fichier trouvé",
+          "search_subtitle": "Veuillez essayer une autre requête de recherche",
           "max_retries_title": "Échec de l'accès au serveur",
           "max_retries_subtitle": "Veuillez réessayer plus tard"
         },
         "title": "Gestionnaire de fichiers",
-        "subtitle": "Select or create a document to start editing it in Miro",
+        "subtitle": "Sélectionnez ou créez un document pour commencer à le modifier dans Miro",
         "footer": "Développé par ONLYOFFICE",
         "create": "Créer un nouveau fichier"
       },
@@ -32,7 +32,7 @@
           "download": "Télécharger en PDF",
           "delete": "Supprimer",
           "errors": {
-            "failed_to_open": "Could not open the file. The service is currently unavailable, please try again later.",
+            "failed_to_open": "Impossible d'ouvrir le fichier. Le service est actuellement indisponible, veuillez réessayer plus tard.",
             "delete_locked": "Impossible de supprimer le document, car il est verrouillé."
           }
         },
@@ -43,7 +43,7 @@
             "modified": "Modifié"
           },
           "notifications": {
-            "documents_added": "Please refresh ONLYOFFICE to view the newly added files."
+            "documents_added": "Veuillez actualiser ONLYOFFICE pour afficher les fichiers nouvellement ajoutés."
           }
         },
         "search": {
@@ -54,7 +54,7 @@
       "manager": {
         "installation": {
           "error": "Installation de l'application requise",
-          "description": "Veuillez installer ou réinstaller l’application pour continuer",
+          "description": "Veuillez installer ou réinstaller l'application pour continuer",
           "button": "Installer"
         },
         "creation": {
@@ -84,7 +84,7 @@
           "button": "Obtenir maintenant"
         },
         "form": {
-          "description": "This app allows creating and editing office documents from Miro using ONLYOFFICE Docs (Document Server)",
+          "description": "Cette application permet de créer et de modifier des documents bureautiques à partir de Miro à l'aide d'ONLYOFFICE Docs (Document Server)",
           "errors": {
             "address_required": "Veuillez saisir une adresse valide",
             "header_required": "Veuillez saisir un en-tête valide",
@@ -106,10 +106,10 @@
           "secret": "Clé secrète JWT",
           "header": "En-tête JWT",
           "demo": {
-            "title": "Se connecter au serveur de démonstration d’ONLYOFFICE Docs",
+            "title": "Se connecter au serveur de démonstration d'ONLYOFFICE Docs",
             "description": "Il s'agit d'un serveur de test public. Veuillez ne pas l'utiliser pour des données privées sensibles. Le serveur sera disponible pendant une période de 30 jours.",
-            "available_until": "You are successfully connected to the demo server. It will be available until {{date}}. To disable it, uncheck the box.",
-            "expired": "The 30-day test period is over. You are no longer able to connect to the demo server."
+            "available_until": "Vous êtes connecté au serveur de démonstration. Il sera disponible jusqu'au {{date}}. Pour le désactiver, décochez la case.",
+            "expired": "La période d'essai de 30 jours est terminée. Vous ne pouvez plus vous connecter au serveur de démonstration."
           },
           "save": "Enregistrer"
         }
