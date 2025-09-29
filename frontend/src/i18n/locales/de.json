@@ -32,7 +32,7 @@
           "download": "Als PDF herunterladen",
           "delete": "Löschen",
           "errors": {
-            "failed_to_open": "Die Datei konnte nicht geöffnet werden. Der Dienst ist derzeit nicht verfügbar. Bitte versuchen Sie es später erneut.",
+            "failed_to_open": "Die Datei konnte nicht geöffnet werden. Der Dienst ist derzeit nicht verfügbar.",
             "delete_locked": "Das Dokument kann nicht gelöscht werden, da es gesperrt ist."
           }
         },

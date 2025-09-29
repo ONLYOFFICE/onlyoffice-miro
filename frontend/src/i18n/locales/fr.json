@@ -32,7 +32,7 @@
           "download": "Télécharger en PDF",
           "delete": "Supprimer",
           "errors": {
-            "failed_to_open": "Impossible d'ouvrir le fichier. Le service est actuellement indisponible, veuillez réessayer plus tard.",
+            "failed_to_open": "Impossible d'ouvrir le fichier. Le service est actuellement indisponible.",
             "delete_locked": "Impossible de supprimer le document, car il est verrouillé."
           }
         },

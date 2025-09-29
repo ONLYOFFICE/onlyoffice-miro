@@ -32,7 +32,7 @@
           "download": "Baixar como PDF",
           "delete": "Excluir",
           "errors": {
-            "failed_to_open": "Não foi possível abrir o arquivo. O serviço está indisponível no momento, tente novamente mais tarde.",
+            "failed_to_open": "Não foi possível abrir o arquivo. O serviço está indisponível no momento.",
             "delete_locked": "Não é possível excluir o documento porque ele está bloqueado."
           }
         },

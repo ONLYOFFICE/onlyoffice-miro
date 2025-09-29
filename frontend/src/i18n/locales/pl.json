@@ -32,7 +32,7 @@
           "download": "Pobierz jako PDF",
           "delete": "Usuń",
           "errors": {
-            "failed_to_open": "Nie można otworzyć pliku. Usługa jest obecnie niedostępna. Spróbuj ponownie później.",
+            "failed_to_open": "Nie można otworzyć pliku. Usługa jest obecnie niedostępna.",
             "delete_locked": "Nie można usunąć dokumentu, ponieważ jest zablokowany."
           }
         },
