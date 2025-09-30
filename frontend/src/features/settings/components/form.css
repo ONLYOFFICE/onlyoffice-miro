@@ -124,7 +124,9 @@
 }
 
 .form__save-button {
-  max-width: 5rem;
+  width: auto;
+  max-width: 100%;
+  min-width: 5rem;
 
   overflow: hidden;
   text-overflow: ellipsis;
