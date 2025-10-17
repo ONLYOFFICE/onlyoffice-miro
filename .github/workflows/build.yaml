@@ -53,9 +53,9 @@ jobs:
          echo ::add-mask::${MIRO_INSTALLATION_URL}
          echo ::add-mask::${DEMO_EXPIRATION_DAYS}
 
-         echo "VITE_MIRO_ONLYOFFICE_BACKEND=${MIRO_ONLYOFFICE_BACKEND:=${{ secrets.MIRO_ONLYOFFICE_BACKEND }}}" >> "$GITHUB_ENV"
+         echo "VITE_MIRO_ONLYOFFICE_BACKEND=${MIRO_ONLYOFFICE_BACKEND:=https://miro.teamlab.info}" >> "$GITHUB_ENV"
          echo "VITE_MIRO_INSTALLATION_URL=${MIRO_INSTALLATION_URL:=${{secrets.VITE_MIRO_INSTALLATION_URL }}}" >> "$GITHUB_ENV"
-         echo "VITE_ASC_DEMO_EXPIRATION_DAYS=${DEMO_EXPIRATION_DAYS:=${{ secrets.VITE_ASC_DEMO_EXPIRATION_DAYS }}}" >> "$GITHUB_ENV"
+         echo "VITE_ASC_DEMO_EXPIRATION_DAYS=${DEMO_EXPIRATION_DAYS:=30}" >> "$GITHUB_ENV"
 
     - name: Setup QEMU
       uses: docker/setup-qemu-action@v3
