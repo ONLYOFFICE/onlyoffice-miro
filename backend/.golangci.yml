@@ -1,0 +1,66 @@
+run:
+  timeout: 5m
+  tests: true
+  concurrency: 4
+  skip-dirs:
+    - tmp
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+
+linters:
+  enable:
+    - errcheck      # Detect unchecked errors
+    - gosimple      # Simplify code
+    - govet         # Examine Go source code and reports suspicious constructs
+    - ineffassign   # Detect when assignments to existing variables are not used
+    - staticcheck   # Go static analysis
+    - typecheck     # Like the front-end of a Go compiler
+    - unused        # Check for unused constants, variables, functions and types
+    - gofmt         # Check whether code was gofmt-ed
+    - goimports     # Check import statements format
+    - revive        # Drop-in replacement of golint
+    - misspell      # Find misspellings in comments, strings and identifiers
+    - whitespace    # Tool for detection of leading and trailing whitespace
+    - unconvert     # Remove unnecessary type conversions
+    - unparam       # Find unused function parameters
+    - gocyclo       # Calculate cyclomatic complexity
+    - dupl          # Tool for code clone detection
+    - bodyclose     # Checks whether HTTP response body is closed
+    - nolintlint    # Reports ill-formed or insufficient nolint directives
+    - prealloc      # Finds slice declarations that could potentially be preallocated
+    - gocritic      # Provides diagnostics that check for bugs, performance and style issues
+    - dogsled       # Checks for assignments with too many blank identifiers (e.g. x, _, _, _, := f())
+    - errname       # Checks that sentinel errors are prefixed with the Err and error types are suffixed with the Error
+
+linters-settings:
+  gocyclo:
+    min-complexity: 15
+  revive:
+    min-confidence: 0.8
+  dupl:
+    threshold: 100
+  goimports:
+    local-prefixes: github.com/ONLYOFFICE/onlyoffice-miro/backend
+  gocritic:
+    enable-all: true
+    disabled-checks:
+      - commentFormatting
+
+issues:
+  max-same-issues: 10
+  max-issues-per-linter: 50
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gocyclo
+        - dupl
+        - gosec 
+    - linters:
+        - typecheck
+      text: "declared and not used" 
+    - linters:
+        - typecheck
+      text: "undefined:" 

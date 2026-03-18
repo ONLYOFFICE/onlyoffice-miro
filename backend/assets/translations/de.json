@@ -1,0 +1,21 @@
+{
+  "errors": {
+    "authentication": {
+      "missing_authentication": "Authentifizierung erforderlich",
+      "invalid_token": "Ungültiges Authentifizierungstoken"
+    }
+  },
+  "editor": {
+    "errors": {
+      "unauthorized": "Unbefugter Zugriff",
+      "fetch_required_data": "Abrufen der erforderlichen Daten fehlgeschlagen",
+      "invalid_configuration": "Ungültige Konfiguration",
+      "fetch_miro_data": "Miro-Daten konnten nicht abgerufen werden",
+      "build_editor_configuration": "Fehler beim Erstellen der Editorkonfiguration",
+      "encode_configuration": "Konfiguration konnte nicht kodiert werden",
+      "settings_not_configured": "Die Einstellungen sind nicht konfiguriert oder Ihre Demo ist abgelaufen",
+      "failed_to_load": "Der Dokumenteditor konnte nicht initialisiert werden. Dies kann an einem Netzwerkproblem, einem Serverproblem oder der Browserkompatibilität liegen."
+    },
+    "close_window": "Schließen"
+  }
+}

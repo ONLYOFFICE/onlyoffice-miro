@@ -1,0 +1,22 @@
+{
+  "errors": {
+    "authentication": {
+      "missing_authentication": "Autenticação é necessária",
+      "invalid_token": "Token de autenticação inválido"
+    }
+  },
+  "editor": {
+    "errors": {
+      "unauthorized": "Acesso não autorizado",
+      "fetch_required_data": "Falha ao buscar os dados necessários",
+      "invalid_configuration": "Configuração inválida",
+      "fetch_miro_data": "Falha ao buscar dados do Miro",
+      "build_editor_configuration": "Falha ao construir a configuração do editor",
+      "encode_configuration": "Falha ao codificar a configuração",
+      "settings_not_configured": "As configurações não estão configuradas ou sua demonstração expirou",
+      "failed_to_load": "O editor de documentos falhou ao inicializar. Isso pode ocorrer devido a um problema de rede, servidor ou compatibilidade do navegador."
+
+    },
+    "close_window": "Fechar"
+  }
+}

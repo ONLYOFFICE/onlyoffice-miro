@@ -1,0 +1,163 @@
+.manager-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.manager-container__header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.manager-container__header__title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.manager-container__header__title {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+
+  color: #5F5C80;
+}
+
+.manager-container__header__subtitle {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: 0%;
+
+  color: #656B81;
+}
+
+.manager-container__main {
+  width: 100%;
+  display: flex;
+  flex: 1;
+
+  overflow: hidden;
+}
+
+.manager-container__main__files {
+  width: 100%;
+  height: 100%;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* Firefox scrollbar styles */
+  scrollbar-width: thin;
+  scrollbar-color: #AAAAAA #F1F1F1;
+}
+
+/* Webkit scrollbar styles for container */
+.manager-container__main__files::-webkit-scrollbar {
+  width: 1px;
+}
+
+.manager-container__main__files::-webkit-scrollbar-track {
+  background: #F1F1F1;
+  border-radius: 0;
+}
+
+.manager-container__main__files::-webkit-scrollbar-thumb {
+  background: #AAAAAA;
+  border-radius: 0;
+}
+
+.manager-container__main__files::-webkit-scrollbar-thumb:hover {
+  background: #888888;
+}
+
+.manager-container_shifted {
+  margin-left: 1.125rem;
+  margin-right: 1.125rem;
+}
+
+.manager-container__footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.manager-container__button-container {
+  margin-top: 0.75rem;
+}
+
+.manager-container__main__auth-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  margin: 40px 0;
+
+  text-align: center;
+}
+
+.manager-container__main__auth-error div {
+  margin-bottom: 8px;
+}
+
+.manager-container__main__loading {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+
+  color: #656B81;
+}
+
+.server-config-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  margin: 40px 0;
+
+  text-align: center;
+}
+
+.server-config-error div {
+  margin-bottom: 8px;
+}
+
+.server-config-error__non-admin {
+  padding: 8px;
+  margin-top: 8px;
+
+  font-style: italic;
+  color: #656B81;
+}
+
+.installation-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  margin: 40px 0;
+
+  text-align: center;
+}
+
+.installation-error div {
+  margin-bottom: 8px;
+}
+
+.disabled-link {
+  pointer-events: none;
+  opacity: 0.7;
+}

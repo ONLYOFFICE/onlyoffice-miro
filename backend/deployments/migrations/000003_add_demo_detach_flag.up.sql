@@ -1,0 +1,1 @@
+ALTER TABLE settings ADD COLUMN demo_detached BOOLEAN DEFAULT false; 

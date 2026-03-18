@@ -1,0 +1,21 @@
+{
+  "errors": {
+    "authentication": {
+      "missing_authentication": "Authentification requise",
+      "invalid_token": "Jeton d'authentification invalide"
+    }
+  },
+  "editor": {
+    "errors": {
+      "unauthorized": "Accès non autorisé",
+      "fetch_required_data": "Échec du chargement des données requises",
+      "invalid_configuration": "Configuration invalide",
+      "fetch_miro_data": "Échec du chargement des données Miro",
+      "build_editor_configuration": "Échec de la création de la configuration de l'éditeur",
+      "encode_configuration": "Échec de l'encodage de la configuration",
+      "settings_not_configured": "Les paramètres ne sont pas configurés ou votre démo a expiré",
+      "failed_to_load": "L'éditeur de document n'a pas pu s'initialiser. Cela peut être dû à un problème réseau, à un problème serveur ou à un problème de compatibilité du navigateur."
+    },
+    "close_window": "Fermer"
+  }
+}

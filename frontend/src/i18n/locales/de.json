@@ -1,0 +1,118 @@
+{
+    "pages": {
+      "creation": {
+        "title": "Neue Datei erstellen",
+        "subtitle": "Geben Sie einen Dateinamen ein und wählen Sie einen Dateityp aus, um ein neues Dokument zu erstellen",
+        "footer": "Entwickelt von ONLYOFFICE"
+      },
+      "manager": {
+        "empty": {
+          "title": "Noch keine Dateien vorhanden",
+          "subtitle": "Drücken Sie die Schaltfläche unten, um zu beginnen",
+          "search_title": "Keine Dateien gefunden",
+          "search_subtitle": "Bitte versuchen Sie es mit einer anderen Suchanfrage",
+          "max_retries_title": "Der Zugriff auf den Server ist fehlgeschlagen",
+          "max_retries_subtitle": "Bitte versuchen Sie es später noch einmal"
+        },
+        "title": "Dateimanager",
+        "subtitle": "Wählen oder erstellen Sie ein Dokument, um mit der Bearbeitung in Miro zu beginnen",
+        "footer": "Entwickelt von ONLYOFFICE",
+        "create": "Neue Datei erstellen"
+      },
+      "settings": {
+        "title": "Die ONLYOFFICE-App-Einstellungen konfigurieren",
+        "footer": "Entwickelt von ONLYOFFICE"
+      }
+    },
+    "features": {
+      "file": {
+        "item": {
+          "edit": "Bearbeiten",
+          "navigate": "Navigieren zu",
+          "download": "Als PDF herunterladen",
+          "delete": "Löschen",
+          "errors": {
+            "failed_to_open": "Die Datei konnte nicht geöffnet werden. Der Dienst ist derzeit nicht verfügbar.",
+            "delete_locked": "Das Dokument kann nicht gelöscht werden, da es gesperrt ist."
+          }
+        },
+        "list": {
+          "header": {
+            "name": "Name",
+            "created": "Erstellt",
+            "modified": "Geändert"
+          },
+          "notifications": {
+            "documents_added": "Bitte aktualisieren Sie ONLYOFFICE, um die neu hinzugefügten Dateien zu öffnen."
+          }
+        },
+        "search": {
+          "placeholder": "Dokument suchen",
+          "clear": "Suche löschen"
+        }
+      },
+      "manager": {
+        "installation": {
+          "error": "App-Installation erforderlich",
+          "description": "Bitte installieren Sie die App oder installieren Sie sie erneut, um fortzufahren",
+          "button": "Installieren"
+        },
+        "creation": {
+          "errors": {
+            "name_required": "Dateiname ist erforderlich",
+            "file_creation_failed": "Datei konnte nicht erstellt werden"
+          },
+          "file_types": {
+            "docx": "Dokument",
+            "xlsx": "Kalkulationstabelle",
+            "pptx": "Präsentation"
+          },
+          "create": "Erstellen",
+          "creating": "Erstellen...",
+          "file_name": "Dateiname",
+          "file_type": "Dateityp"
+        },
+        "notconfigured": {
+          "title": "Konfiguration erforderlich",
+          "message": "Bitte wenden Sie sich an Ihren Administrator, um den Dokumentenserver zu konfigurieren"
+        }
+      },
+      "settings": {
+        "banner": {
+          "title": "ONLYOFFICE Docs Cloud",
+          "description": "Starten Sie die Editoren einfach in der Cloud, ohne sie herunterzuladen und zu installieren",
+          "button": "Jetzt starten"
+        },
+        "form": {
+          "description": "Diese App ermöglicht das Erstellen und Bearbeiten von Office-Dokumenten aus Miro mit ONLYOFFICE Docs (Document Server)",
+          "errors": {
+            "address_required": "Bitte geben Sie eine gültige Adresse ein",
+            "header_required": "Bitte geben Sie einen gültigen Header ein",
+            "secret_required": "Bitte geben Sie ein gültiges Geheimnis ein",
+            "invalid_url": "Bitte geben Sie eine gültige URL ein",
+            "invalid_protocol": "Bitte geben Sie ein gültiges Protokoll ein",
+            "trailing_slash": "Bitte entfernen Sie den abschließenden Schrägstrich",
+            "header_too_long": "Bitte geben Sie einen gültigen Header ein",
+            "secret_too_long": "Bitte geben Sie ein gültiges Geheimnis ein",
+            "retrieval_error": "Die Einstellungen konnten nicht abgerufen werden",
+            "bad_jwt": "JWT konnte nicht analysiert oder signiert werden",
+            "document_server_version_retrieval_error": "Die Validierung der Dokumentserverversion ist fehlgeschlagen",
+            "document_server_unsupported_version": "Nicht unterstützte Version von Document Server",
+            "settings_initialization_error": "Neue Einstellungen konnten nicht erstellt werden",
+            "settings_persistence_error": "Fehler beim Beibehalten der Einstellungen",
+            "service_unavailable": "Dienst nicht verfügbar"
+          },
+          "address": "Adresse von Document Server",
+          "secret": "JWT-Geheimnis",
+          "header": "JWT-Header",
+          "demo": {
+            "title": "Sich mit dem Demoserver von ONLYOFFICE Docs verbinden",
+            "description": "Dies ist ein öffentlicher Testserver. Bitte verwenden Sie ihn nicht für private, sensible Daten. Der Server wird 30 Tage lang verfügbar sein.",
+            "available_until": "Sie sind erfolgreich mit dem Demoserver verbunden. Er ist bis zum {{date}} verfügbar. Um ihn zu deaktivieren, deaktivieren Sie das Kontrollkästchen.",
+            "expired": "Die 30-tägige Testphase ist abgelaufen. Sie können keine Verbindung mehr zum Demoserver herstellen."
+          },
+          "save": "Speichern"
+        }
+      }
+    }
+  }

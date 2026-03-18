@@ -1,0 +1,118 @@
+{
+  "pages": {
+    "creation": {
+      "title": "Create new file",
+      "subtitle": "Enter a file name and select a file type to create a new document",
+      "footer": "Developed by ONLYOFFICE"
+    },
+    "manager": {
+      "empty": {
+        "title": "No files here yet",
+        "subtitle": "Press the button below to get started",
+        "search_title": "No files found",
+        "search_subtitle": "Please try another search query",
+        "max_retries_title": "Failed to access the server",
+        "max_retries_subtitle": "Please try again later"
+      },
+      "title": "File manager",
+      "subtitle": "Select or create a document to start editing it in Miro",
+      "footer": "Developed by ONLYOFFICE",
+      "create": "Create new file"
+    },
+    "settings": {
+      "title": "Configure ONLYOFFICE app settings",
+      "footer": "Developed by ONLYOFFICE"
+    }
+  },
+  "features": {
+    "file": {
+      "item": {
+        "edit": "Edit",
+        "navigate": "Navigate to",
+        "download": "Download as PDF",
+        "delete": "Delete",
+        "errors": {
+          "failed_to_open": "Could not open the file. The service is currently unavailable.",
+          "delete_locked": "Cannot delete the document because it is locked."
+        }
+      },
+      "list": {
+        "header": {
+          "name": "Name",
+          "created": "Created",
+          "modified": "Modified"
+        },
+        "notifications": {
+          "documents_added": "Please refresh ONLYOFFICE to view the newly added files."
+        }
+      },
+      "search": {
+        "placeholder": "Search document",
+        "clear": "Clear search"
+      }
+    },
+    "manager": {
+      "installation": {
+        "error": "App Installation Required",
+        "description": "Please install or reinstall the app to continue",
+        "button": "Install"
+      },
+      "creation": {
+        "errors": {
+          "name_required": "File name is required",
+          "file_creation_failed": "Failed to create file"
+        },
+        "file_types": {
+          "docx": "Document",
+          "xlsx": "Spreadsheet",
+          "pptx": "Presentation"
+        },
+        "create": "Create",
+        "creating": "Creating...",
+        "file_name": "File name",
+        "file_type": "File type"
+      },
+      "notconfigured": {
+        "title": "Configuration required",
+        "message": "Please contact your administrator to configure the document server"
+      }
+    },
+    "settings": {
+      "banner": {
+        "title": "ONLYOFFICE Docs Cloud",
+        "description": "Easily launch the editors in the cloud without downloading and installation",
+        "button": "Get now"
+      },
+      "form": {
+        "description": "This app allows creating and editing office documents from Miro using ONLYOFFICE Docs (Document Server)",
+        "errors": {
+          "address_required": "Please enter a valid address",
+          "header_required": "Please enter a valid header",
+          "secret_required": "Please enter a valid secret",
+          "invalid_url": "Please enter a valid URL",
+          "invalid_protocol": "Please enter a valid protocol",
+          "trailing_slash": "Please remove the trailing slash",
+          "header_too_long": "Please enter a valid header",
+          "secret_too_long": "Please enter a valid secret",
+          "retrieval_error": "Failed to retrieve settings",
+          "bad_jwt": "Failed to parse or sign JWT",
+          "document_server_version_retrieval_error": "Failed to validate document server version",
+          "document_server_unsupported_version": "Unsupported document server version",
+          "settings_initialization_error": "Failed to build new settings",
+          "settings_persistence_error": "Failed to persist settings",
+          "service_unavailable": "Service unavailable"
+        },
+        "address": "Document Server Address",
+        "secret": "JWT Secret",
+        "header": "JWT Header",
+        "demo": {
+          "title": "Connect to demo ONLYOFFICE Docs server",
+          "description": "This is a public test server, please do not use it for private sensitive data. The server will be available during a 30-day period.",
+          "available_until": "You are successfully connected to the demo server. It will be available until {{date}}. To disable it, uncheck the box.",
+          "expired": "The 30-day test period is over. You are no longer able to connect to the demo server."
+        },
+        "save": "Save"
+      }
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "pages": {
+    "creation": {
+      "title": "새 파일 생성",
+      "subtitle": "파일 이름을 입력하고 파일 유형을 선택하여 새 문서를 만듭니다",
+      "footer": "ONLYOFFICE 개발"
+    },
+    "manager": {
+      "empty": {
+        "title": "아직 파일이 없습니다",
+        "subtitle": "시작하려면 아래 버튼을 누르세요",
+        "search_title": "파일을 찾을 수 없습니다",
+        "search_subtitle": "다른 검색어를 입력해 주세요",
+        "max_retries_title": "서버에 액세스하지 못했습니다",
+        "max_retries_subtitle": "나중에 다시 시도하세요"
+      },
+      "title": "파일 관리자",
+      "subtitle": "Miro에서 편집을 시작하려면 문서를 선택하거나 만드세요",
+      "footer": "ONLYOFFICE 개발",
+      "create": "새 파일 생성"
+    },
+    "settings": {
+      "title": "ONLYOFFICE 앱 설정을 구성하세요",
+      "footer": "ONLYOFFICE 개발"
+    }
+  },
+  "features": {
+    "file": {
+      "item": {
+        "edit": "편집",
+        "navigate": "다음으로 이동:",
+        "download": "PDF로 다운로드",
+        "delete": "삭제",
+        "errors": {
+          "failed_to_open": "파일을 열 수 없습니다. 현재 서비스를 사용할 수 없습니다.",
+          "delete_locked": "문서가 잠금 상태이므로 삭제할 수 없습니다."
+        }
+      },
+      "list": {
+        "header": {
+          "name": "이름",
+          "created": "생성됨",
+          "modified": "수정됨"
+        },
+        "notifications": {
+          "documents_added": "새로 추가된 파일을 보려면 ONLYOFFICE를 새로 고침하세요."
+        }
+      },
+      "search": {
+        "placeholder": "문서 검색",
+        "clear": "검색 지우기"
+      }
+    },
+    "manager": {
+      "installation": {
+        "error": "앱 설치가 필요합니다",
+        "description": "계속하려면 앱을 설치 또는 재설치하세요",
+        "button": "설치"
+      },
+      "creation": {
+        "errors": {
+          "name_required": "파일명이 필요합니다",
+          "file_creation_failed": "파일을 생성하지 못했습니다"
+        },
+        "file_types": {
+          "docx": "문서",
+          "xlsx": "스프레드시트",
+          "pptx": "프레젠테이션"
+        },
+        "create": "생성",
+        "creating": "생성 중...",
+        "file_name": "파일명",
+        "file_type": "파일 유형"
+      },
+      "notconfigured": {
+        "title": "구성이 필요합니다",
+        "message": "문서 서버를 구성하려면 관리자에게 문의하세요"
+      }
+    },
+    "settings": {
+      "banner": {
+        "title": "ONLYOFFICE Docs 클라우드",
+        "description": "다운로드나 설치 없이 클라우드에서 편집기를 손쉽게 실행하세요",
+        "button": "지금 받기"
+      },
+      "form": {
+        "description": "이 앱을 사용하면 ONLYOFFICE Docs(문서 서버)를 사용하여 Miro에서 Office 문서를 만들고 편집할 수 있습니다",
+        "errors": {
+          "address_required": "유효한 주소를 입력하세요",
+          "header_required": "유효한 헤더를 입력하세요",
+          "secret_required": "유효한 시크릿을 입력하세요",
+          "invalid_url": "유효한 URL을 입력하세요",
+          "invalid_protocol": "유효한 프로토콜을 입력하세요",
+          "trailing_slash": "트레일링 슬래시를 지우세요",
+          "header_too_long": "유효한 헤더를 입력하세요",
+          "secret_too_long": "유효한 시크릿을 입력하세요",
+          "retrieval_error": "설정을 가져오지 못했습니다",
+          "bad_jwt": "JWT를 파싱 또는 서명하는 데 실패했습니다",
+          "document_server_version_retrieval_error": "문서 서버 버전을 확인하는 데 실패했습니다",
+          "document_server_unsupported_version": "지원되지 않는 문서 서버 버전입니다",
+          "settings_initialization_error": "새 설정을 빌드하지 못했습니다",
+          "settings_persistence_error": "설정값을 유지하는 데 실패했습니다",
+          "service_unavailable": "서비스를 사용할 수 없습니다"
+        },
+        "address": "문서 서버 주소",
+        "secret": "JWT 시크릿",
+        "header": "JWT 헤더",
+        "demo": {
+          "title": "ONLYOFFICE Docs 데모 서버에 연결하세요",
+          "description": "공개 테스트 서버이므로 민감한 데이터에는 사용하지 마세요. 이 서버는 30일 동안 사용할 수 있습니다.",
+          "available_until": "데모 서버에 성공적으로 연결되었습니다. {{date}}까지 이용 가능합니다. 비활성화하려면 체크박스의 선택을 해제하세요.",
+          "expired": "30일 체험 기간이 종료되었습니다. 더 이상 데모 서버에 접속하실 수 없습니다."
+        },
+        "save": "저장"
+      }
+    }
+  }
+}

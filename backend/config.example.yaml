@@ -1,0 +1,44 @@
+database:
+  host: localhost
+  port: 5432
+  name: miro
+  user: admin
+  password: admin
+demo_server:
+  address: https://<demo-server-address>.<demo-server-domain>
+  header: <header>
+  secret: <secret>
+redis:
+  host: localhost
+  port: 6379
+  password: ""
+  db: 0
+  timeout: 5s
+miro:
+  base_url: https://api.miro.com/v2
+  timeout: 4s
+oauth:
+  client_id: <client_id>
+  client_secret: <client_secret>
+  encryption_secret: <encryption_secret>
+  redirect_uri: <redirect_uri>
+  token_uri: https://api.miro.com/v1/oauth/token
+  timeout: 4s
+cors:
+  allow_origins:
+    - "*"
+  allow_headers:
+    - "*"
+  allow_methods:
+    - "*"
+  allow_credentials: true
+  max_age: 300
+server:
+  domain: <domain>
+  callback_url: <callback_url>
+logger:
+  service_name: onlyoffice-miro-service
+  environment: development
+  level: info
+  pretty_print: false
+  logger_type: zap

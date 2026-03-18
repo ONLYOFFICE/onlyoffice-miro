@@ -1,0 +1,37 @@
+# Builds
+bin
+build/dist
+node_modules
+dist
+dist-ssr
+*.local
+tsconfig.tsbuildinfo
+.env
+
+# Configurations
+deployments/pgbouncer/pgbouncer.ini
+config.yaml
+
+# Temporary directories
+tmp
+.golangci.tmp
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# IDEs
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,0 +1,111 @@
+/**
+ *
+ * (c) Copyright Ascensio System SIA 2025
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+ 
+.footer-container {
+  width: 100%;
+  padding: 1.375rem 1rem 0.5rem 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-sizing: border-box;
+}
+
+.footer-container__title {
+  height: 1rem;
+  margin-right: auto;
+
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.875rem;
+  line-height: 100%;
+  letter-spacing: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: var(--main-secondary-text-color);
+}
+
+.footer-container__button {
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-left: 0.5rem;
+  padding: 0;
+  border-radius: 0.25rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  transition: background-color 0.5s ease-in-out;
+}
+
+.footer-container__button:hover {
+  background-color: #F0F2FF;
+}
+
+.footer-container__button__settings {
+  width: 1rem;
+  height: 1rem;
+
+  mask-image: url('/settings.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  background-color: #09090966;
+
+  transition: background-color 0.3s ease;
+}
+
+.footer-container__button__help {
+  width: 1rem;
+  height: 1rem;
+
+  mask-image: url('/help.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  background-color: #09090966;
+
+  transition: background-color 0.3s ease;
+}
+
+.footer-container__button__reload {
+  width: 1rem;
+  height: 1rem;
+
+  mask-image: url('/reload.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  background-color: #09090966;
+
+  transition: background-color 0.3s ease;
+}
+
+.footer-container__button:hover .footer-container__button__settings,
+.footer-container__button:hover .footer-container__button__help,
+.footer-container__button:hover .footer-container__button__reload {
+  background-color: #4262FF;
+}

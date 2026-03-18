@@ -1,0 +1,7 @@
+[submodule "backend/pkg/service/document/formats"]
+	path = backend/pkg/service/document/formats
+	url = https://github.com/ONLYOFFICE/document-formats.git
+[submodule "backend/assets/templates"]
+	path = backend/assets/templates
+	url = https://github.com/ONLYOFFICE/document-templates.git
+	branch = main/new

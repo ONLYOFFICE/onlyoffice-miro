@@ -1,0 +1,160 @@
+/**
+ *
+ * (c) Copyright Ascensio System SIA 2025
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+ 
+.form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  background-color: white;
+}
+
+.form__header {
+  width: 100%;
+
+  padding: 16px;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.form__title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+
+  color: #1a1a1a;
+}
+
+.form__nav {
+  display: flex;
+  align-items: center;
+
+  margin-top: 16px;
+}
+
+.form__back-link {
+  display: flex;
+  align-items: center;
+
+  color: #374151;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.form__back-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.form__back-text {
+  margin-left: 8px;
+}
+
+.form__content {
+  flex: 1;
+
+  padding: 16px;
+}
+
+.form__description {
+  margin-bottom: 24px;
+
+  font-size: 0.875rem;
+  line-height: 1.4;
+
+  color: #4b5563;
+}
+
+.form__fields {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form__field {
+  width: 100%;
+}
+
+.form__checkbox-container {
+  width: 100%;
+}
+
+.form__checkbox-label {
+  display: flex;
+  align-items: center;
+
+  font-size: 0.875rem;
+}
+
+.form__checkbox-text {
+  color: #374151;
+}
+
+.form__checkbox-description {
+  margin-top: 4px;
+  margin-left: 24px;
+
+  font-size: 12px;
+  line-height: 1.4;
+
+  color: #6b7280;
+}
+
+.form__button-container {
+  width: 100%;
+
+  margin-top: 1.125rem;
+}
+
+.form__save-button {
+  width: auto;
+  max-width: 100%;
+  min-width: 5rem;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.form__footer {
+  width: 100%;
+
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+
+  text-align: center;
+}
+
+.form__footer-text {
+  font-size: 0.875rem;
+
+  color: #6b7280;
+}
+
+.form__checkbox-container__expired {
+  width: 100%;
+}
+
+.form__checkbox-description__expired {
+  margin-top: 0;
+  margin-left: 0;
+
+  color: #6b7280;
+}

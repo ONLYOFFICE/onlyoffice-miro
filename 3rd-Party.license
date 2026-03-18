@@ -1,0 +1,133 @@
+ONLYOFFICE app for Miro uses code from the following 3rd party projects:
+
+validator       - 100 Go Struct and Field validation, including Cross Field, Cross Struct, Map, Slice and Array diving. (https://github.com/go-playground/validator)
+License:        MIT
+License File:   validator.license
+
+golang-jwt      - Go implementation of JSON Web Tokens (JWT). (https://github.com/golang-jwt/jwt)
+License:        MIT
+License File:   gojwt.license
+
+migrate         - Database migrations. CLI and Golang library. (https://github.com/golang-migrate/migrate)
+License:        MIT
+License File:   migrate.license
+
+pgx             - PostgreSQL driver and toolkit for Go. (https://github.com/jackc/pgx)
+License:        MIT
+License File:   pgx.license
+
+echo            - High performance, minimalist Go web framework. (https://github.com/labstack/echo)
+License:        MIT
+License File:   echo.license
+
+go-i18n         - Translate your Go program into multiple languages. (https://github.com/nicksnyder/go-i18n)
+License:        MIT
+License File:   go-i18n.license
+
+go-redis        - Redis Go client. (https://github.com/redis/go-redis)
+License:        BSD-2-Clause
+License File:   go-redis.license
+
+fx              - A dependency injection based application framework for Go. (https://github.com/uber-go/fx)
+License:        MIT
+License File:   fx.license
+
+zap             - Blazing fast, structured, leveled logging in Go. (https://github.com/uber-go/zap)
+License:        MIT
+License File:   zap.license
+
+yaml            - YAML support for the Go language. (https://github.com/go-yaml/yaml/tree/v3.0.1)
+License:        MIT
+License File:   yaml.license
+
+i18next         - i18next: learn once - translate everywhere. (https://github.com/i18next/i18next)
+License:        MIT
+License File:   i18next.license
+
+mirotone        - Mirotone is a small & lightweight skeleton UI Kit that matches Miro styles for building apps and plugins. The package contains a CSS file which can be used for any project. (https://www.npmjs.com/package/mirotone)
+License:        MIT
+License File:   mirotone.license
+
+react           - The library for web and native user interfaces. (https://github.com/facebook/react)
+License:        MIT
+License File:   react.license
+
+react-i18next   - Internationalization for react done right. Using the i18next i18n ecosystem. (https://github.com/i18next/react-i18next)
+License:        MIT
+License File:   react-i18next.license
+
+react-router-dom - Declarative routing for React. (https://github.com/remix-run/react-router)
+License:        MIT
+License File:   react-router-dom.license
+
+react-transition-group - An easy way to perform animations when a React component enters or leaves the DOM. (https://github.com/reactjs/react-transition-group)
+License:        BSD-3-Clause
+License File:   react-transition-group.license
+
+zustand         - Bear necessities for state management in React. (https://github.com/pmndrs/zustand)
+License:        MIT
+License File:   zustand.license
+
+eslint          - Find and fix problems in your JavaScript code. (https://github.com/eslint/eslint)
+License:        MIT
+License File:   eslint.license
+
+eslint-airbnb   - JavaScript Style Guide. (https://github.com/airbnb/javascript)
+License:        MIT
+License File:   airbnb.license
+
+typescript-eslint - Monorepo for all the tooling which enables ESLint to support TypeScript. (https://github.com/typescript-eslint/typescript-eslint)
+License:        MIT
+License File:   typescript-eslint.license
+
+eslint-airbnb-typescript - Airbnb's ESLint config with TypeScript support. (https://github.com/iamturns/eslint-config-airbnb-typescript)
+License:        MIT
+License File:   airbnb-typescript.license
+
+eslint-config-prettier - Turns off all rules that are unnecessary or might conflict with Prettier. (https://github.com/prettier/eslint-config-prettier/tree/main)
+License:        MIT
+License File:   eslint-config-prettier.license
+
+eslint-plugin-import - ESLint plugin with rules that help validate proper imports. (https://github.com/import-js/eslint-plugin-import)
+License:        MIT
+License File:   eslint-plugin-import.license
+
+eslint-plugin-jsx-a11y - Static AST checker for a11y rules on JSX elements. (https://github.com/jsx-eslint/eslint-plugin-jsx-a11y)
+License:        MIT
+License File:   eslint-plugin-jsx-a11y.license
+
+eslint-plugin-prettier - ESLint plugin for Prettier formatting. (https://github.com/prettier/eslint-plugin-prettier)
+License:        MIT
+License File:   eslint-plugin-prettier.license
+
+eslint-plugin-react - React-specific linting rules for ESLint. (https://github.com/jsx-eslint/eslint-plugin-react)
+License:        MIT
+License File:   eslint-plugin-react.license
+
+eslint-plugin-react-refresh - Validate that your components can safely be updated with Fast Refresh. (https://github.com/ArnaudBarre/eslint-plugin-react-refresh)
+License:        MIT
+License File:   eslint-plugin-react-refresh.license
+
+globals         - Global identifiers from different JavaScript environments. (https://github.com/sindresorhus/globals)
+License:        MIT
+License File:   globals.license
+
+prettier        - Prettier is an opinionated code formatter. (https://github.com/prettier/prettier)
+License:        MIT
+License File:   prettier.license
+
+typescript      - TypeScript is a superset of JavaScript that compiles to clean JavaScript output. (https://github.com/microsoft/TypeScript)
+License:        Apache-2.0
+License File:   typescript.license
+
+vite            - Next generation frontend tooling. It's fast! (https://github.com/vitejs/vite)
+License:        MIT
+License File:   vite.license
+
+vite-plugin-svgr - Vite plugin to transform SVGs into React components. (https://github.com/pd4d10/vite-plugin-svgr)
+License:        MIT
+License File:   vite-plugin-svgr.license
+
+dompurify       - DOMPurify - a DOM-only, super-fast, uber-tolerant XSS sanitizer for HTML, MathML and SVG. DOMPurify works with a secure default, but offers a lot of configurability and hooks. (https://github.com/cure53/DOMPurify)
+License:        Apache-2.0
+License File:   dompurity.license
