@@ -1,6 +1,6 @@
 # Change Log
 
-##
+## 1.0.0
 ## Added
 - settings page for urls and JWT settings
 - connection to the demo server
