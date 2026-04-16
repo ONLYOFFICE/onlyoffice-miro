@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@types/react-transition-group": "^4.4.12",
-    "dompurify": "^3.2.6",
+    "dompurify": "^3.4.0",
     "i18next": "^25.0.1",
     "mirotone": "5",
     "react": "^19.0.0",
