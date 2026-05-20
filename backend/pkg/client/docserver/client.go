@@ -73,7 +73,7 @@ func (c *client) createRequest(ctx context.Context, method, baseURL, path string
 		return nil, ErrTokenRequired
 	}
 
-	url := common.Concat(address, path, "?shardKey=", common.GenerateRandomString(8))
+	url := common.Concat(address, path, "?shardkey=", common.GenerateRandomString(8))
 
 	var reader io.Reader
 	if body != nil {
